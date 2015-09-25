@@ -1,0 +1,454 @@
+/*
+CLP CSS
+*/
+body{
+    overflow:hidden;
+}
+
+/* Selection Pane Section */
+.selectionPane{
+    background-color:#F0F0F0;
+    height:900px;
+    -webkit-box-shadow: 3px 3px 4px 1px rgba(204,202,204,1);
+    -moz-box-shadow: 3px 3px 4px 1px rgba(204,202,204,1);
+    box-shadow: 3px 3px 4px 1px rgba(204,202,204,1);
+    
+    width:200px;
+    position:absolute;
+    top:50px;
+    left:0px;
+    
+    -webkit-transition: left 1000ms ease-in;
+    -moz-transition: left 1000ms ease-in;
+    -ms-transition: left 1000ms ease-in;
+    -o-transition: left 1000ms ease-in;
+    transition: left 1000ms ease-in;
+    
+    z-index:1001;
+
+}
+
+/* Visualization Pane Section */
+.visualizationPane{
+    height:900px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:10px;
+}
+/* Common Section */
+.WDHidden{
+    display:none;
+}
+/* iframe styling */
+.h_iframe{
+    height:100%;
+}
+/******************************************************************************/
+/*                          Accordion Styling                                 */
+/******************************************************************************/
+.selectionObj {
+    margin-left:-15px;
+    margin-right:-15px;
+}
+.accordionWrapper .ui-widget-content {
+    border: 1px solid #000000;
+    background: #F0F0F0;
+}
+
+.accordionWrapper.ui-accordion .ui-accordion-header {
+    margin-top: 0px;
+    padding: 8px 0px 7px 33px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.accordionWrapper .ui-accordion .ui-accordion-content{
+    padding: 10px 0px 0px 15px;
+}
+
+.accordionWrapper .ui-corner-all, 
+.accordionWrapper .ui-corner-top,
+.accordionWrapper .ui-corner-right,
+.accordionWrapper .ui-corner-tr {
+    border-top-right-radius: 0px;
+}
+
+.accordionWrapper .ui-corner-all,
+.accordionWrapper .ui-corner-top,
+.accordionWrapper .ui-corner-left,
+.accordionWrapper .ui-corner-tl {
+    border-top-left-radius: 0px;
+}
+
+.accordionWrapper .ui-corner-all, 
+.accordionWrapper .ui-corner-bottom, 
+.accordionWrapper .ui-corner-right, 
+.accordionWrapper .ui-corner-br{
+    border-bottom-right-radius: 0px;
+}
+
+.accordionWrapper .ui-corner-all, 
+.accordionWrapper .ui-corner-bottom, 
+.accordionWrapper .ui-corner-left, 
+.accordionWrapper .ui-corner-bl {
+    border-bottom-left-radius: 0px;
+}
+
+.accordionWrapper.ui-accordion .ui-accordion-content {
+    padding: 0;
+    border-top: 0;
+    overflow: auto;
+    border-bottom: 1px solid #000000;
+    border-left: none;
+    border-right: none;
+}
+
+.col-element-bar.ui-accordion-header.ui-helper-reset.ui-state-default.ui-accordion-icons.ui-corner-top,
+.col-element-bar.ui-accordion-header.ui-helper-reset.ui-state-default.ui-accordion-icons.accordion-header-active.ui-state-active.ui-corner-top,
+.ui-accordion-header.ui-helper-reset.ui-state-default.ui-accordion-header-active.ui-state-active.ui-corner-top.ui-accordion-icons{
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background: #F7F7F7;
+    font-weight: bold;
+    color: black;
+    border-top: 1px solid #000000;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+.ui-accordion-header.ui-helper-reset.ui-state-default.ui-corner-all.ui-accordion-icons.ui-state-hover,
+.ui-accordion-header.ui-helper-reset.ui-state-default.ui-accordion-header-active.ui-state-active.ui-corner-top.ui-accordion-icons.ui-state-hover{
+    background: #33B596;
+    color: white;
+}
+
+.ui-accordion-header.ui-helper-reset.ui-state-default.ui-corner-all.ui-accordion-icons{
+    background:#F7F7F7;
+    font-weight: bold;
+    color: black;
+    border-right: none;
+    border-left: none;
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+}
+.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-s{
+    background: url('/pentaho/api/repos/CLP/static/custom/img/arrowExpanded.png') 82% 5px;
+    background-repeat: no-repeat;
+}
+.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e{
+    background: url('/pentaho/api/repos/CLP/static/custom/img/arrowClosed.png') 82% 2px;
+    background-repeat: no-repeat;
+}
+.col-element-bar.ui-accordion-header.ui-helper-reset.ui-state-default.ui-corner-all.ui-accordion-icons:hover > span,
+.col-element-bar.ui-accordion-header.ui-helper-reset.ui-state-default.ui-accordion-header-active.ui-state-active.ui-corner-top.ui-accordion-icons:hover > span{
+    background:#33B596;
+}
+    
+.col-element-bar {
+    background: #F7F7F7;
+    font-weight: bold;
+    color: black;
+    border-bottom: 1px solid #DDDDDD;
+    border-top: 1px solid #DDDDDD;
+    line-height: 30px;
+}
+
+.col-element-bar:hover {
+    background:#33B596;
+    color: white;
+}
+.col-element-bar a {
+    float:left;
+    color:#f00;
+    text-decoration:none;
+}
+
+.collapsible {
+    background:#F7F7F7;
+    font-weight: normal;
+    color: black;
+}
+
+.collapsible > div {
+    background:#F7F7F7;
+}
+.collapsible > div:hover {
+    background:#33B596;
+    color:white;
+}
+
+/******************************************************************************/
+/*                          Slider Pane                                       */
+/******************************************************************************/
+.element {
+    height: 30px;
+    overflow-y: hidden;
+}
+
+.element p {
+    line-height: 30px;
+    margin-bottom: 0px;
+    
+    display:inline-block;
+    width: 170px;
+    
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.element a {
+    color: #B5B5B5;
+    margin-left: 33px;
+}
+
+.element p:hover,
+.element a:hover {
+    background: #33B596;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+.element.active {
+    background: #33B596;
+}
+
+.element.active > p > a {
+    color:#ffffff;
+}
+
+.element p:hover > a{
+    color: white;
+}
+
+
+.element p:hover + div{
+    background:#2E7DA5;
+}
+
+.infoButton {
+    display: inline-block;
+    background: #8B8B8B;
+    line-height: 30px;
+    float: right;
+    width: 30px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.infoButton:hover {
+    background: #434343;
+    cursor:pointer;
+}
+
+/******************************************************************************/
+/*                          Information slider                                */
+/******************************************************************************/
+
+.selectionPaneInfo{
+    position: absolute;
+    top: 52px;
+    width: 200px;
+    background: #EFEFEF;
+    height: 900px;
+}
+
+.selectionPaneInfo.collapsedInfo {
+    left: -200px;
+    
+    -webkit-transition: left 1000ms ease-out;
+    -moz-transition: left 1000ms ease-out;
+    -ms-transition: left 1000ms ease-out;
+    -o-transition: left 1000ms ease-out;
+    transition: left 1000ms ease-out;
+}
+
+.selectionPaneInfo.expandedInfo {
+    left:202px;
+    
+    -webkit-transition: left 1000ms ease-in;
+    -moz-transition: left 1000ms ease-in;
+    -ms-transition: left 1000ms ease-in;
+    -o-transition: left 1000ms ease-in;
+    transition: left 1000ms ease-in;
+    
+    z-index:10;
+}
+
+.selectionItemName {
+    margin-top: 50px;
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+.selectionInfo {
+    margin-left: 15px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/******************************************************************************/
+/*                          Media Queries for accordion                       */
+/******************************************************************************/
+
+.drawerButton{
+    position: absolute;
+    top: 0;
+    width: 250px;
+    height: 50px;
+}
+
+.clpWrapper {
+    padding-left:200px;
+    
+    -webkit-transition: padding-left 1000ms ease-in;
+    -moz-transition: padding-left 1000ms ease-in;
+    -ms-transition: padding-left 1000ms ease-in;
+    -o-transition: padding-left 1000ms ease-in;
+    transition: padding-left 1000ms ease-in;
+}
+
+.contentPane{
+    width:100%;
+    
+    position:relative;
+    top:50px;
+}
+
+@media screen and (max-width:768px){
+    .clpWrapper{
+        padding-left:0px;
+    }
+    
+    .selectionPane {
+        left:-200px;
+        
+        -webkit-transition: left 1000ms ease-out;
+        -moz-transition: left 1000ms ease-out;
+        -ms-transition: left 1000ms ease-out;
+        -o-transition: left 1000ms ease-out;
+        transition: left 1000ms ease-out;
+        
+        z-index: 1001;
+    }
+    
+    .selectionPane.expandDrawer {
+        position:absolute;
+        left:0;
+        
+        -webkit-transition: left 1000ms ease-out;
+        -moz-transition: left 1000ms ease-out;
+        -ms-transition: left 1000ms ease-out;
+        -o-transition: left 1000ms ease-out;
+        transition: left 1000ms ease-out;
+        
+        z-index: 1001;
+    }
+    
+    
+    .selectionPaneInfo.collapsedInfo {
+        left: -200px;
+        
+        -webkit-transition: left 1000ms ease-out;
+        -moz-transition: left 1000ms ease-out;
+        -ms-transition: left 1000ms ease-out;
+        -o-transition: left 1000ms ease-out;
+        transition: left 1000ms ease-out;
+    }
+    
+    .selectionPaneInfo.expandedInfo {
+        left:-200px;
+        
+        -webkit-transition: left 1000ms ease-in;
+        -moz-transition: left 1000ms ease-in;
+        -ms-transition: left 1000ms ease-in;
+        -o-transition: left 1000ms ease-in;
+        transition: left 1000ms ease-in;
+    }
+}
+
+/******************************************************************************/
+/*                          Selection Pane                                    */
+/******************************************************************************/
+
+.selectionPane.collapsed {
+        left:-200px;
+        
+        -webkit-transition: left 1000ms ease-out;
+        -moz-transition: left 1000ms ease-out;
+        -ms-transition: left 1000ms ease-out;
+        -o-transition: left 1000ms ease-out;
+        transition: left 1000ms ease-out;
+        
+        z-index: 1001;
+    }
+    
+.selectionPane.expandDrawer {
+        position:absolute;
+        left:0;
+        
+        -webkit-transition: left 1000ms ease-in;
+        -moz-transition: left 1000ms ease-in;
+        -ms-transition: left 1000ms ease-in;
+        -o-transition: left 1000ms ease-in;
+        transition: left 1000ms ease-in;
+        
+        z-index: 1001;
+    }
+
+/******************************************************************************/
+/*                          Top Section                                       */
+/******************************************************************************/
+
+.topSectionRow{
+    height: 50px;
+    
+    -webkit-box-shadow: 0px 3px 8px 0px rgba(204,202,204,1);
+    -moz-box-shadow: 0px 3px 8px 0px rgba(204,202,204,1);
+    box-shadow: 0px 3px 8px 0px rgba(204,202,204,1);
+    
+    background:#F0F0F0;
+}
+.topSectionCss{
+    height: 50px;
+    width: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.drawerButton button.buttonComponent.btn-default.enabled{
+    background: url('/pentaho/api/repos/CLP/static/custom/img/expandOpen.png') 46% -32px;
+    background-repeat: no-repeat;
+    width: 50px;
+    border: none;
+    height: 50px;
+    
+    color:transparent;
+}
+
+.drawerButton button.buttonComponent.btn-default.enabled:hover{
+    /* add image*/
+    background: url('/pentaho/api/repos/CLP/static/custom/img/expandOpen.png') 46% -32px;
+    background-repeat: no-repeat;
+}
+
+.drawerButton button.buttonComponent.btn-default.disabled{
+    background: url('/pentaho/api/repos/CLP/static/custom/img/expandClosed.png') 46% -32px;
+    background-repeat: no-repeat;
+    width: 50px;
+    border: none;
+    height: 50px;
+    
+    color:transparent;
+}
+.drawerButton button.buttonComponent.btn-default.disabled:hover{
+    /* add image*/
+    background: url('/pentaho/api/repos/CLP/static/custom/img/expandClosed.png') 46% -32px;
+    background-repeat: no-repeat;
+}
+
+.logoRow{
+    background:red;
+}

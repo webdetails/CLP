@@ -1,0 +1,1438 @@
+{
+ "components": {
+  "rows": [
+   {
+    "id": "OTHERCOMPONENTS",
+    "name": "Others",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "Group",
+      "type": "Label",
+      "value": "Others"
+     }
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
+   },
+   {
+    "id": "85e7f3c2-ee32-488b-6f42-ee51ab699eae",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "getConfigsComponent"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "parameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "resultvar",
+      "type": "Result",
+      "value": ""
+     },
+     {
+      "name": "dataSource",
+      "type": "Datasource",
+      "value": "getConfigQry"
+     },
+     {
+      "name": "asynchronousMode",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": ""
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postFetch",
+      "type": "JavaScript",
+      "value": "function f(data){\n    \n    // inject js files into dashboard    \n    var jsFile = this.dashboard.getWebAppPath() + '/plugin/pentaho-cdf-dd/api/resources/get?resource=' + data.js[0];\n    \n    require([jsFile], function(){\n        require(['css!' + data.css[0]], function(){});\n    });\n\n    \n} "
+     },
+     {
+      "name": "preChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     }
+    ],
+    "type": "ComponentsQuery",
+    "typeDesc": "Query Component"
+   },
+   {
+    "id": "5e392c3f-56fe-e150-c84e-a380781b2a95",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "accordionComponent"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "parameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "dataSource",
+      "type": "Datasource",
+      "value": "listFilesQry"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${h:accordionObj}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": "function f(){    \n\n    var generateViewport = function(linkType, reportLink, viewportLocation, dashboard){\n        \n        if(linkType === 'iframe'){\n\n            // check if any iframes exist in html, if so remove them\n            var iframes = document.getElementsByTagName('iframe');\n            \n            for (var i = 0; i < iframes.length; i++) {\n                iframes[i].parentNode.removeChild(iframes[i]);\n            }\n            // generate iframe placeholder\n            var iframeContent = '' +\n            '<div class=\"h_iframe\">'+\n            '    <iframe  src=\"'+ reportLink +'\" width=\"100%\" height=\"100%\" frameborder=\"0\" allowfullscreen></iframe>'+\n            '</div>';\n            \n            // inject iframe\n            $(\"#\" + viewportLocation ).html(iframeContent);  \n            \n        } else {\n            \n            // embed dashboard\n            var reportPath = decodeURIComponent(reportLink);\n            \n            dashboard.setParameter('dashboardToEmbedParam', reportPath);\n            dashboard.fireChange('triggerDashboardEmbedder', $.now());\n        }\n    };\n\n    this.placeholder('.accordionWrapper').accordion({\n        heightStyle: \"content\",\n        \n        // allows accordion to display more than one row open\n        // will never collapse first row        \n        beforeActivate: function(event, ui) {\n             // The accordion believes a panel is being opened\n            if (ui.newHeader[0]) {\n                var currHeader  = ui.newHeader;\n                var currContent = currHeader.next('.ui-accordion-content');\n             // The accordion believes a panel is being closed\n            } else {\n                var currHeader  = ui.oldHeader;\n                var currContent = currHeader.next('.ui-accordion-content');\n            }\n             // Since we've changed the default behavior, this detects the actual status\n            var isPanelSelected = currHeader.attr('aria-selected') == 'true';\n            \n             // Toggle the panel's header\n            currHeader.toggleClass('ui-corner-all',isPanelSelected).toggleClass('accordion-header-active ui-state-active ui-corner-top',!isPanelSelected).attr('aria-selected',((!isPanelSelected).toString()));\n            \n            // Toggle the panel's icon\n            currHeader.children('.ui-icon').toggleClass('ui-icon-triangle-1-e',isPanelSelected).toggleClass('ui-icon-triangle-1-s',!isPanelSelected);\n            \n             // Toggle the panel's content\n            currContent.toggleClass('accordion-content-active',!isPanelSelected)    \n            if (isPanelSelected) { currContent.slideUp(); }  else { currContent.slideDown(); }\n\n            return false; // Cancels the default action\n        }    \n    });\n\n    // get accordion structure and render first element in accordion\n    var firstAccordionElement = this.placeholder('.accordionWrapper').find('a').first();\n    \n    var linkType = firstAccordionElement.attr('data-type'),\n        reportLink = firstAccordionElement.attr('data-link'),\n        viewportLocation = 'visualizationPaneObj';\n    \n    var dashboardContext = this.dashboard;\n    var selectorPh = this.placeholder('.element');\n    \n    generateViewport(linkType, reportLink, viewportLocation, dashboardContext);\n    \n    // add active class to first element\n    firstAccordionElement.parent().parent().addClass('active');\n    \n    \n    // bind click to each link\n    this.placeholder('a').click(function(e){\n        \n        var linkType = e.target.getAttribute('data-type'),\n            reportLink = e.target.getAttribute('data-link');\n        \n        generateViewport(linkType, reportLink, viewportLocation, dashboardContext);\n        \n        _.each(selectorPh, function(elem){\n            var item = $(elem);\n            if(item.hasClass('active')){\n                item.removeClass('active');\n            }\n        });\n        \n        $(this.parentNode.parentNode).addClass('active');\n        \n    });\n    \n    // bind click to information button in selection pane\n    \n\n    var infoButtons = this.placeholder('.infoButton');\n    \n    _.each(infoButtons, function(el){\n        $(el).click(\n            function(e){\n                var itemName = e.target.getAttribute('data-name'),\n                    itemInfo = e.target.getAttribute('data-Info');\n                    \n                    var ph = $('#selectionPaneInfoObj');\n                    \n                    var html='<div class=\"selectionItemName\">'+ itemName +'</div>'+\n                            '<div class=\"selectionInfo\">'+ itemInfo +'</div>';\n                            \n                    // check if pane is open\n                    if(ph.hasClass('expandedInfo')){\n                        // if we clicked on open pane - close it\n                        if(ph.find('.selectionItemName').html() === itemName){\n                            ph.removeClass('expandedInfo').addClass('collapsedInfo');\n                        } else {\n                            // update content\n                            ph.empty().append(html);\n                        }\n                    } else {\n                        ph.removeClass('collapsedInfo').addClass('expandedInfo');\n                        ph.empty().append(html);\n                    }\n\n            });\n    });\n    \n    \n    \n\n} "
+     },
+     {
+      "name": "postFetch",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     },
+     {
+      "name": "modelHandler",
+      "type": "JavaScript",
+      "value": "function f(data){\n    \n        return data;  \n    \n} "
+     },
+     {
+      "name": "template",
+      "type": "JavaScript",
+      "value": "function() {\n    \n    \n    var template = ''+\n    '<div class=\"accordionWrapper\">'+\n    '<% _.each(items, function(elem, idx) { %> ' +\n    '       <div class=\"col-element-bar\"><%=elem.name%></div>'+\n    '       <% if(!_.isEmpty(elem.children)) {%>'+\n    '           <div class=\"collapsible\">'+\n    '                  <% _.each(elem.children, function(el){ %>'+\n    '                      <div class=\"element\">'+\n    '                           <p><a href=\"#\" title =\"<%=el.name%>\" data-link=\"<%=el.id%>\" data-type=\"<%=el.link_type%>\" ><%=el.name%></a></p>'+\n    '                           <% if(!_.isNull(el.description)){%>'+\n    '                               <div class=\"infoButton\" data-name=\"<%=el.name%>\" data-info=\"<%=el.description%>\">i</div>'+\n    '                           <% } %>'+\n    '                      </div>'+\n    '                  <%});%>'+\n    '           </div>'+\n    '       <%} else {%>'+\n    '           <div class=\"no-element\">'+\n    '           </div>'+\n    '       <%}%>'+\n    '<% }); %>'+\n    '</div>';\n    \n    return template;\n} "
+     },
+     {
+      "name": "templateType",
+      "type": "templateTypeCustom",
+      "value": "underscore"
+     },
+     {
+      "name": "events",
+      "type": "EditorValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "formatters",
+      "type": "EditorValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "rootElement",
+      "type": "String",
+      "value": "items"
+     },
+     {
+      "name": "extendableOptions",
+      "type": "JavaScript",
+      "value": ""
+     }
+    ],
+    "type": "ComponentsTemplateComponent",
+    "typeDesc": "Template Component"
+   },
+   {
+    "id": "e1a4d5d0-fd73-943c-5f82-bea4dcbe0216",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "toggleAccordionButton"
+     },
+     {
+      "name": "label",
+      "type": "String",
+      "value": "-"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "actionParameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "expression",
+      "type": "JavaScript",
+      "value": "function f(){\n    \n    //\n    var selectionDrawer = $('.selectionPane '),\n        selectionPaneInfo = $('.selectionPaneInfo');\n    \n    if(this.placeholder().hasClass('expanded')){\n        selectionDrawer.removeClass('expandDrawer').addClass('collapsed');\n        this.placeholder().removeClass('expanded').addClass('collapsed');\n        selectionPaneInfo.removeClass('expandedInfo').addClass('collapsedInfo');\n        $('.clpWrapper').css('padding-left', 0);\n    } else {\n        selectionDrawer.removeClass('collapsed').addClass('expandDrawer');\n        this.placeholder().removeClass('collapsed').addClass('expanded');\n        \n        $('.clpWrapper').css('padding-left', 200);\n    }\n\n    \n} "
+     },
+     {
+      "name": "failureCallback",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "successCallback",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "Datasource",
+      "type": "Datasource",
+      "value": ""
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "buttonStyle",
+      "type": "TableStyle",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "drawerButtonObj"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": "function f(){\n    this.lifecycle = {silent:true};\n} "
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     }
+    ],
+    "type": "ComponentsbuttonComponent",
+    "typeDesc": "Button Component"
+   },
+   {
+    "id": "GENERIC",
+    "name": "Generic",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "Group",
+      "type": "Label",
+      "value": "Generic"
+     }
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
+   },
+   {
+    "id": "27cbda97-41d4-7d3b-0376-e3288c230788",
+    "parent": "GENERIC",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "triggerDashboardEmbedder"
+     },
+     {
+      "name": "propertyValue",
+      "type": "String",
+      "value": "0"
+     },
+     {
+      "name": "parameterViewRole",
+      "type": "parameterViewRoleCustom",
+      "value": "unused"
+     },
+     {
+      "name": "bookmarkable",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "public",
+      "type": "Boolean",
+      "value": "false"
+     }
+    ],
+    "type": "ComponentsParameter",
+    "typeDesc": "Simple parameter"
+   },
+   {
+    "id": "c9da88e6-ee5c-b931-3aa1-6a21b04f7924",
+    "parent": "GENERIC",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "dashboardToEmbedParam"
+     },
+     {
+      "name": "propertyValue",
+      "type": "String",
+      "value": "0"
+     },
+     {
+      "name": "parameterViewRole",
+      "type": "parameterViewRoleCustom",
+      "value": "unused"
+     },
+     {
+      "name": "bookmarkable",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "public",
+      "type": "Boolean",
+      "value": "false"
+     }
+    ],
+    "type": "ComponentsParameter",
+    "typeDesc": "Simple parameter"
+   },
+   {
+    "id": "CUSTOMCOMPONENTS",
+    "name": "Custom",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "Group",
+      "type": "Label",
+      "value": "Custom"
+     }
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
+   },
+   {
+    "id": "0dd0f29a-5df8-734e-f95e-fa1c64a2ce6b",
+    "parent": "CUSTOMCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "dashboardEmbedder"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "['${p:triggerDashboardEmbedder}']"
+     },
+     {
+      "name": "dashboardPath",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "parameterMapping",
+      "type": "ParameterMapping",
+      "value": "[]"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${h:visualizationPaneObj}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": "function f(){\n\n    var dashboardPath = this.dashboard.getParameterValue('dashboardToEmbedParam');\n        this.dashboardPath = dashboardPath;\n\n} "
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     }
+    ],
+    "type": "ComponentsDashboardComponent",
+    "typeDesc": "Dashboard Component"
+   }
+  ]
+ },
+ "datasources": {
+  "rows": [
+   {
+    "id": "CLP_CPKENDPOINTS",
+    "name": "CLP Endpoints",
+    "type": "Label",
+    "typeDesc": "<i>Group</i>",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "Group",
+      "value": "CLP Endpoints",
+      "type": "Label"
+     }
+    ]
+   },
+   {
+    "id": "47c35fbc-9e86-dbea-a628-91b0e7561308",
+    "type": "ComponentsCLP_list_files_CPKENDPOINT",
+    "typeDesc": "list_files Endpoint",
+    "parent": "CLP_CPKENDPOINTS",
+    "properties": [
+     {
+      "name": "name",
+      "value": "listFilesQry",
+      "type": "Id"
+     },
+     {
+      "name": "stepName",
+      "value": "OUTPUT",
+      "type": "String"
+     },
+     {
+      "name": "kettleOutput",
+      "value": "Inferred",
+      "type": "kettleOutputCustom"
+     }
+    ],
+    "meta": "CPK",
+    "meta_pluginId": "CLP",
+    "meta_endpoint": "list_files"
+   },
+   {
+    "id": "423d4a26-528d-1afc-96fe-5c904f6a3503",
+    "type": "ComponentsCLP_get_config_CPKENDPOINT",
+    "typeDesc": "get_config Endpoint",
+    "parent": "CLP_CPKENDPOINTS",
+    "properties": [
+     {
+      "name": "name",
+      "value": "getConfigQry",
+      "type": "Id"
+     },
+     {
+      "name": "stepName",
+      "value": "OUTPUT",
+      "type": "String"
+     },
+     {
+      "name": "kettleOutput",
+      "value": "Inferred",
+      "type": "kettleOutputCustom"
+     }
+    ],
+    "meta": "CPK",
+    "meta_pluginId": "CLP",
+    "meta_endpoint": "get_config"
+   }
+  ]
+ },
+ "filename": "/system/CLP/dashboards/main.cdfde",
+ "layout": {
+  "rows": [
+   {
+    "id": "66cd4116-17bc-acb0-5a27-96444205e57d",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "removeExpandedRowClass"
+     },
+     {
+      "name": "resourceCode",
+      "type": "Resource",
+      "value": "window.onresize = _.debounce(function(){\n    \n    var selectionDrawer = $('.selectionPane'),\n        windowObj = $(window),\n        buttonComp = this.dashboard.getComponentByName('render_toggleAccordionButton');\n    \n    if( windowObj.width() > 768 ){\n        /*buttonComp.label = 'Expand Container';\n        buttonComp.update();*/\n    }\n    \n    if( windowObj.width() > 768 && selectionDrawer.hasClass('expandDrawer') ){\n        selectionDrawer.removeClass('expandDrawer');\n    }\n    \n}, 200); "
+     },
+     {
+      "name": "resourceType",
+      "type": "Label",
+      "value": "Javascript"
+     }
+    ],
+    "type": "LayoutResourceCode",
+    "typeDesc": "Resource"
+   },
+   {
+    "id": "4181a0c2-3161-e9e8-ff45-cdff83cca254",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "changeOuterContainer"
+     },
+     {
+      "name": "resourceCode",
+      "type": "Resource",
+      "value": "$('.container').removeClass('container').addClass('clpWrapper'); "
+     },
+     {
+      "name": "resourceType",
+      "type": "Label",
+      "value": "Javascript"
+     }
+    ],
+    "type": "LayoutResourceCode",
+    "typeDesc": "Resource"
+   },
+   {
+    "id": "3234e24c-1277-b764-2a0c-8b9cb099de26",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "topSection"
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "topSectionCss"
+     },
+     {
+      "name": "elementTag",
+      "type": "String",
+      "value": "div"
+     },
+     {
+      "name": "otherAttributes",
+      "type": "OptionArray",
+      "value": "[]"
+     }
+    ],
+    "type": "LayoutFreeForm",
+    "typeDesc": "FreeForm"
+   },
+   {
+    "id": "a6acadcf-76cc-0379-b4ad-f14a1b801362",
+    "parent": "3234e24c-1277-b764-2a0c-8b9cb099de26",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "topSectionRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "topSectionRow"
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "d53d5cf1-1038-61a2-4412-4698f80a63b7",
+    "parent": "a6acadcf-76cc-0379-b4ad-f14a1b801362",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "drawerButtonObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "4"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "drawerButton expanded"
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "caed3234-022c-04b8-57a9-e1ea26a910c5",
+    "parent": "a6acadcf-76cc-0379-b4ad-f14a1b801362",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "logoRow"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "4"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "logoRow"
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "5c80e81d-c3e8-dd8b-699f-1945d6b5c6b9",
+    "parent": "a6acadcf-76cc-0379-b4ad-f14a1b801362",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "aboutInfoCol"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "4"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "31a42c7c-12f0-cf5d-8d2b-a3860e6a5a89",
+    "parent": "5c80e81d-c3e8-dd8b-699f-1945d6b5c6b9",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "aboutInfoObj"
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "aboutClass"
+     },
+     {
+      "name": "elementTag",
+      "type": "String",
+      "value": "div"
+     },
+     {
+      "name": "otherAttributes",
+      "type": "OptionArray",
+      "value": "[]"
+     }
+    ],
+    "type": "LayoutFreeForm",
+    "typeDesc": "FreeForm"
+   },
+   {
+    "id": "f351d5f6-76a4-0d55-192a-4fb7518ef4f2",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "selectionPane"
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "container-fluid selectionPane"
+     },
+     {
+      "name": "elementTag",
+      "type": "String",
+      "value": "div"
+     },
+     {
+      "name": "otherAttributes",
+      "type": "OptionArray",
+      "value": "[]"
+     }
+    ],
+    "type": "LayoutFreeForm",
+    "typeDesc": "FreeForm"
+   },
+   {
+    "id": "57246e19-3cb7-3eec-a21c-6157c9fb86a1",
+    "parent": "f351d5f6-76a4-0d55-192a-4fb7518ef4f2",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "leftColRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "1608c124-db87-7324-8ddd-82a3db11eb3e",
+    "parent": "57246e19-3cb7-3eec-a21c-6157c9fb86a1",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "selectionPaneCol"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "a57e94cf-b879-82ee-8904-1bbdbee87f51",
+    "parent": "1608c124-db87-7324-8ddd-82a3db11eb3e",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "logoRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "45c791d7-8794-e1b7-2bee-325d1e0c3f03",
+    "parent": "1608c124-db87-7324-8ddd-82a3db11eb3e",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "selectionRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "6ccb7c6a-8f7a-24a6-4acd-3c2bb10ef891",
+    "parent": "45c791d7-8794-e1b7-2bee-325d1e0c3f03",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "accordionObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "selectionObj"
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "1a928594-e4e7-aa01-9167-d307bf02d8ea",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "contentPane"
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "container-fluid contentPane"
+     },
+     {
+      "name": "elementTag",
+      "type": "String",
+      "value": "div"
+     },
+     {
+      "name": "otherAttributes",
+      "type": "OptionArray",
+      "value": "[]"
+     }
+    ],
+    "type": "LayoutFreeForm",
+    "typeDesc": "FreeForm"
+   },
+   {
+    "id": "c3f805b6-6e1e-8676-28ff-7c90f1276b06",
+    "parent": "1a928594-e4e7-aa01-9167-d307bf02d8ea",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "_drawerButtonObj"
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "visible-xs drawerButton"
+     },
+     {
+      "name": "elementTag",
+      "type": "String",
+      "value": "div"
+     },
+     {
+      "name": "otherAttributes",
+      "type": "OptionArray",
+      "value": "[]"
+     }
+    ],
+    "type": "LayoutFreeForm",
+    "typeDesc": "FreeForm"
+   },
+   {
+    "id": "e93cdf62-0846-ef89-6524-8f5e6a37d513",
+    "parent": "1a928594-e4e7-aa01-9167-d307bf02d8ea",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "selectionRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "745b0748-f0f3-fc6a-b3d5-c8f7159be1e4",
+    "parent": "e93cdf62-0846-ef89-6524-8f5e6a37d513",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "visualizationPaneObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "visualizationPane"
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "8dc76e5a-2dad-0cb2-2d0d-ed1462fcb181",
+    "parent": "745b0748-f0f3-fc6a-b3d5-c8f7159be1e4",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": ""
+     },
+     {
+      "name": "html",
+      "type": "Html",
+      "value": ""
+     },
+     {
+      "name": "fontSize",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "color",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutHtml",
+    "typeDesc": "Html"
+   },
+   {
+    "id": "10bf76fd-5351-138a-3838-7d709597b364",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "hiddenContent"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "WDhidden"
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "27aabf09-96c7-6810-405b-a5bb6a0e939c",
+    "parent": "10bf76fd-5351-138a-3838-7d709597b364",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "overlayMessageObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "c4f33ab8-c13f-5339-8da8-e51553feca2a",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "selectionPaneInfoObj"
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "selectionPaneInfo collapsedInfo"
+     },
+     {
+      "name": "elementTag",
+      "type": "String",
+      "value": "div"
+     },
+     {
+      "name": "otherAttributes",
+      "type": "OptionArray",
+      "value": "[]"
+     }
+    ],
+    "type": "LayoutFreeForm",
+    "typeDesc": "FreeForm"
+   }
+  ],
+  "title": "bioMeDashboard"
+ }
+}
