@@ -403,6 +403,11 @@
       "value": ""
      },
      {
+      "name": "dataSourceMapping",
+      "type": "DataSourceMapping",
+      "value": "[]"
+     },
+     {
       "name": "parameterMapping",
       "type": "ParameterMapping",
       "value": "[]"
@@ -448,68 +453,68 @@
    {
     "id": "CLP_CPKENDPOINTS",
     "name": "CLP Endpoints",
-    "type": "Label",
-    "typeDesc": "<i>Group</i>",
     "parent": "UnIqEiD",
     "properties": [
      {
       "name": "Group",
-      "value": "CLP Endpoints",
-      "type": "Label"
+      "type": "Label",
+      "value": "CLP Endpoints"
      }
-    ]
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
    },
    {
     "id": "47c35fbc-9e86-dbea-a628-91b0e7561308",
-    "type": "ComponentsCLP_list_files_CPKENDPOINT",
-    "typeDesc": "list_files Endpoint",
+    "meta": "CPK",
+    "meta_endpoint": "list_files",
+    "meta_pluginId": "CLP",
     "parent": "CLP_CPKENDPOINTS",
     "properties": [
      {
       "name": "name",
-      "value": "listFilesQry",
-      "type": "Id"
+      "type": "Id",
+      "value": "listFilesQry"
      },
      {
       "name": "stepName",
-      "value": "OUTPUT",
-      "type": "String"
+      "type": "String",
+      "value": "OUTPUT"
      },
      {
       "name": "kettleOutput",
-      "value": "Inferred",
-      "type": "kettleOutputCustom"
+      "type": "kettleOutputCustom",
+      "value": "Inferred"
      }
     ],
-    "meta": "CPK",
-    "meta_pluginId": "CLP",
-    "meta_endpoint": "list_files"
+    "type": "ComponentsCLP_list_files_CPKENDPOINT",
+    "typeDesc": "list_files Endpoint"
    },
    {
     "id": "423d4a26-528d-1afc-96fe-5c904f6a3503",
-    "type": "ComponentsCLP_get_config_CPKENDPOINT",
-    "typeDesc": "get_config Endpoint",
+    "meta": "CPK",
+    "meta_endpoint": "get_config",
+    "meta_pluginId": "CLP",
     "parent": "CLP_CPKENDPOINTS",
     "properties": [
      {
       "name": "name",
-      "value": "getConfigQry",
-      "type": "Id"
+      "type": "Id",
+      "value": "getConfigQry"
      },
      {
       "name": "stepName",
-      "value": "OUTPUT",
-      "type": "String"
+      "type": "String",
+      "value": "OUTPUT"
      },
      {
       "name": "kettleOutput",
-      "value": "Inferred",
-      "type": "kettleOutputCustom"
+      "type": "kettleOutputCustom",
+      "value": "Inferred"
      }
     ],
-    "meta": "CPK",
-    "meta_pluginId": "CLP",
-    "meta_endpoint": "get_config"
+    "type": "ComponentsCLP_get_config_CPKENDPOINT",
+    "typeDesc": "get_config Endpoint"
    }
   ]
  },
