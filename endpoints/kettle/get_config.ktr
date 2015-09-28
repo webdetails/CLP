@@ -189,7 +189,7 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>928</xloc>
+      <xloc>912</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
       </GUI>
@@ -490,7 +490,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var css_array &#x3d; &#x28;css&#x21;&#x3d;null&#x29; &#x3f; css.split&#x28;&#x22;,&#x22;&#x29; &#x3a; &#x5b;&#x5d;&#x3b;&#xa;var js_array  &#x3d; &#x28;js&#x21;&#x3d;null&#x29;  &#x3f;  js.split&#x28;&#x22;,&#x22;&#x29; &#x3a; &#x5b;&#x5d;&#x3b;&#xa;&#xa;for &#x28;i&#x3d;0&#x3b; i&#x3c;css_array.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	if &#x28;css_array&#x5b;i&#x5d;.indexOf&#x28;&#x22;http&#x22;&#x29;&#x21;&#x3d;0&#x29; &#x7b;&#xa;		css_array&#x5b;i&#x5d; &#x3d; &#x22;&#x2f;pentaho&#x2f;plugin&#x2f;pentaho-cdf-dd&#x2f;api&#x2f;resources&#x22; &#x2b; css_array&#x5b;i&#x5d;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#xa;for &#x28;i&#x3d;0&#x3b; i&#x3c;js_array&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	if &#x28;js_array&#x5b;i&#x5d;.indexOf&#x28;&#x22;http&#x22;&#x29;&#x21;&#x3d;0&#x29; &#x7b;&#xa;		js_array&#x5b;i&#x5d; &#x3d; &#x22;&#x2f;pentaho&#x2f;plugin&#x2f;pentaho-cdf-dd&#x2f;api&#x2f;resources&#x22; &#x2b; css_array&#x5b;i&#x5d;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#xa;var json &#x3d; &#x7b;&#xa;	&#x22;config&#x22;&#x3a;  config_name,&#xa;	&#x22;css&#x22;&#x3a;     css_array,&#xa;	&#x22;js&#x22;&#x3a;      js_array&#xa;&#x7d;&#x3b;&#xa;&#xa;json &#x3d; JSON.stringify&#x28;json&#x29;&#x3b;</jsScript_script>
+        <jsScript_script>var css_array &#x3d; &#x28;css&#x21;&#x3d;null&#x29; &#x3f; css.split&#x28;&#x22;,&#x22;&#x29; &#x3a; &#x5b;&#x5d;&#x3b;&#xa;var js_array  &#x3d; &#x28;js&#x21;&#x3d;null&#x29;  &#x3f;  js.split&#x28;&#x22;,&#x22;&#x29; &#x3a; &#x5b;&#x5d;&#x3b;&#xa;&#xa;for &#x28;i&#x3d;0&#x3b; i&#x3c;css_array.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	if &#x28;css_array&#x5b;i&#x5d;.indexOf&#x28;&#x22;http&#x22;&#x29;&#x21;&#x3d;0&#x29; &#x7b;&#xa;		css_array&#x5b;i&#x5d; &#x3d; &#x22;&#x2f;pentaho&#x2f;plugin&#x2f;pentaho-cdf-dd&#x2f;api&#x2f;resources&#x22; &#x2b; css_array&#x5b;i&#x5d;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#xa;for &#x28;i&#x3d;0&#x3b; i&#x3c;js_array.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	if &#x28;js_array&#x5b;i&#x5d;.indexOf&#x28;&#x22;http&#x22;&#x29;&#x21;&#x3d;0&#x29; &#x7b;&#xa;		js_array&#x5b;i&#x5d; &#x3d; &#x22;&#x2f;pentaho&#x2f;plugin&#x2f;pentaho-cdf-dd&#x2f;api&#x2f;resources&#x22; &#x2b; js_array&#x5b;i&#x5d;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#xa;var json &#x3d; &#x7b;&#xa;	&#x22;config&#x22;&#x3a;  config_name,&#xa;	&#x22;css&#x22;&#x3a;     css_array,&#xa;	&#x22;js&#x22;&#x3a;      js_array&#xa;&#x7d;&#x3b;&#xa;&#xa;json &#x3d; JSON.stringify&#x28;json&#x29;&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>json</name>
         <rename>json</rename>
         <type>String</type>
