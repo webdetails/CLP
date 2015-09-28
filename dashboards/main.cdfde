@@ -228,7 +228,7 @@
      {
       "name": "expression",
       "type": "JavaScript",
-      "value": "function f(){\n    \n    //\n    var selectionDrawer = $('.selectionPane '),\n        selectionPaneInfo = $('.selectionPaneInfo');\n    \n    if(this.placeholder().hasClass('expanded')){\n        selectionDrawer.removeClass('expandDrawer').addClass('collapsed');\n        this.placeholder().removeClass('expanded').addClass('collapsed');\n        selectionPaneInfo.removeClass('expandedInfo').addClass('collapsedInfo');\n        $('.clpWrapper').css('padding-left', 0);\n    } else {\n        selectionDrawer.removeClass('collapsed').addClass('expandDrawer');\n        this.placeholder().removeClass('collapsed').addClass('expanded');\n        \n        $('.clpWrapper').css('padding-left', 200);\n    }\n\n    \n} "
+      "value": "function f(){\n    \n    //\n    var selectionDrawer = $('.selectionPane '),\n        selectionPaneInfo = $('.selectionPaneInfo');\n    \n    if(this.placeholder().hasClass('expanded')){\n        selectionDrawer.removeClass('expandDrawer').addClass('collapsed');\n        this.placeholder().removeClass('expanded').addClass('collapsed');\n        selectionPaneInfo.removeClass('expandedInfo').addClass('collapsedInfo');\n        $('.clpWrapper').css('padding-left', 0);\n    } else {\n        selectionDrawer.removeClass('collapsed').addClass('expandDrawer');\n        this.placeholder().removeClass('collapsed').addClass('expanded');\n        \n        $('.clpWrapper').css('padding-left', 300);\n    }\n\n    \n} "
      },
      {
       "name": "failureCallback",
