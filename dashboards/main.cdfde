@@ -82,7 +82,7 @@
      {
       "name": "postFetch",
       "type": "JavaScript",
-      "value": "function f(data){\n    \n    var jsFile = data.js[0];\n    \n    require([jsFile], function(){\n        require(['css!' + data.css[0]], function(){});\n    });\n} "
+      "value": "function f(data){\n    \n    var d = new Date().getTime();\n    \n    var jsFile = data.js[0];\n\n    require([jsFile +'?ts='+d], function(){\n        require(['css!' + data.css[0]+'?ts='+d], function(){});\n    });\n} "
      },
      {
       "name": "preChange",
