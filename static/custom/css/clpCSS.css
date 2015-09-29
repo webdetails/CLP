@@ -1,31 +1,98 @@
+@font-face { 
+    font-family: 'Open Sans'; 
+    font-style: normal;
+    src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face { 
+    font-family: 'Open Sans'; 
+    font-style: normal;
+    src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face { 
+    font-family: 'Open Sans'; 
+    font-style: normal;
+    src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Semibold.ttf') format('truetype');
+    font-weight: 600;
+}
+
 /*
 CLP CSS
 */
+
 body{
-    overflow:hidden;
+    overflow-x: hidden;
+    font-family: 'Open Sans', Arial, sans-serif;
+    overflow-y: auto;
 }
+
 
 /* Selection Pane Section */
 .selectionPane{
-    background-color:#F0F0F0;
-    height:900px;
-    -webkit-box-shadow: 3px 3px 4px 1px rgba(204,202,204,1);
-    -moz-box-shadow: 3px 3px 4px 1px rgba(204,202,204,1);
-    box-shadow: 3px 3px 4px 1px rgba(204,202,204,1);
+    background-color: #f0f0f0;
+    border-right: 1px solid #DADADA;
+    height:100%;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
     
-    width:200px;
+    width:300px;
     position:absolute;
-    top:50px;
+    top:0;
     left:0px;
+    padding-top: 60px;
     
-    -webkit-transition: left 1000ms ease-in;
-    -moz-transition: left 1000ms ease-in;
-    -ms-transition: left 1000ms ease-in;
-    -o-transition: left 1000ms ease-in;
-    transition: left 1000ms ease-in;
+    -webkit-transition: left .5s ease-in;
+    -moz-transition: left .5s ease-in;
+    -ms-transition: left .5s ease-in;
+    -o-transition: left .5s ease-in;
+    transition: left .5s ease-in;
     
     z-index:1001;
+    
+    overflow-y: auto;
 
+}
+
+.logoObj {
+    height: 60px;
+    margin-left: -15px;
+    margin-right: -15px;
+	background: none;
+	margin-top:5px;
+}
+
+.logoObj:after {
+	content: 'CLP';
+    line-height: 40px;
+    font-size: 40px;
+    margin-left: 37%;
+}
+
+.no-svg .logoObj {
+	    background: url('/pentaho/api/repos/CLP/static/custom/img/clp.svg') no-repeat center center;
+}
+.aboutClass {
+    font-size: 14px;
+    font-weight: normal;
+    text-align: right;
+    width: 40px;
+    float: right;
+    line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+.aboutClass a {
+    color: #3598DB;
+    font-weight: 300;
+}
+.aboutClass a:hover {
+    text-decoration:underline;
+    cursor:pointer;
 }
 
 /* Visualization Pane Section */
@@ -33,7 +100,6 @@ body{
     height:900px;
     padding-left:20px;
     padding-right:20px;
-    padding-top:10px;
 }
 /* Common Section */
 .WDHidden{
@@ -50,100 +116,198 @@ body{
     margin-left:-15px;
     margin-right:-15px;
 }
-.accordionWrapper .ui-widget-content {
-    border: 1px solid #000000;
-    background: #F0F0F0;
+
+
+.accordion-toggle,
+.accordion-toggle:link,
+.accordion-toggle:visited,
+.accordion-toggle:hover,
+.accordion-toggle:active,
+.accordion-toggle:focus {
+    line-height: 35px;
+    display: block;
+    padding: 0 35px 0 40px;
+    color: #555555;
+    font-weight: 600;
+    position: relative;
+    text-decoration: none;
+    border-bottom: 1px solid #DADADA;
 }
 
-.accordionWrapper.ui-accordion .ui-accordion-header {
-    margin-top: 0px;
-    padding: 8px 0px 7px 33px;
-    font-size: 14px;
-    font-weight: normal;
+.accordion-toggle:hover,
+.accordion-toggle:active {
+    background: rgba(85,85,85,.05);
 }
 
-.accordionWrapper .ui-accordion .ui-accordion-content{
-    padding: 10px 0px 0px 15px;
-}
-
-.accordionWrapper .ui-corner-all, 
-.accordionWrapper .ui-corner-top,
-.accordionWrapper .ui-corner-right,
-.accordionWrapper .ui-corner-tr {
-    border-top-right-radius: 0px;
-}
-
-.accordionWrapper .ui-corner-all,
-.accordionWrapper .ui-corner-top,
-.accordionWrapper .ui-corner-left,
-.accordionWrapper .ui-corner-tl {
-    border-top-left-radius: 0px;
-}
-
-.accordionWrapper .ui-corner-all, 
-.accordionWrapper .ui-corner-bottom, 
-.accordionWrapper .ui-corner-right, 
-.accordionWrapper .ui-corner-br{
-    border-bottom-right-radius: 0px;
-}
-
-.accordionWrapper .ui-corner-all, 
-.accordionWrapper .ui-corner-bottom, 
-.accordionWrapper .ui-corner-left, 
-.accordionWrapper .ui-corner-bl {
-    border-bottom-left-radius: 0px;
-}
-
-.accordionWrapper.ui-accordion .ui-accordion-content {
-    padding: 0;
-    border-top: 0;
-    overflow: auto;
-    border-bottom: 1px solid #000000;
-    border-left: none;
-    border-right: none;
-}
-
-.col-element-bar.ui-accordion-header.ui-helper-reset.ui-state-default.ui-accordion-icons.ui-corner-top,
-.col-element-bar.ui-accordion-header.ui-helper-reset.ui-state-default.ui-accordion-icons.accordion-header-active.ui-state-active.ui-corner-top,
-.ui-accordion-header.ui-helper-reset.ui-state-default.ui-accordion-header-active.ui-state-active.ui-corner-top.ui-accordion-icons{
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
-    background: #F7F7F7;
-    font-weight: bold;
-    color: black;
-    border-top: 1px solid #000000;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-}
-.ui-accordion-header.ui-helper-reset.ui-state-default.ui-corner-all.ui-accordion-icons.ui-state-hover,
-.ui-accordion-header.ui-helper-reset.ui-state-default.ui-accordion-header-active.ui-state-active.ui-corner-top.ui-accordion-icons.ui-state-hover{
-    background: #33B596;
-    color: white;
-}
-
-.ui-accordion-header.ui-helper-reset.ui-state-default.ui-corner-all.ui-accordion-icons{
-    background:#F7F7F7;
-    font-weight: bold;
-    color: black;
-    border-right: none;
-    border-left: none;
-    border-top: 1px solid #DDDDDD;
-    border-bottom: 1px solid #DDDDDD;
-}
-.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-s{
-    background: url('/pentaho/api/repos/CLP/static/custom/img/arrowExpanded.png') 82% 5px;
+.accordion-toggle:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    height: 24px;
+    left: 15px;
+    margin: auto 0;
+    background-image: url(/pentaho/api/repos/CLP/static/custom/img/clp_expand_collapse.svg);
     background-repeat: no-repeat;
+    background-position: left center;
 }
-.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e{
-    background: url('/pentaho/api/repos/CLP/static/custom/img/arrowClosed.png') 82% 2px;
-    background-repeat: no-repeat;
+
+.no-svg .accordion-toggle:before {
+    background-image: url(/pentaho/api/repos/CLP/static/custom/img/clp_expand_collapse.png);
 }
-.col-element-bar.ui-accordion-header.ui-helper-reset.ui-state-default.ui-corner-all.ui-accordion-icons:hover > span,
-.col-element-bar.ui-accordion-header.ui-helper-reset.ui-state-default.ui-accordion-header-active.ui-state-active.ui-corner-top.ui-accordion-icons:hover > span{
-    background:#33B596;
+
+.active .accordion-toggle:before,
+.no-svg .active .accordion-toggle:before {
+    background-position: right center;
+}
+
+.accordion-inner {
+    position: relative;
+    border-bottom: 1px solid #DADADA;
+    font-weight: 300;
+}
+
+.accordion-inner a,
+.accordion-inner a:link,
+.accordion-inner a:visited,
+.accordion-inner a:hover,
+.accordion-inner a:active,
+.accordion-inner a:focus {
+    line-height: 35px;
+    color: #555555;
+    padding: 0 35px 0 40px;
+    text-decoration: none;
+    outline: 0 none;
+    display: block;
+}
+
+.accordion-inner .infoButton {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    float: none;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: rgba(85,85,85,.1) url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat center center;
+}
+
+.no-svg .accordion-inner .infoButton {
+    background: rgba(85,85,85,.1) url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat center center;
+}
+
+.accordion-inner .infoButton:hover,
+.accordion-inner.info-opened .infoButton {
+    background: rgba(85,85,85,1) url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat center center;
+}
+
+.no-svg .accordion-inner .infoButton:hover,
+.no-svg .accordion-inner.info-opened .infoButton {
+    background: rgba(85,85,85,1) url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat center center;
+}
+
+.accordion-inner.active a,
+.accordion-inner a:hover {
+    background: #3598DB;
+}
+
+.accordion-inner.active {
+    font-weight: 600;
+}
+
+.accordion-inner.active a,
+.accordion-inner.active a:link,
+.accordion-inner.active a:visited,
+.accordion-inner.active a:hover,
+.accordion-inner.active a:active,
+.accordion-inner.active a:focus,
+.accordion-inner a:hover {
+    color: #FFFFFF;
 }
     
+
+/******************************************************************************/
+/*                          Overlay Styling                                   */
+/******************************************************************************/
+
+.overlayHeader{
+    height: 110px;
+    text-align: center;
+    padding-top: 110px;
+    background: url('/pentaho/api/repos/CLP/static/custom/img/clp.svg') no-repeat center center;;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top center;
+}
+.overlayMessage{
+    font-size: 12px;
+}
+.overlayFootnote {
+    background: #F7F7F7;
+    padding: 7px;
+    font-size: 11px;
+}
+.overlayFootnote p {
+    margin: 0 5px;
+}
+.overlayText{
+    margin-top:50px;
+}
+.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix{
+    display:none;
+}
+.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix{
+    border:none;
+}
+
+.ui-widget-overlay.ui-front{
+    background: #949494;
+    opacity: .8;
+    filter: Alpha(Opacity=80);
+    z-index:1003;
+}
+.ui-dialog-buttonpane.ui-widget-content{
+    background: white;
+}
+.ui-dialog.ui-widget.ui-widget-content{
+    background: white;
+    border-radius: 0;
+    border: none;
+    padding: 5px 10px;
+    height:400px !important;
+    z-index:1004;
+}
+.overlayMessage.ui-dialog-content.ui-widget-content{
+    overflow: hidden;
+    color: #555555;
+    border: none;
+    background: white;
+    padding: 5px 10px;
+    min-height: 320px !important;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only{
+    border: 1px solid #3598DB;
+    font-size: 12px;
+    color: white;
+    font-weight: normal;
+    width: 220px;
+    border-radius: 15px;
+    background:#3598DB;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-hover{
+    background:#95C8F5;
+    border: 1px solid #95C8F5;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+    float: left !important;
+    margin-left: 111px;
+}
+
 .col-element-bar {
     background: #F7F7F7;
     font-weight: bold;
@@ -154,7 +318,7 @@ body{
 }
 
 .col-element-bar:hover {
-    background:#33B596;
+    background:#3598DB;
     color: white;
 }
 .col-element-bar a {
@@ -173,12 +337,12 @@ body{
     background:#F7F7F7;
 }
 .collapsible > div:hover {
-    background:#33B596;
+    background:#3598DB;
     color:white;
 }
 
 /******************************************************************************/
-/*                          Slider Pane                                       */
+/*                          Slider Pane enhancements                          */
 /******************************************************************************/
 .element {
     height: 30px;
@@ -190,7 +354,7 @@ body{
     margin-bottom: 0px;
     
     display:inline-block;
-    width: 170px;
+    width: 260px;
     
     overflow: hidden;
     white-space: nowrap;
@@ -204,13 +368,13 @@ body{
 
 .element p:hover,
 .element a:hover {
-    background: #33B596;
+    background: #3598DB;
     text-decoration: none;
     cursor:pointer;
 }
 
 .element.active {
-    background: #33B596;
+    background: #3598DB;
 }
 
 .element.active > p > a {
@@ -247,32 +411,56 @@ body{
 
 .selectionPaneInfo{
     position: absolute;
-    top: 52px;
-    width: 200px;
+    top: 0;
+    width: 250px;
     background: #EFEFEF;
-    height: 900px;
+    height: 100%;
+    padding-top: 60px;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.selectionPaneInfo:after {
+    position: absolute;
+    top: 60px;
+    right: 0px;
+    width: 35px;
+    height: 35px;
+    content: '';
+    background-image: url(/pentaho/api/repos/CLP/static/custom/img/close.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.no-svg .selectionPaneInfo:after {
+    background-image: url(/pentaho/api/repos/CLP/static/custom/img/close.png);
+}
+
+.selectionPaneInfo:hover:after {
+    background-color: rgba(85,85,85,.1);
 }
 
 .selectionPaneInfo.collapsedInfo {
-    left: -200px;
+    left: -300px;
     
-    -webkit-transition: left 1000ms ease-out;
-    -moz-transition: left 1000ms ease-out;
-    -ms-transition: left 1000ms ease-out;
-    -o-transition: left 1000ms ease-out;
-    transition: left 1000ms ease-out;
+    -webkit-transition: left .5s ease-out;
+    -moz-transition: left .5s ease-out;
+    -ms-transition: left .5s ease-out;
+    -o-transition: left .5s ease-out;
+    transition: left .5s ease-out;
 }
 
 .selectionPaneInfo.expandedInfo {
-    left:202px;
+    left:300px;
     
-    -webkit-transition: left 1000ms ease-in;
-    -moz-transition: left 1000ms ease-in;
-    -ms-transition: left 1000ms ease-in;
-    -o-transition: left 1000ms ease-in;
-    transition: left 1000ms ease-in;
+    -webkit-transition: left .5s ease-in;
+    -moz-transition: left .5s ease-in;
+    -ms-transition: left .5s ease-in;
+    -o-transition: left .5s ease-in;
+    transition: left .5s ease-in;
     
-    z-index:10;
+    z-index:999;
 }
 
 .selectionItemName {
@@ -285,6 +473,8 @@ body{
     margin-left: 15px;
     margin-top: 20px;
     font-size: 14px;
+    
+    padding-right:10px;
 }
 
 /******************************************************************************/
@@ -294,25 +484,25 @@ body{
 .drawerButton{
     position: absolute;
     top: 0;
-    width: 250px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
 }
 
 .clpWrapper {
-    padding-left:200px;
+    padding-left:300px;
     
-    -webkit-transition: padding-left 1000ms ease-in;
-    -moz-transition: padding-left 1000ms ease-in;
-    -ms-transition: padding-left 1000ms ease-in;
-    -o-transition: padding-left 1000ms ease-in;
-    transition: padding-left 1000ms ease-in;
+    -webkit-transition: padding-left .5s ease-in;
+    -moz-transition: padding-left .5s ease-in;
+    -ms-transition: padding-left .5s ease-in;
+    -o-transition: padding-left .5s ease-in;
+    transition: padding-left .5s ease-in;
 }
 
 .contentPane{
-    width:100%;
-    
-    position:relative;
-    top:50px;
+    width: 100%;
+    position: relative;
+    top: 0px;
+    padding-top: 70px;
 }
 
 @media screen and (max-width:768px){
@@ -321,13 +511,13 @@ body{
     }
     
     .selectionPane {
-        left:-200px;
+        left:-300px;
         
-        -webkit-transition: left 1000ms ease-out;
-        -moz-transition: left 1000ms ease-out;
-        -ms-transition: left 1000ms ease-out;
-        -o-transition: left 1000ms ease-out;
-        transition: left 1000ms ease-out;
+        -webkit-transition: left .5s ease-out;
+        -moz-transition: left .5s ease-out;
+        -ms-transition: left .5s ease-out;
+        -o-transition: left .5s ease-out;
+        transition: left .5s ease-out;
         
         z-index: 1001;
     }
@@ -336,34 +526,34 @@ body{
         position:absolute;
         left:0;
         
-        -webkit-transition: left 1000ms ease-out;
-        -moz-transition: left 1000ms ease-out;
-        -ms-transition: left 1000ms ease-out;
-        -o-transition: left 1000ms ease-out;
-        transition: left 1000ms ease-out;
+        -webkit-transition: left .5s ease-out;
+        -moz-transition: left .5s ease-out;
+        -ms-transition: left .5s ease-out;
+        -o-transition: left .5s ease-out;
+        transition: left .5s ease-out;
         
         z-index: 1001;
     }
     
     
     .selectionPaneInfo.collapsedInfo {
-        left: -200px;
+        left: -300px;
         
-        -webkit-transition: left 1000ms ease-out;
-        -moz-transition: left 1000ms ease-out;
-        -ms-transition: left 1000ms ease-out;
-        -o-transition: left 1000ms ease-out;
-        transition: left 1000ms ease-out;
+        -webkit-transition: left .5s ease-out;
+        -moz-transition: left .5s ease-out;
+        -ms-transition: left .5s ease-out;
+        -o-transition: left .5s ease-out;
+        transition: left .5s ease-out;
     }
     
     .selectionPaneInfo.expandedInfo {
-        left:-200px;
+        left:-300px;
         
-        -webkit-transition: left 1000ms ease-in;
-        -moz-transition: left 1000ms ease-in;
-        -ms-transition: left 1000ms ease-in;
-        -o-transition: left 1000ms ease-in;
-        transition: left 1000ms ease-in;
+        -webkit-transition: left .5s ease-in;
+        -moz-transition: left .5s ease-in;
+        -ms-transition: left .5s ease-in;
+        -o-transition: left .5s ease-in;
+        transition: left .5s ease-in;
     }
 }
 
@@ -372,13 +562,13 @@ body{
 /******************************************************************************/
 
 .selectionPane.collapsed {
-        left:-200px;
+        left:-300px;
         
-        -webkit-transition: left 1000ms ease-out;
-        -moz-transition: left 1000ms ease-out;
-        -ms-transition: left 1000ms ease-out;
-        -o-transition: left 1000ms ease-out;
-        transition: left 1000ms ease-out;
+        -webkit-transition: left .5s ease-out;
+        -moz-transition: left .5s ease-out;
+        -ms-transition: left .5s ease-out;
+        -o-transition: left .5s ease-out;
+        transition: left .5s ease-out;
         
         z-index: 1001;
     }
@@ -387,11 +577,11 @@ body{
         position:absolute;
         left:0;
         
-        -webkit-transition: left 1000ms ease-in;
-        -moz-transition: left 1000ms ease-in;
-        -ms-transition: left 1000ms ease-in;
-        -o-transition: left 1000ms ease-in;
-        transition: left 1000ms ease-in;
+        -webkit-transition: left .5s ease-in;
+        -moz-transition: left .5s ease-in;
+        -ms-transition: left .5s ease-in;
+        -o-transition: left .5s ease-in;
+        transition: left .5s ease-in;
         
         z-index: 1001;
     }
@@ -401,54 +591,75 @@ body{
 /******************************************************************************/
 
 .topSectionRow{
-    height: 50px;
+    height: 60px;
     
     -webkit-box-shadow: 0px 3px 8px 0px rgba(204,202,204,1);
     -moz-box-shadow: 0px 3px 8px 0px rgba(204,202,204,1);
     box-shadow: 0px 3px 8px 0px rgba(204,202,204,1);
     
-    background:#F0F0F0;
+    background: #f0f0f0;
 }
 .topSectionCss{
-    height: 50px;
+    height: 60px;
     width: 100%;
-
     position: absolute;
     left: 0;
     top: 0;
+    z-index: 1002;
 }
 
-.drawerButton button.buttonComponent.btn-default.enabled{
-    background: url('/pentaho/api/repos/CLP/static/custom/img/expandOpen.png') 46% -32px;
-    background-repeat: no-repeat;
-    width: 50px;
-    border: none;
-    height: 50px;
-    
+.drawerButton.expanded > button {
+    background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat right center;
+    border: 0 none;
+    outline: 0 none;
+    height: 60px;
+    width: 60px;
     color:transparent;
 }
-
-.drawerButton button.buttonComponent.btn-default.enabled:hover{
-    /* add image*/
-    background: url('/pentaho/api/repos/CLP/static/custom/img/expandOpen.png') 46% -32px;
-    background-repeat: no-repeat;
+.no-svg .drawerButton.expanded > button {
+    background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat right center;
 }
 
-.drawerButton button.buttonComponent.btn-default.disabled{
-    background: url('/pentaho/api/repos/CLP/static/custom/img/expandClosed.png') 46% -32px;
-    background-repeat: no-repeat;
-    width: 50px;
-    border: none;
-    height: 50px;
-    
+.drawerButton.expanded > button:hover {
+    background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat right center;
+}
+.no-svg .drawerButton.expanded > button:hover {
+    background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat right center;
+}
+
+.drawerButton.expanded > button:hover{}
+
+.drawerButton.collapsed > button{
+    background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat left center;
+    border: 0 none;
+    outline: 0 none;
+    height: 60px;
+    width: 60px;
     color:transparent;
 }
-.drawerButton button.buttonComponent.btn-default.disabled:hover{
-    /* add image*/
-    background: url('/pentaho/api/repos/CLP/static/custom/img/expandClosed.png') 46% -32px;
-    background-repeat: no-repeat;
+.no-svg .drawerButton.collapsed > button{
+    background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat left center;
 }
+
+.drawerButton.collapsed > button:hover{
+    background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat left center;
+}
+.no-svg .drawerButton.collapsed > button:hover{
+    background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat left center;
+}
+
+.drawerButton.collapsed > button:hover{}
+
 
 .logoRow{
     background:red;
+}
+
+.ui-widget {
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    font-family: 'Open Sans', Arial, sans-serif;
+    outline: 0 none;
 }

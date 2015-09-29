@@ -2,7 +2,7 @@ require(['cdf/lib/jquery'], function($) {
     
 	
 	// Configure Icon and Logo
-	/*
+
     // display at top left corner
     var mastheadContent = 
     '<div class="col-xs-12">'+
@@ -11,32 +11,36 @@ require(['cdf/lib/jquery'], function($) {
     
     // append contents to html
     $('#logoRow').html(mastheadContent);
-    */
+    
     // Configure Overlay Message here
-	/*
-    var overlayMessage = ''
+    var overlayMessage = ''+
     '<div>'+
         '<div id="overlayMessage" class="overlayMessage">'+
     		'<div id="overlayHeaderRow" class="row clearfix ">'+
     			'<div class="col-xs-12 last">'+
-    				'<div id="overlayHeaderObj" class="overlayHeader ">Welcome to the Steelwheels Data Portal</div>'+
+    				'<div id="overlayHeaderObj" class="overlayHeader ">Community Launch Pad - Steelwheels</div>'+
     			'</div>'+
     		'</div>'+
     		'<div id="overlayText" class="row clearfix ">'+
     			'<div class="col-xs-12 last">'+
     				'<div id="overlayTextObj" class="overlayText ">'+
-    					'<p>Steelwheels Text goes here!</p>'
+    					'<p>This is the Community Launch Pad plugin. This plugin lists the contents of a folder in the Pentaho 		Repository (accessible via the Pentaho User Console), allowing for the selection and display of these contents. By default, this plugin loads the contents of the BI Developer Example (SteelWheels reports). By default, this plugin loads the contents of the BI Developer Example (SteelWheels reports). The plugin\'s default configuration is set in the plugin\'s clp.xml file.</p>'
     				'</div>'+
     			'</div>'+
     		'</div>'+
     	'</div>'+
     '</div>' ;
+	
+	
+	
+
+
     
     $('#overlayMessageObj').html(overlayMessage);
-    */
+    
 	
 	// Configure about button and message here
-	/*
+	
     // About message we want to present
     var aboutMsg = '<a>About</a>';
     
@@ -62,5 +66,4 @@ require(['cdf/lib/jquery'], function($) {
             }
         });
     });
-*/
 });

@@ -170,7 +170,7 @@
      {
       "name": "template",
       "type": "JavaScript",
-      "value": "function() {\n    \n    \n    var template = ''+\n    '<div class=\"accordion\" id=\"accordion2\">' +\n    '   <%_.each(items, function(elem, idx){%>'+\n    '       <div class=\"accordion-group\">'+\n    '           <div class=\"accordion-heading\">'+\n    '               <a class=\"accordion-toggle\" data-toggle=\"collapse\" href=\"#collapse-<%=idx%>\">'+\n    '                       <%=elem.name%>'+\n    '               </a>'+\n    '               <% if(!_.isNull(elem.description)){%>'+\n    '                   <div class=\"infoButton\" data-name=\"<%=elem.name%>\" data-info=\"<%=elem.description%>\">i</div>'+\n    '               <% } %>'+\n    '           </div>'+\n    '           <% if(!_.isEmpty(elem.children)) {%>'+\n    '               <div id=\"collapse-<%=idx%>\" class=\"accordion-body collapse\">'+\n    '                  <% _.each(elem.children, function(el){ %>'+\n    '                      <div class=\"accordion-inner clearfix\">'+\n    '                          <a href=\"#\" title =\"<%=el.name%>\" data-link=\"<%=el.id%>\" data-type=\"<%=el.link_type%>\" ><%=el.name%></a>'+\n    '                          <% if(!_.isNull(el.description)){%>'+\n    '                              <div class=\"infoButton\" data-name=\"<%=el.name%>\" data-info=\"<%=el.description%>\"></div>'+\n    '                          <% } %>'+\n    '                      </div>'+\n    '                   <%}); %>'+    \n    '               </div>'+\n    '           <% } %>'+\n    '       </div>'+\n    '   <%}); %>'+\n    '</div>';\n    \n    \n    \n    return template;\n} "
+      "value": "function() {\n    \n    \n    var template = ''+\n    '<div class=\"accordion\" id=\"accordion2\">' +\n    '   <%_.each(items, function(elem, idx){%>'+\n    '       <div class=\"accordion-group\">'+\n    '           <div class=\"accordion-heading\">'+\n    '               <a class=\"accordion-toggle\" data-toggle=\"collapse\" href=\"#collapse-<%=idx%>\">'+\n    '                       <%=elem.name%>'+\n    '               </a>'+\n    '               <% if(!_.isNull(elem.description)){%>'+\n    '                   <div class=\"infoButton\" data-name=\"<%=elem.name%>\" data-info=\"<%=elem.description%>\"></div>'+\n    '               <% } %>'+\n    '           </div>'+\n    '           <% if(!_.isEmpty(elem.children)) {%>'+\n    '               <div id=\"collapse-<%=idx%>\" class=\"accordion-body collapse\">'+\n    '                  <% _.each(elem.children, function(el){ %>'+\n    '                      <div class=\"accordion-inner clearfix\">'+\n    '                          <a href=\"#\" title =\"<%=el.name%>\" data-link=\"<%=el.id%>\" data-type=\"<%=el.link_type%>\" ><%=el.name%></a>'+\n    '                          <% if(!_.isNull(el.description)){%>'+\n    '                              <div class=\"infoButton\" data-name=\"<%=el.name%>\" data-info=\"<%=el.description%>\"></div>'+\n    '                          <% } %>'+\n    '                      </div>'+\n    '                   <%}); %>'+    \n    '               </div>'+\n    '           <% } %>'+\n    '       </div>'+\n    '   <%}); %>'+\n    '</div>';\n    \n    \n    \n    return template;\n} "
      },
      {
       "name": "templateType",
@@ -1147,34 +1147,6 @@
     "typeDesc": "FreeForm"
    },
    {
-    "id": "c3f805b6-6e1e-8676-28ff-7c90f1276b06",
-    "parent": "1a928594-e4e7-aa01-9167-d307bf02d8ea",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "_drawerButtonObj"
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": "visible-xs drawerButton"
-     },
-     {
-      "name": "elementTag",
-      "type": "String",
-      "value": "div"
-     },
-     {
-      "name": "otherAttributes",
-      "type": "OptionArray",
-      "value": "[]"
-     }
-    ],
-    "type": "LayoutFreeForm",
-    "typeDesc": "FreeForm"
-   },
-   {
     "id": "e93cdf62-0846-ef89-6524-8f5e6a37d513",
     "parent": "1a928594-e4e7-aa01-9167-d307bf02d8ea",
     "properties": [
@@ -1438,6 +1410,6 @@
     "typeDesc": "FreeForm"
    }
   ],
-  "title": "main"
+  "title": "bioMeDashboard"
  }
 }
