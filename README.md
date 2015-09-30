@@ -17,7 +17,7 @@ The clp.xml file defines the settings that the CLP plugin will load. The setting
 <configs>
 	<config>
 		<name>SteelWheels</name>
-		<basepath>/public/bi-developers</basepath>
+		<basepath>/public/bi-developers/legacy-steel-wheels/steel-wheels-4.8</basepath>
 		<whitelist>\.wcdf$|\.prpti$|\.prpt$|\.xdash$|.xanalyzer$</whitelist>
 		<css>/system/CLP/static/custom/css/clpCSS.css</css>
 		<js>/system/CLP/static/custom/js/clpJS.js</js>
