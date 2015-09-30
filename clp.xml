@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configs>
+
+	<!-- Warning: CLP uses the fist clp.xml found by looking at the following locations:
+		solution repository: /public/clp/clp.xml
+		plugin: pentaho-solutions/system/CLP/clp.xml
+	-->
+
+	<!-- The fist config in this file is the default one: -->
+
 	<config>
 		<name>SteelWheels</name>
 		<basepath>/public/bi-developers/legacy-steel-wheels/steel-wheels-4.8</basepath>
@@ -7,4 +15,20 @@
 		<css>/system/CLP/static/custom/css/clpCSS.css</css>
 		<js>/system/CLP/static/custom/js/clpJS.js</js>
 	</config>
+
+	<!--
+		You can have multiple configurations and select each one using the config parameter:
+		http://localhost:8080/pentaho/plugin/CLP/api/main?config=Financial
+	-->
+
+	<!--    
+	<config>
+		<name>Financial</name>
+		<basepath>/public/financial reports</basepath>
+		<whitelist>\.wcdf$|\.prpti$|\.prpt$|\.xdash$|.xanalyzer$</whitelist>
+		<css>/public/financial reports/financial.css</css>
+		<js>/public/financial reports/financial.js</js>
+	</config>
+	-->
+
 </configs>

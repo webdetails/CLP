@@ -32,7 +32,7 @@
      {
       "name": "parameters",
       "type": "ValuesArray",
-      "value": "[]"
+      "value": "[[\"configParam\",\"configParam\"]]"
      },
      {
       "name": "resultvar",
@@ -52,7 +52,7 @@
      {
       "name": "priority",
       "type": "Integer",
-      "value": 5
+      "value": "3"
      },
      {
       "name": "refreshPeriod",
@@ -72,7 +72,7 @@
      {
       "name": "preExecution",
       "type": "JavaScript",
-      "value": ""
+      "value": "function f(){\n    debugger;\n    \n    var getURLParameterByName = function (name) {\n        name = name.replace(/[\\[]/, \"\\\\[\").replace(/[\\]]/, \"\\\\]\");\n        var regex = new RegExp(\"[\\\\?&]\" + name + \"=([^&#]*)\"),\n            results = regex.exec(location.search);\n        return results === null ? \"\" : decodeURIComponent(results[1].replace(/\\+/g, \" \"));\n    }\n    \n    var urlParams = window.location.href;\n    if(!_.isEmpty(urlParams)){\n        var cfg = getURLParameterByName('config');\n        this.dashboard.setParameter('configParam', cfg);\n    }\n} "
      },
      {
       "name": "postExecution",
@@ -120,7 +120,7 @@
      {
       "name": "parameters",
       "type": "ValuesArray",
-      "value": "[]"
+      "value": "[[\"configParam\",\"configParam\"]]"
      },
      {
       "name": "dataSource",
@@ -368,6 +368,39 @@
     ],
     "type": "ComponentsParameter",
     "typeDesc": "Simple parameter"
+   },
+   {
+    "id": "ebc09318-69e4-817a-5a09-df4f2d76e067",
+    "type": "ComponentsParameter",
+    "typeDesc": "Simple parameter",
+    "parent": "GENERIC",
+    "properties": [
+     {
+      "name": "name",
+      "value": "configParam",
+      "type": "Id"
+     },
+     {
+      "name": "propertyValue",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "parameterViewRole",
+      "value": "unused",
+      "type": "parameterViewRoleCustom"
+     },
+     {
+      "name": "bookmarkable",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "public",
+      "value": "true",
+      "type": "Boolean"
+     }
+    ]
    },
    {
     "id": "CUSTOMCOMPONENTS",
