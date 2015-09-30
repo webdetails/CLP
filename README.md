@@ -36,7 +36,7 @@ https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L6:L13
 
 and aboutInfoCol:
 
-https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L40:L44
+https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L44:L50
 
 We can fetch the logoRow using either the div id ```#logoRow``` or the ```.logoRow``` class. Similarly we can fetch the aboutInfoCol using the div id ```#aboutInfoObj```  or its class ```.aboutClass```.
 
@@ -46,13 +46,17 @@ In case you want to use an overlay or dialog we have included a div, to which yo
 
 Besides appending html, we can also bind jquery events to trigger a dialog element, or a message overlay, for instance:
 
-https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L46:L64
+https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L47:L68
 
 Whatever elements you append using the js file, you shoud then style using the css file.
 
 ##CLP Contents
 
 
-The CLP functions as a launcher of various types of Pentaho Reports, located within a folder in the Pentaho User Console. The folder whose contents are made available for selection in the CLP, is defined in the basepath configuration in the clp.xml file. The contents of this folder are retrieved via a kettle endpoint, the result of it, being passed to a template component which generates the html structure of the selector.
+The CLP functions as a launcher of various types of Pentaho Reports, located within a folder in the Pentaho User Console. The folder whose contents are made available for selection in the CLP, is defined in the basepath configuration in the clp.xml file:
 
-When the selector first loads, it will parse it's html structure, and it will render the first report it encounters in the visualization pane. When we click on one of the files, the report also gets rendered in the visualization pane. For both of the aforementioned situations, we check to see if the file is to be rendered inside an iframe, or if it happens to be a CTools dashboard, injected into the visualization pane, using require JS.
+https://github.com/webdetails/CLP/blob/master/clp.xml#L5
+
+The contents of this folder are retrieved via a kettle endpoint, the result of it, passed to a template component which generates the html structure of the selector.
+
+When the selector first loads, it will parse it's own html structure, rendering first report it encounters in the visualization pane. Whenever a report is rendered in the visualization pane, a check is conducted to determine if the file is to be rendered inside an iframe, or if it happens to be a CTools dashboard, injected into the visualization pane, using require JS.
