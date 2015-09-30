@@ -66,9 +66,9 @@ body{
 }
 
 .logoObj:after {
-  content: 'CLP';
+  content: 'Community Launch Pad';
   line-height: 57px;
-  font-size: 40px;
+  font-size: 35px;
   width: 100%;
   text-align: center;
   display: block;

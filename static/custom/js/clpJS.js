@@ -18,13 +18,13 @@ require(['cdf/lib/jquery'], function($) {
         '<div id="overlayMessage" class="overlayMessage">'+
     		'<div id="overlayHeaderRow" class="row clearfix ">'+
     			'<div class="col-xs-12 last">'+
-    				'<div id="overlayHeaderObj" class="overlayHeader ">Community Launch Pad - Steelwheels</div>'+
+    				'<div id="overlayHeaderObj" class="overlayHeader ">Community Launch Pad</div>'+
     			'</div>'+
     		'</div>'+
     		'<div id="overlayText" class="row clearfix ">'+
     			'<div class="col-xs-12 last">'+
     				'<div id="overlayTextObj" class="overlayText ">'+
-    					'<p>This is the Community Launch Pad plugin. This plugin lists the contents of a folder in the Pentaho 		Repository (accessible via the Pentaho User Console), allowing for the selection and display of these contents. By default, this plugin loads the contents of the BI Developer Example (SteelWheels reports). By default, this plugin loads the contents of the BI Developer Example (SteelWheels reports). The plugin\'s default configuration is set in the plugin\'s clp.xml file.</p>'
+    					'<p>This is the Community Launch Pad plugin. This plugin lists the contents of a folder in the Pentaho 		Repository (accessible via the Pentaho User Console), allowing for the selection and display of these contents. By default, the plugin loads the contents of the BI Developer Examples (SteelWheels reports). The default configuration is set in the plugin\'s clp.xml file.</p>'
     				'</div>'+
     			'</div>'+
     		'</div>'+
