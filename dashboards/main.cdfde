@@ -566,7 +566,7 @@
      {
       "name": "resourceCode",
       "type": "Resource",
-      "value": "window.onresize = _.debounce(function(){\n    \n    var selectionDrawer = $('.selectionPane'),\n        windowObj = $(window),\n        buttonComp = this.dashboard.getComponentByName('render_toggleAccordionButton');\n    \n    if( windowObj.width() > 768 ){\n        /*buttonComp.label = 'Expand Container';\n        buttonComp.update();*/\n    }\n    \n    if( windowObj.width() > 768 && selectionDrawer.hasClass('expandDrawer') ){\n        selectionDrawer.removeClass('expandDrawer');\n    }\n    \n}, 200); "
+      "value": "window.onresize = _.debounce(function(){\n    var selectionDrawer = $('.selectionPane'),\n        windowObj = $(window);\n    \n    if( windowObj.width() > 768 && selectionDrawer.hasClass('expandDrawer') ){\n        selectionDrawer.removeClass('expandDrawer');\n    }\n    \n}, 200); "
      },
      {
       "name": "resourceType",

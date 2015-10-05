@@ -524,7 +524,7 @@ body{
 
 @media screen and (max-width:768px){
     .clpWrapper{
-        padding-left:0px;
+        padding-left:0px !important;
     }
 
     .selectionPane {
