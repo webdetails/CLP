@@ -495,6 +495,35 @@ body{
 }
 
 /******************************************************************************/
+/*                          Selection Pane                                    */
+/******************************************************************************/
+
+.selectionPane.collapsed {
+        left:-300px;
+
+        -webkit-transition: left .5s ease-out;
+        -moz-transition: left .5s ease-out;
+        -ms-transition: left .5s ease-out;
+        -o-transition: left .5s ease-out;
+        transition: left .5s ease-out;
+
+        z-index: 1001;
+}
+
+.selectionPane.expandDrawer {
+        position:absolute;
+        left:0;
+
+        -webkit-transition: left .5s ease-in;
+        -moz-transition: left .5s ease-in;
+        -ms-transition: left .5s ease-in;
+        -o-transition: left .5s ease-in;
+        transition: left .5s ease-in;
+
+        z-index: 1001;
+}
+
+/******************************************************************************/
 /*                          Media Queries for accordion                       */
 /******************************************************************************/
 
@@ -541,7 +570,7 @@ body{
 
     .selectionPane.expandDrawer {
         position:absolute;
-        left:0;
+        left:-300px;
 
         -webkit-transition: left .5s ease-out;
         -moz-transition: left .5s ease-out;
@@ -574,34 +603,6 @@ body{
     }
 }
 
-/******************************************************************************/
-/*                          Selection Pane                                    */
-/******************************************************************************/
-
-.selectionPane.collapsed {
-        left:-300px;
-
-        -webkit-transition: left .5s ease-out;
-        -moz-transition: left .5s ease-out;
-        -ms-transition: left .5s ease-out;
-        -o-transition: left .5s ease-out;
-        transition: left .5s ease-out;
-
-        z-index: 1001;
-    }
-
-.selectionPane.expandDrawer {
-        position:absolute;
-        left:0;
-
-        -webkit-transition: left .5s ease-in;
-        -moz-transition: left .5s ease-in;
-        -ms-transition: left .5s ease-in;
-        -o-transition: left .5s ease-in;
-        transition: left .5s ease-in;
-
-        z-index: 1001;
-    }
 
 /******************************************************************************/
 /*                          Top Section                                       */
