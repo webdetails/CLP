@@ -1345,7 +1345,7 @@
      {
       "name": "cssClass",
       "type": "String",
-      "value": "WDhidden"
+      "value": "WDHidden"
      }
     ],
     "type": "LayoutRow",
