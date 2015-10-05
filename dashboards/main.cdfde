@@ -72,7 +72,7 @@
      {
       "name": "preExecution",
       "type": "JavaScript",
-      "value": "function f(){\n    debugger;\n    \n    var getURLParameterByName = function (name) {\n        name = name.replace(/[\\[]/, \"\\\\[\").replace(/[\\]]/, \"\\\\]\");\n        var regex = new RegExp(\"[\\\\?&]\" + name + \"=([^&#]*)\"),\n            results = regex.exec(location.search);\n        return results === null ? \"\" : decodeURIComponent(results[1].replace(/\\+/g, \" \"));\n    }\n    \n    var urlParams = window.location.href;\n    if(!_.isEmpty(urlParams)){\n        var cfg = getURLParameterByName('config');\n        this.dashboard.setParameter('configParam', cfg);\n    }\n} "
+      "value": "function f(){\n    \n    var getURLParameterByName = function (name) {\n        name = name.replace(/[\\[]/, \"\\\\[\").replace(/[\\]]/, \"\\\\]\");\n        var regex = new RegExp(\"[\\\\?&]\" + name + \"=([^&#]*)\"),\n            results = regex.exec(location.search);\n        return results === null ? \"\" : decodeURIComponent(results[1].replace(/\\+/g, \" \"));\n    }\n    \n    var urlParams = window.location.href;\n    if(!_.isEmpty(urlParams)){\n        var cfg = getURLParameterByName('config');\n        this.dashboard.setParameter('configParam', cfg);\n    }\n} "
      },
      {
       "name": "postExecution",
