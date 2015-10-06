@@ -626,7 +626,9 @@ body{
     z-index: 1002;
 }
 
-.drawerButton.expanded > button {
+
+.drawerButton.expanded > button,
+.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
     background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat right center;
     border: 0 none;
     outline: 0 none;
@@ -634,20 +636,23 @@ body{
     width: 60px;
     color:transparent;
 }
-.no-svg .drawerButton.expanded > button {
+.no-svg .drawerButton.expanded > button,
+.no-svg .drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
     background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat right center;
 }
-
-.drawerButton.expanded > button:hover {
+.drawerButton.expanded > button:hover,
+.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
     background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat right center;
+    border-radius:0px;
 }
-.no-svg .drawerButton.expanded > button:hover {
+.no-svg .drawerButton.expanded > button:hover,
+.no-svg .drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
     background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat right center;
+    border-radius:0px;
 }
 
-.drawerButton.expanded > button:hover{}
-
-.drawerButton.collapsed > button{
+.drawerButton.collapsed > button,
+.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only{
     background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat left center;
     border: 0 none;
     outline: 0 none;
@@ -655,19 +660,21 @@ body{
     width: 60px;
     color:transparent;
 }
-.no-svg .drawerButton.collapsed > button{
+.no-svg .drawerButton.collapsed > button,
+.no-svg .drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only{
     background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat left center;
 }
 
-.drawerButton.collapsed > button:hover{
+.drawerButton.collapsed > button:hover,
+.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover{
     background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat left center;
+    border-radius:0px;
 }
-.no-svg .drawerButton.collapsed > button:hover{
+.no-svg .drawerButton.collapsed > button:hover,
+.no-svg .drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover{
     background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat left center;
+    border-radius:0px;
 }
-
-.drawerButton.collapsed > button:hover{}
-
 
 .logoRow{
     background:red;
