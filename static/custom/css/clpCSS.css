@@ -52,7 +52,6 @@
 
 body {
   font-family: 'Open Sans', Arial, sans-serif;
-  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -72,6 +71,7 @@ body {
   top: 0;
   width: 100%;
   z-index: 1002;
+  min-width: 1200px;
 }
 
 .topSectionRow {
@@ -233,53 +233,38 @@ body {
   margin-right: -15px;
 }
 
+.accordion-group {  
+  border-bottom: 1px solid #BFDCE5;
+}
+
+.accordion-group.active:first-child,
+.accordion-group.active + .accordion-group.active {  
+  border-top: 0 none;
+}
+
 .accordion-toggle,
 .accordion-toggle:link,
 .accordion-toggle:visited,
 .accordion-toggle:hover,
 .accordion-toggle:active,
 .accordion-toggle:focus {
-  border-bottom: 1px solid #F2F6F7;
-  border-top: 1px solid #F2F6F7;
   color: #26363D;
   display: block;
   font-weight: 600;
   line-height: 22px;
-  padding: 11px 50px 11px 40px;
+  outline: 0 none;
+  padding: 12px 50px 12px 40px;
   position: relative;
   text-decoration: none;
 }
 
-.accordion-group:first-child .accordion-toggle,
-.accordion-group:first-child .accordion-toggle:link,
-.accordion-group:first-child .accordion-toggle:visited,
-.accordion-group:first-child .accordion-toggle:hover,
-.accordion-group:first-child .accordion-toggle:active,
-.accordion-group:first-child .accordion-toggle:focus {
-  border-top: 1px solid #F2F6F7;
+.active .accordion-toggle {
+  background: #FFFFFF;
 }
 
 .accordion-toggle:hover,
 .accordion-toggle:active {
   background: #DCE7ED;
-  border-bottom: 1px solid #BFDCE5;
-  border-top: 1px solid #BFDCE5;
-}
-
-.accordion-group:first-child .accordion-toggle:hover,
-.accordion-group:first-child .accordion-toggle:active {
-  border-top: 1px solid #DCE7ED;
-}
-
-.active .accordion-toggle {
-  background: #FFFFFF;
-  border-bottom: 1px solid #FFF;
-  border-top: 1px solid #BFDCE5;
-}
-
-.accordion-group:first-child .active .accordion-toggle,
-.accordion-group:first-child .active .accordion-toggle:hover {
-  border-top: 1px solid #FFF;
 }
 
 .accordion-toggle:before {
@@ -311,19 +296,22 @@ body {
 
 .accordion-heading .infoButton {
   width: 44px;
-  height: 44px;
-  line-height: 44px;
+  height: 100%;
   float: none;
   display: block;
   position: absolute;
   right: 0;
-  top: 1px;
+  top: 0;
   cursor: pointer;
-  background: rgba(0, 0, 0, 0) url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat left center;
+  background: #F2f6f7 url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat left center;
 }
 
 .no-svg .accordion-heading .infoButton {
-  background: rgba(0, 0, 0, 0) url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat left center;
+  background: #F2f6f7 url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat left center;
+}
+
+.active .accordion-heading .infoButton {
+  background-color: #FFF;
 }
 
 .accordion-heading .infoButton:hover,
@@ -337,11 +325,10 @@ body {
 }
 
 
-/* 3.1. Accordion Body Elements
+/* 3.2. Accordion Body Elements
   ========================================================================== */
 
 .accordion-body {  
-  border-bottom: 1px solid #BFDCE5;
   background: #FFF;
 }
 
@@ -356,12 +343,10 @@ body {
 .accordion-inner a:hover,
 .accordion-inner a:active,
 .accordion-inner a:focus {
-  border-top: 1px solid #FFF;
-  border-bottom: 1px solid #FFF;
   color: #26363D;
   display: block;
   line-height: 22px;
-  padding: 11px 50px 11px 40px;
+  padding: 12px 50px 12px 40px;
   outline: 0 none;
   overflow: hidden;
   text-decoration: none;
@@ -374,11 +359,10 @@ body {
   cursor: pointer;
   display: block;
   float: none;
-  height: 44px;
-  line-height: 44px;
+  height: 100%;
   position: absolute;
   right: 0;
-  top: 1px;
+  top: 0;
   width: 44px;
 }
 
@@ -397,30 +381,11 @@ body {
 }
 
 .accordion-inner a:hover {
-  border-bottom: 1px solid #BFDCE5;
-  border-top: 1px solid #BFDCE5;
   background: #DAE7ED;
 }
 
 .accordion-inner.active a {
-  border-bottom: 1px solid #DAE7ED;
-  border-top: 1px solid #DAE7ED;
   background: #DAE7ED;
-}
-
-.accordion-inner:last-child a,
-.accordion-inner:last-child a:link,
-.accordion-inner:last-child a:visited,
-.accordion-inner:last-child a:hover,
-.accordion-inner:last-child a:active,
-.accordion-inner:last-child a:focus,
-.accordion-inner.active:last-child a,
-.accordion-inner.active:last-child a:link,
-.accordion-inner.active:last-child a:visited,
-.accordion-inner.active:last-child a:hover,
-.accordion-inner.active:last-child a:active,
-.accordion-inner.active:last-child a:focus {
-  border-bottom: 0 none;
 }
 
 
@@ -435,11 +400,9 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 51px;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 250px;
-  
-  left: -300px;
 }
 
 .selectionPaneInfo:after {
@@ -459,7 +422,7 @@ body {
 }
 
 .selectionPaneInfo:hover:after {
-  background-color: rgba(85, 85, 85, .1);
+  background-color: #DCE7ED;
 }
 
 .selectionPaneInfo.collapsedInfo {
@@ -470,7 +433,6 @@ body {
   -o-transition: left .5s ease-in-out;
   transition: left .5s ease-in-out;
 }
-
 
 .selectionPaneInfo.expandedInfo {
   left: 300px;
@@ -509,6 +471,7 @@ body {
   -o-transition: padding-left .5s ease-in-out;
   transition: padding-left .5s ease-in-out;
   padding-left: 300px;
+  min-width: 1200px;
 }
 
 .contentPane {
@@ -518,15 +481,37 @@ body {
   width: 100%;
 }
 
+.h_iframe {
+  height: 100%;
+}
+
+.visualizationPane {
+  height: 900px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 
 /* ==========================================================================
   5. About Modal
   ========================================================================== */
 
-.ui-widget {
-  font-family: 'Open Sans', Arial, sans-serif;
+
+/* 5.1. Overlay
+  ========================================================================== */
+
+.ui-widget-overlay.ui-front {
+  background: #144b64;
+  opacity: .9;
+  filter: Alpha(Opacity=90);
+  z-index: 1003;
 }
 
+
+/* 5.2. Modal
+  ========================================================================== */
+
+.ui-widget,
 .ui-widget input,
 .ui-widget select,
 .ui-widget textarea,
@@ -535,32 +520,35 @@ body {
   outline: 0 none;
 }
 
+.ui-dialog.ui-widget.ui-widget-content {
+  background: #F5F6F8;
+  border-radius: 0;
+  border: 1px solid #CBDDE8;
+  padding: 15px;
+  z-index: 1004;
+}
+
+
+/* 5.3. Content
+  ========================================================================== */
+
+.overlayMessage.ui-dialog-content.ui-widget-content {
+  background: #F5F6F8;
+  border: none;
+  color: #26363D;
+  overflow: hidden;
+  padding: 0 0 15px 0;
+  height: auto !important;
+}
+
 .overlayHeader {
-  height: 110px;
-  text-align: center;
-  padding-top: 110px;
-  background: url('/pentaho/api/repos/CLP/static/custom/img/clp.svg') no-repeat center center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: top center;
+  font-size: 16px;
+  color: #1973BC;
+  margin-bottom: 15px;
 }
 
 .overlayMessage {
-  font-size: 12px;
-}
-
-.overlayFootnote {
-  background: #F7F7F7;
-  padding: 7px;
-  font-size: 11px;
-}
-
-.overlayFootnote p {
-  margin: 0 5px;
-}
-
-.overlayText {
-  margin-top: 50px;
+  font-size: 14px;
 }
 
 .ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix {
@@ -571,232 +559,67 @@ body {
   border: none;
 }
 
-.ui-widget-overlay.ui-front {
-  background: #949494;
-  opacity: .8;
-  filter: Alpha(Opacity=80);
-  z-index: 1003;
-}
+
+/* 5.3. Proceed Button
+  ========================================================================== */
 
 .ui-dialog-buttonpane.ui-widget-content {
-  background: white;
-}
-
-.ui-dialog.ui-widget.ui-widget-content {
-  background: white;
-  border-radius: 0;
-  border: none;
-  padding: 5px 10px;
-  height: 400px !important;
-  z-index: 1004;
-}
-
-.overlayMessage.ui-dialog-content.ui-widget-content {
-  overflow: hidden;
-  color: #555555;
-  border: none;
-  background: white;
-  padding: 5px 10px;
-  min-height: 320px !important;
-}
-
-.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
-  border: 1px solid #3598DB;
-  font-size: 12px;
-  color: white;
-  font-weight: normal;
-  width: 220px;
-  border-radius: 15px;
-  background: #3598DB;
-}
-
-.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-hover {
-  background: #95C8F5;
-  border: 1px solid #95C8F5;
+  background: #F5F6F8;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  text-align: center;
 }
 
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
-  float: left !important;
-  margin-left: 111px;
+  float: none;
+  margin: 0 auto;
 }
 
-.col-element-bar {
-  background: #F7F7F7;
-  font-weight: bold;
-  color: black;
-  border-bottom: 1px solid #DDDDDD;
-  border-top: 1px solid #DDDDDD;
-  line-height: 30px;
-}
-
-.col-element-bar:hover {
-  background: #3598DB;
-  color: white;
-}
-
-.col-element-bar a {
-  float: left;
-  color: #f00;
-  text-decoration: none;
-}
-
-.collapsible {
-  background: #F7F7F7;
-  font-weight: normal;
-  color: black;
-}
-
-.collapsible > div {
-  background: #F7F7F7;
-}
-
-.collapsible > div:hover {
-  background: #3598DB;
-  color: white;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* Visualization Pane Section */
-.visualizationPane {
-  height: 900px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-
-/* iframe styling */
-.h_iframe {
-  height: 100%;
-}
-
-
-/******************************************************************************/
-
-/*                          Slider Pane enhancements                          */
-
-/******************************************************************************/
-/*
-.element {
-  height: 30px;
-  overflow-y: hidden;
-}
-
-.element p {
-  line-height: 30px;
-  margin-bottom: 0px;
-  display: inline-block;
-  width: 260px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.element a {
-  color: #B5B5B5;
-  margin-left: 33px;
-}
-
-.element p:hover,
-.element a:hover {
-  background: #3598DB;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.element.active {
-  background: #3598DB;
-}
-
-.element.active > p > a {
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+  background: #007297;
+  background: -moz-linear-gradient(top, #007297 57%, #005f7d 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(57%,#007297), color-stop(100%,#005f7d));
+  background: -webkit-linear-gradient(top, #007297 57%,#005f7d 100%);
+  background: -o-linear-gradient(top, #007297 57%,#005f7d 100%);
+  background: -ms-linear-gradient(top, #007297 57%,#005f7d 100%);
+  background: linear-gradient(to bottom, #007297 57%,#005f7d 100%);
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
   color: #ffffff;
+  padding: 4px 14px 6px 14px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border: 0px solid #333;
+  -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  cursor: pointer;
+  margin: 0px;
 }
 
-.element p:hover > a {
-  color: white;
+.ui-button-text-only .ui-button-text {
+  padding: 0;
 }
 
-.element p:hover + div {
-  background: #2E7DA5;
-}
-*/
-
-/******************************************************************************/
-
-/*                          Media Queries for accordion                       */
-
-/******************************************************************************/
-
-@media screen and (max-width:768px) {
-  .clpWrapper {
-    padding-left: 0px !important;
-  }
-
-  .selectionPane {
-    left: -300px;
-    -webkit-transition: left .5s ease-in-out;
-    -moz-transition: left .5s ease-in-out;
-    -ms-transition: left .5s ease-in-out;
-    -o-transition: left .5s ease-in-out;
-    transition: left .5s ease-in-out;
-    z-index: 1001;
-  }
-  
-  .selectionPane.mobile {
-    left: 0px !important;
-    -webkit-transition: left .5s ease-in-out;
-    -moz-transition: left .5s ease-in-out;
-    -ms-transition: left .5s ease-in-out;
-    -o-transition: left .5s ease-in-out;
-    transition: left .5s ease-in-out;
-    z-index: 1001;
-  }
-
-  .selectionPane.expandDrawer {
-    position: absolute;
-    left: -300px;
-    -webkit-transition: left .5s ease-in-out;
-    -moz-transition: left .5s ease-in-out;
-    -ms-transition: left .5s ease-in-out;
-    -o-transition: left .5s ease-in-out;
-    transition: left .5s ease-in-out;
-    z-index: 1001;
-  }
-
-.selectionPaneInfo.expandedInfo.mobile {
-    left: 300px;
-    -webkit-transition: left .5s ease-in-out;
-    -moz-transition: left .5s ease-in-out;
-    -ms-transition: left .5s ease-in-out;
-    -o-transition: left .5s ease-in-out;
-    transition: left .5s ease-in-out;
-    z-index: 999;
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-hover {    
+  -moz-box-shadow: inset 0 0 1px #FFF;
+  -webkit-box-shadow: inset 0 0 1px #FFF;
+  box-shadow: inset 0 0 1px #FFF;
+  background: #0085b0;
 }
 
-  .selectionPaneInfo.collapsedInfo {
-    left: -300px;
-    -webkit-transition: left .5s ease-in-out;
-    -moz-transition: left .5s ease-in-out;
-    -ms-transition: left .5s ease-in-out;
-    -o-transition: left .5s ease-in-out;
-    transition: left .5s ease-in-out;
-  }
-
-  .selectionPaneInfo.expandedInfo {
-    left: -300px;
-    -webkit-transition: left .5s ease-in-out;
-    -moz-transition: left .5s ease-in-out;
-    -ms-transition: left .5s ease-in-out;
-    -o-transition: left .5s ease-in-out;
-    transition: left .5s ease-in-out;
-  }
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-active {    
+    background: #8ac06e;
+    background: -moz-linear-gradient(top, #8ac06e 0%, #62ab3d 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8ac06e), color-stop(100%,#62ab3d));
+    background: -webkit-linear-gradient(top, #8ac06e 0%,#62ab3d 100%);
+    background: -o-linear-gradient(top, #8ac06e 0%,#62ab3d 100%);
+    background: -ms-linear-gradient(top, #8ac06e 0%,#62ab3d 100%);
+    background: linear-gradient(to bottom, #8ac06e 0%,#62ab3d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8ac06e', endColorstr='#62ab3d',GradientType=0 );
+    color: #293b44;
 }
