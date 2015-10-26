@@ -241,6 +241,7 @@ body {
   display: block;
   font-weight: 600;
   line-height: 22px;
+  outline: 0 none;
   padding: 11px 50px 11px 40px;
   position: relative;
   text-decoration: none;
