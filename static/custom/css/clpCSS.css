@@ -233,54 +233,38 @@ body {
   margin-right: -15px;
 }
 
+.accordion-group {  
+  border-bottom: 1px solid #BFDCE5;
+}
+
+.accordion-group.active:first-child,
+.accordion-group.active + .accordion-group.active {  
+  border-top: 0 none;
+}
+
 .accordion-toggle,
 .accordion-toggle:link,
 .accordion-toggle:visited,
 .accordion-toggle:hover,
 .accordion-toggle:active,
 .accordion-toggle:focus {
-  border-bottom: 1px solid #F2F6F7;
-  border-top: 1px solid #F2F6F7;
   color: #26363D;
   display: block;
   font-weight: 600;
   line-height: 22px;
   outline: 0 none;
-  padding: 11px 50px 11px 40px;
+  padding: 12px 50px 12px 40px;
   position: relative;
   text-decoration: none;
 }
 
-.accordion-group:first-child .accordion-toggle,
-.accordion-group:first-child .accordion-toggle:link,
-.accordion-group:first-child .accordion-toggle:visited,
-.accordion-group:first-child .accordion-toggle:hover,
-.accordion-group:first-child .accordion-toggle:active,
-.accordion-group:first-child .accordion-toggle:focus {
-  border-top: 1px solid #F2F6F7;
+.active .accordion-toggle {
+  background: #FFFFFF;
 }
 
 .accordion-toggle:hover,
 .accordion-toggle:active {
   background: #DCE7ED;
-  border-bottom: 1px solid #BFDCE5;
-  border-top: 1px solid #BFDCE5;
-}
-
-.accordion-group:first-child .accordion-toggle:hover,
-.accordion-group:first-child .accordion-toggle:active {
-  border-top: 1px solid #DCE7ED;
-}
-
-.active .accordion-toggle {
-  background: #FFFFFF;
-  border-bottom: 1px solid #FFF;
-  border-top: 1px solid #BFDCE5;
-}
-
-.accordion-group:first-child .active .accordion-toggle,
-.accordion-group:first-child .active .accordion-toggle:hover {
-  border-top: 1px solid #FFF;
 }
 
 .accordion-toggle:before {
@@ -312,19 +296,22 @@ body {
 
 .accordion-heading .infoButton {
   width: 44px;
-  height: 44px;
-  line-height: 44px;
+  height: 100%;
   float: none;
   display: block;
   position: absolute;
   right: 0;
-  top: 1px;
+  top: 0;
   cursor: pointer;
-  background: rgba(0, 0, 0, 0) url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat left center;
+  background: #F2f6f7 url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat left center;
 }
 
 .no-svg .accordion-heading .infoButton {
-  background: rgba(0, 0, 0, 0) url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat left center;
+  background: #F2f6f7 url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat left center;
+}
+
+.active .accordion-heading .infoButton {
+  background-color: #FFF;
 }
 
 .accordion-heading .infoButton:hover,
@@ -342,7 +329,6 @@ body {
   ========================================================================== */
 
 .accordion-body {  
-  border-bottom: 1px solid #BFDCE5;
   background: #FFF;
 }
 
@@ -357,12 +343,10 @@ body {
 .accordion-inner a:hover,
 .accordion-inner a:active,
 .accordion-inner a:focus {
-  border-top: 1px solid #FFF;
-  border-bottom: 1px solid #FFF;
   color: #26363D;
   display: block;
   line-height: 22px;
-  padding: 11px 50px 11px 40px;
+  padding: 12px 50px 12px 40px;
   outline: 0 none;
   overflow: hidden;
   text-decoration: none;
@@ -375,11 +359,10 @@ body {
   cursor: pointer;
   display: block;
   float: none;
-  height: 44px;
-  line-height: 44px;
+  height: 100%;
   position: absolute;
   right: 0;
-  top: 1px;
+  top: 0;
   width: 44px;
 }
 
@@ -398,30 +381,11 @@ body {
 }
 
 .accordion-inner a:hover {
-  border-bottom: 1px solid #BFDCE5;
-  border-top: 1px solid #BFDCE5;
   background: #DAE7ED;
 }
 
 .accordion-inner.active a {
-  border-bottom: 1px solid #DAE7ED;
-  border-top: 1px solid #DAE7ED;
   background: #DAE7ED;
-}
-
-.accordion-inner:last-child a,
-.accordion-inner:last-child a:link,
-.accordion-inner:last-child a:visited,
-.accordion-inner:last-child a:hover,
-.accordion-inner:last-child a:active,
-.accordion-inner:last-child a:focus,
-.accordion-inner.active:last-child a,
-.accordion-inner.active:last-child a:link,
-.accordion-inner.active:last-child a:visited,
-.accordion-inner.active:last-child a:hover,
-.accordion-inner.active:last-child a:active,
-.accordion-inner.active:last-child a:focus {
-  border-bottom: 0 none;
 }
 
 
@@ -458,7 +422,7 @@ body {
 }
 
 .selectionPaneInfo:hover:after {
-  background-color: rgba(85, 85, 85, .1);
+  background-color: #DCE7ED;
 }
 
 .selectionPaneInfo.collapsedInfo {
