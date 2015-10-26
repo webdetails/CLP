@@ -11,6 +11,9 @@
  *    3. Left Panel
  *        - 3.1. Accordion Headings
  *        - 3.2. Accordion Body Elements
+ *        - 3.3. Informations Panels
+ *    4. Content Panel
+ *    5. About Modal
  */
 
 /* ==========================================================================
@@ -47,6 +50,10 @@ body {
   font-family: 'Open Sans', Arial, sans-serif;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.WDHidden {
+  display: none;
 }
 
 
@@ -203,6 +210,10 @@ body {
   transition: left .5s ease-in-out;
   width: 300px;
   z-index: 1001;
+}
+
+.selectionPane.collapsed {
+  left: -300px;
 }
 
 
@@ -405,39 +416,112 @@ body {
 }
 
 
+/* 3.3. Informations Panels
+  ========================================================================== */
 
-
-
-
-
-
-
-
-/* Visualization Pane Section */
-.visualizationPane {
-  height: 900px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-
-/* Common Section */
-.WDHidden {
-  display: none;
-}
-
-
-/* iframe styling */
-.h_iframe {
+.selectionPaneInfo {
+  background: #FFFFFF;
+  border-right: 1px solid #BFDCE5;
+  cursor: pointer;
   height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 51px;
+  position: absolute;
+  top: 0;
+  width: 250px;
+}
+
+.selectionPaneInfo:after {
+  background-image: url(/pentaho/api/repos/CLP/static/custom/img/close.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  content: '';
+  height: 44px;
+  position: absolute;
+  right: 0px;
+  top: 51px;
+  width: 44px;
+}
+
+.no-svg .selectionPaneInfo:after {
+  background-image: url(/pentaho/api/repos/CLP/static/custom/img/close.png);
+}
+
+.selectionPaneInfo:hover:after {
+  background-color: rgba(85, 85, 85, .1);
+}
+
+.selectionPaneInfo.collapsedInfo {
+  left: -300px;
+  -webkit-transition: left .5s ease-in-out;
+  -moz-transition: left .5s ease-in-out;
+  -ms-transition: left .5s ease-in-out;
+  -o-transition: left .5s ease-in-out;
+  transition: left .5s ease-in-out;
+}
+
+.selectionPaneInfo.expandedInfo {
+  left: 300px;
+  -webkit-transition: left .5s ease-in-out;
+  -moz-transition: left .5s ease-in-out;
+  -ms-transition: left .5s ease-in-out;
+  -o-transition: left .5s ease-in-out;
+  transition: left .5s ease-in-out;
+  z-index: 999;
+}
+
+.selectionItemName {
+  font-size: 22px;
+  margin-left: 15px;
+  margin-top: 50px;
+  font-weight: 300;
+}
+
+.selectionInfo {
+  font-size: 14px;
+  font-weight: 300;
+  margin-left: 15px;
+  margin-top: 20px;
+  padding-right: 10px;
 }
 
 
-/******************************************************************************/
+/* ==========================================================================
+  4. Content Panel
+  ========================================================================== */
 
-/*                          Overlay Styling                                   */
+.clpWrapper {
+  -webkit-transition: padding-left .5s ease-in-out;
+  -moz-transition: padding-left .5s ease-in-out;
+  -ms-transition: padding-left .5s ease-in-out;
+  -o-transition: padding-left .5s ease-in-out;
+  transition: padding-left .5s ease-in-out;
+}
 
-/******************************************************************************/
+.contentPane {
+  padding-top: 70px;
+  position: relative;
+  top: 0px;
+  width: 100%;
+}
+
+
+/* ==========================================================================
+  5. About Modal
+  ========================================================================== */
+
+.ui-widget {
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+  font-family: 'Open Sans', Arial, sans-serif;
+  outline: 0 none;
+}
 
 .overlayHeader {
   height: 110px;
@@ -560,6 +644,30 @@ body {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+/* Visualization Pane Section */
+.visualizationPane {
+  height: 900px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+/* iframe styling */
+.h_iframe {
+  height: 100%;
+}
+
+
 /******************************************************************************/
 
 /*                          Slider Pane enhancements                          */
@@ -611,124 +719,9 @@ body {
 
 /******************************************************************************/
 
-/*                          Information slider                                */
-
-/******************************************************************************/
-
-.selectionPaneInfo {
-  position: absolute;
-  top: 0;
-  width: 250px;
-  background: #EFEFEF;
-  height: 100%;
-  padding-top: 60px;
-  cursor: pointer;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.selectionPaneInfo:after {
-  position: absolute;
-  top: 60px;
-  right: 0px;
-  width: 35px;
-  height: 35px;
-  content: '';
-  background-image: url(/pentaho/api/repos/CLP/static/custom/img/close.svg);
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-.no-svg .selectionPaneInfo:after {
-  background-image: url(/pentaho/api/repos/CLP/static/custom/img/close.png);
-}
-
-.selectionPaneInfo:hover:after {
-  background-color: rgba(85, 85, 85, .1);
-}
-
-.selectionPaneInfo.collapsedInfo {
-  left: -300px;
-  -webkit-transition: left .5s ease-in-out;
-  -moz-transition: left .5s ease-in-out;
-  -ms-transition: left .5s ease-in-out;
-  -o-transition: left .5s ease-in-out;
-  transition: left .5s ease-in-out;
-}
-
-.selectionPaneInfo.expandedInfo {
-  left: 300px;
-  -webkit-transition: left .5s ease-in-out;
-  -moz-transition: left .5s ease-in-out;
-  -ms-transition: left .5s ease-in-out;
-  -o-transition: left .5s ease-in-out;
-  transition: left .5s ease-in-out;
-  z-index: 999;
-}
-
-.selectionItemName {
-  margin-top: 50px;
-  font-size: 18px;
-  margin-left: 15px;
-}
-
-.selectionInfo {
-  margin-left: 15px;
-  margin-top: 20px;
-  font-size: 14px;
-  padding-right: 10px;
-}
-
-
-/******************************************************************************/
-
-/*                          Selection Pane                                    */
-
-/******************************************************************************/
-
-.selectionPane.collapsed {
-  left: -300px;
-  -webkit-transition: left .5s ease-in-out;
-  -moz-transition: left .5s ease-in-out;
-  -ms-transition: left .5s ease-in-out;
-  -o-transition: left .5s ease-in-out;
-  transition: left .5s ease-in-out;
-  z-index: 1001;
-}
-
-.selectionPane.expandDrawer {
-  position: absolute;
-  left: 0;
-  -webkit-transition: left .5s ease-in-out;
-  -moz-transition: left .5s ease-in-out;
-  -ms-transition: left .5s ease-in-out;
-  -o-transition: left .5s ease-in-out;
-  transition: left .5s ease-in-out;
-  z-index: 1001;
-}
-
-
-/******************************************************************************/
-
 /*                          Media Queries for accordion                       */
 
 /******************************************************************************/
-
-.clpWrapper {
-  padding-left: 300px;
-  -webkit-transition: padding-left .5s ease-in-out;
-  -moz-transition: padding-left .5s ease-in-out;
-  -ms-transition: padding-left .5s ease-in-out;
-  -o-transition: padding-left .5s ease-in-out;
-  transition: padding-left .5s ease-in-out;
-}
-
-.contentPane {
-  width: 100%;
-  position: relative;
-  top: 0px;
-  padding-top: 70px;
-}
 
 @media screen and (max-width:768px) {
   .clpWrapper {
@@ -774,28 +767,4 @@ body {
     transition: left .5s ease-in-out;
   }
 
-}
-
-
-/******************************************************************************/
-
-/*                          Top Section                                       */
-
-/******************************************************************************/
-
-
-.logoRow {
-  background: red;
-}
-
-.ui-widget {
-  font-family: 'Open Sans', Arial, sans-serif;
-}
-
-.ui-widget input,
-.ui-widget select,
-.ui-widget textarea,
-.ui-widget button {
-  font-family: 'Open Sans', Arial, sans-serif;
-  outline: 0 none;
 }
