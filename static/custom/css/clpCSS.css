@@ -497,6 +497,7 @@ body {
   -ms-transition: padding-left .5s ease-in-out;
   -o-transition: padding-left .5s ease-in-out;
   transition: padding-left .5s ease-in-out;
+  padding-left: 300px;
 }
 
 .contentPane {
