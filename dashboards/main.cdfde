@@ -944,8 +944,8 @@
      },
      {
       "name": "cssClass",
-      "value": "",
-      "type": "String"
+      "type": "String",
+      "value": "selectionPaneRow"
      }
     ]
    },
