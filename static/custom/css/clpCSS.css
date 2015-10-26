@@ -407,7 +407,7 @@ body {
 
 .selectionPaneInfo:after {
   background-image: url(/pentaho/api/repos/CLP/static/custom/img/close.svg);
-  background-position: center center;
+  background-position: left center;
   background-repeat: no-repeat;
   content: '';
   height: 44px;
@@ -423,6 +423,7 @@ body {
 
 .selectionPaneInfo:hover:after {
   background-color: #DCE7ED;
+  background-position: right center;
 }
 
 .selectionPaneInfo.collapsedInfo {
