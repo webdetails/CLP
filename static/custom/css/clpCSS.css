@@ -199,7 +199,6 @@ body {
   font-size: 16px;
   height: 100%;
   left: 0;
-  overflow-y: auto;
   padding-top: 51px;
   position: fixed;
   top: 0;
@@ -214,6 +213,11 @@ body {
 
 .selectionPane.collapsed {
   left: -300px;
+}
+
+.selectionPaneRow {  
+  overflow-y: auto;
+  height: 100%;
 }
 
 
