@@ -1,122 +1,218 @@
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Regular.ttf') format('truetype');
-    font-weight: 400;
-}
+/**
+ * COMMUNITY LAUNCH PAD
+ *
+ * Summary:
+ *
+ *    0. Fonts
+ *    1. General Styles
+ *    2. Header
+ *        - 2.1. Left Panel Toggle Button
+ *        - 2.2. About Button
+ *    3. Left Panel
+ *        - 3.1. Accordion Headings
+ *        - 3.2. Accordion Body Elements
+ */
+
+/* ==========================================================================
+  0. Fonts
+  ========================================================================== */
 
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Light.ttf') format('truetype');
-    font-weight: 300;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Regular.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Semibold.ttf') format('truetype');
-    font-weight: 600;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Light.ttf') format('truetype');
 }
 
-/*
-CLP CSS
-*/
-
-body{
-    overflow-x: hidden;
-    font-family: 'Open Sans', Arial, sans-serif;
-    overflow-y: auto;
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Semibold.ttf') format('truetype');
 }
 
 
-/* Selection Pane Section */
-.selectionPane{
-    background-color: #f0f0f0;
-    border-right: 1px solid #DADADA;
-    height:100%;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+/* ==========================================================================
+  1. General Styles
+  ========================================================================== */
 
-    width:300px;
-    position:absolute;
-    top:0;
-    left:0px;
-    padding-top: 60px;
-
-    -webkit-transition: left .5s ease-in;
-    -moz-transition: left .5s ease-in;
-    -ms-transition: left .5s ease-in;
-    -o-transition: left .5s ease-in;
-    transition: left .5s ease-in;
-
-    z-index:1001;
-
-    overflow-y: auto;
-
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-.logoObj {
-  height: 60px;
-  margin-left: -15px;
-  margin-right: -15px;
-  background: none;
-  position: relative;
-}
 
-.logoObj:after {
-  content: 'Community Launch Pad';
-  line-height: 57px;
-  font-size: 35px;
+/* ==========================================================================
+  2. Header
+  ========================================================================== */
+
+.topSectionCss {
+  height: 51px;
+  left: 0;
+  position: fixed;
+  top: 0;
   width: 100%;
-  text-align: center;
-  display: block;
-  color: #616161;
+  z-index: 1002;
 }
+
+.topSectionRow {
+  background: #DCE7ED;
+  height: 51px;
+  border-bottom: 1px solid #BFDCE5;
+}
+
+
+/* 2.1. Left Panel Toggle Button
+  ========================================================================== */
+
+.drawerButton {
+  width: 60px;
+  height: 50px;
+}
+
+.drawerButton > button:after {
+  content: 'Company Files';
+  position: absolute;
+  left: 70px;
+  color: #26363D;
+  top: 0;
+  width: auto;
+  text-align: left;
+  line-height: 30px;
+  font-size: 22px;
+  font-weight: 300;
+  padding: 9px 0 11px;
+}
+
+.drawerButton.expanded > button,
+.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+  background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat left center;
+  border: 0 none;
+  color: transparent;
+  height: 50px;
+  outline: 0 none;
+  width: 60px;
+}
+
+.no-svg .drawerButton.expanded > button,
+.no-svg .drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+  background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat left center;
+}
+
+.drawerButton.expanded > button:hover,
+.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
+  background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat left center;
+  border-radius: 0px;
+}
+
+.no-svg .drawerButton.expanded > button:hover,
+.no-svg .drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
+  background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat left center;
+  border-radius: 0px;
+}
+
+.drawerButton.collapsed > button,
+.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+  background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat right center;
+  border: 0 none;
+  color: transparent;
+  height: 50px;
+  outline: 0 none;
+  width: 60px;
+}
+
+.no-svg .drawerButton.collapsed > button,
+.no-svg .drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+  background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat right center;
+}
+
+.drawerButton.collapsed > button:hover,
+.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
+  background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat right center;
+  border-radius: 0px;
+}
+
+.no-svg .drawerButton.collapsed > button:hover,
+.no-svg .drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
+  background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat right center;
+  border-radius: 0px;
+}
+
+
+/* 2.2. About Button
+  ========================================================================== */
 
 .aboutClass {
-    font-size: 14px;
-    font-weight: normal;
-    text-align: right;
-    width: 40px;
-    float: right;
-    line-height: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-right: 20px;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: right;
+  width: 40px;
+  float: right;
+  line-height: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-right: 20px;
 }
-.aboutClass a {
-    color: #3598DB;
-    font-weight: 300;
+
+.aboutClass a,
+.aboutClass a:link,
+.aboutClass a:visited,
+.aboutClass a:hover,
+.aboutClass a:active,
+.aboutClass a:focus {
+  color: #1973BC;
+  font-weight: 300;
+  outline: 0 none;
 }
+
 .aboutClass a:hover {
-    text-decoration:underline;
-    cursor:pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-/* Visualization Pane Section */
-.visualizationPane{
-    height:900px;
-    padding-left:20px;
-    padding-right:20px;
+
+/* ==========================================================================
+  3. Left Panel
+  ========================================================================== */
+
+.selectionPane {
+  background-color: #F2F6F7;
+  border-right: 1px solid #BFDCE5;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-size: 16px;
+  height: 100%;
+  left: 0;
+  overflow-y: auto;
+  padding-top: 51px;
+  position: fixed;
+  top: 0;
+  -webkit-transition: left .5s ease-in-out;
+  -moz-transition: left .5s ease-in-out;
+  -ms-transition: left .5s ease-in-out;
+  -o-transition: left .5s ease-in-out;
+  transition: left .5s ease-in-out;
+  width: 300px;
+  z-index: 1001;
 }
-/* Common Section */
-.WDHidden{
-    display:none;
-}
-/* iframe styling */
-.h_iframe{
-    height:100%;
-}
-/******************************************************************************/
-/*                          Accordion Styling                                 */
-/******************************************************************************/
+
+
+/* 3.1. Accordion Headings
+  ========================================================================== */
+
 .selectionObj {
-    margin-left:-15px;
-    margin-right:-15px;
+  margin-left: -15px;
+  margin-right: -15px;
 }
-
 
 .accordion-toggle,
 .accordion-toggle:link,
@@ -124,48 +220,115 @@ body{
 .accordion-toggle:hover,
 .accordion-toggle:active,
 .accordion-toggle:focus {
-    line-height: 35px;
-    display: block;
-    padding: 0 35px 0 40px;
-    color: #555555;
-    font-weight: 600;
-    position: relative;
-    text-decoration: none;
-    border-bottom: 1px solid #DADADA;
+  border-bottom: 1px solid #F2F6F7;
+  border-top: 1px solid #F2F6F7;
+  color: #26363D;
+  display: block;
+  font-weight: 600;
+  line-height: 22px;
+  padding: 11px 50px 11px 40px;
+  position: relative;
+  text-decoration: none;
+}
+
+.accordion-group:first-child .accordion-toggle,
+.accordion-group:first-child .accordion-toggle:link,
+.accordion-group:first-child .accordion-toggle:visited,
+.accordion-group:first-child .accordion-toggle:hover,
+.accordion-group:first-child .accordion-toggle:active,
+.accordion-group:first-child .accordion-toggle:focus {
+  border-top: 1px solid #F2F6F7;
 }
 
 .accordion-toggle:hover,
 .accordion-toggle:active {
-    background: rgba(85,85,85,.05);
+  background: #DCE7ED;
+  border-bottom: 1px solid #BFDCE5;
+  border-top: 1px solid #BFDCE5;
+}
+
+.accordion-group:first-child .accordion-toggle:hover,
+.accordion-group:first-child .accordion-toggle:active {
+  border-top: 1px solid #DCE7ED;
+}
+
+.active .accordion-toggle {
+  background: #FFFFFF;
+  border-bottom: 1px solid #FFF;
+  border-top: 1px solid #BFDCE5;
+}
+
+.accordion-group:first-child .active .accordion-toggle,
+.accordion-group:first-child .active .accordion-toggle:hover {
+  border-top: 1px solid #FFF;
 }
 
 .accordion-toggle:before {
-    position: absolute;
-    content: '';
-    top: 0;
-    bottom: 0;
-    width: 24px;
-    height: 24px;
-    left: 15px;
-    margin: auto 0;
-    background-image: url(/pentaho/api/repos/CLP/static/custom/img/clp_expand_collapse.svg);
-    background-repeat: no-repeat;
-    background-position: left center;
+  background-image: url(/pentaho/api/repos/CLP/static/custom/img/clp_expand_collapse.svg);
+  background-repeat: no-repeat;
+  background-position: left center;
+  bottom: 0;
+  content: '';
+  height: 24px;
+  left: 15px;
+  margin: auto 0;
+  position: absolute;
+  top: 0;
+  width: 24px;
 }
 
 .no-svg .accordion-toggle:before {
-    background-image: url(/pentaho/api/repos/CLP/static/custom/img/clp_expand_collapse.png);
+  background-image: url(/pentaho/api/repos/CLP/static/custom/img/clp_expand_collapse.png);
 }
 
 .active .accordion-toggle:before,
 .no-svg .active .accordion-toggle:before {
-    background-position: right center;
+  background-position: right center;
+}
+
+.accordion-heading {
+  position: relative;
+}
+
+.accordion-heading .infoButton {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  float: none;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 1px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0) url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat left center;
+}
+
+.no-svg .accordion-heading .infoButton {
+  background: rgba(0, 0, 0, 0) url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat left center;
+}
+
+.accordion-heading .infoButton:hover,
+.accordion-heading.info-opened .infoButton {
+  background: #DAE7ED url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat right center;
+}
+
+.no-svg .accordion-heading .infoButton:hover,
+.no-svg .accordion-heading.info-opened .infoButton {
+  background: #DAE7ED url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat right center;
+}
+
+
+/* 3.1. Accordion Body Elements
+  ========================================================================== */
+
+.accordion-body {  
+  border-bottom: 1px solid #BFDCE5;
+  background: #FFF;
 }
 
 .accordion-inner {
-    position: relative;
-    border-bottom: 1px solid #DADADA;
-    font-weight: 300;
+  font-weight: 300;
+  position: relative;
 }
 
 .accordion-inner a,
@@ -174,517 +337,465 @@ body{
 .accordion-inner a:hover,
 .accordion-inner a:active,
 .accordion-inner a:focus {
-    line-height: 35px;
-    color: #555555;
-    padding: 0 35px 0 40px;
-    text-decoration: none;
-    outline: 0 none;
-    display: block;
+  border-top: 1px solid #FFF;
+  border-bottom: 1px solid #FFF;
+  color: #26363D;
+  display: block;
+  line-height: 22px;
+  padding: 11px 50px 11px 40px;
+  outline: 0 none;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .accordion-inner .infoButton {
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    float: none;
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-    cursor: pointer;
-    background: rgba(85,85,85,.1) url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat center center;
+  background: #FFFFFF url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat left center;
+  cursor: pointer;
+  display: block;
+  float: none;
+  height: 44px;
+  line-height: 44px;
+  position: absolute;
+  right: 0;
+  top: 1px;
+  width: 44px;
 }
 
 .no-svg .accordion-inner .infoButton {
-    background: rgba(85,85,85,.1) url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat center center;
+  background: #FFFFFF url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat left center;
 }
 
 .accordion-inner .infoButton:hover,
 .accordion-inner.info-opened .infoButton {
-    background: rgba(85,85,85,1) url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat center center;
+  background: #DAE7ED url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat right center;
 }
 
 .no-svg .accordion-inner .infoButton:hover,
 .no-svg .accordion-inner.info-opened .infoButton {
-    background: rgba(85,85,85,1) url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat center center;
+  background: #DAE7ED url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat right center;
 }
 
-.accordion-inner.active a,
 .accordion-inner a:hover {
-    background: #3598DB;
+  border-bottom: 1px solid #BFDCE5;
+  border-top: 1px solid #BFDCE5;
+  background: #DAE7ED;
 }
 
-.accordion-inner.active {
-    font-weight: 600;
+.accordion-inner.active a {
+  border-bottom: 1px solid #DAE7ED;
+  border-top: 1px solid #DAE7ED;
+  background: #DAE7ED;
 }
 
-.accordion-inner.active a,
-.accordion-inner.active a:link,
-.accordion-inner.active a:visited,
-.accordion-inner.active a:hover,
-.accordion-inner.active a:active,
-.accordion-inner.active a:focus,
-.accordion-inner a:hover {
-    color: #FFFFFF;
+.accordion-inner:last-child a,
+.accordion-inner:last-child a:link,
+.accordion-inner:last-child a:visited,
+.accordion-inner:last-child a:hover,
+.accordion-inner:last-child a:active,
+.accordion-inner:last-child a:focus,
+.accordion-inner.active:last-child a,
+.accordion-inner.active:last-child a:link,
+.accordion-inner.active:last-child a:visited,
+.accordion-inner.active:last-child a:hover,
+.accordion-inner.active:last-child a:active,
+.accordion-inner.active:last-child a:focus {
+  border-bottom: 0 none;
+}
+
+
+
+
+
+
+
+
+
+
+/* Visualization Pane Section */
+.visualizationPane {
+  height: 900px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+/* Common Section */
+.WDHidden {
+  display: none;
+}
+
+
+/* iframe styling */
+.h_iframe {
+  height: 100%;
 }
 
 
 /******************************************************************************/
+
 /*                          Overlay Styling                                   */
+
 /******************************************************************************/
 
-.overlayHeader{
-    height: 110px;
-    text-align: center;
-    padding-top: 110px;
-    background: url('/pentaho/api/repos/CLP/static/custom/img/clp.svg') no-repeat center center;;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: top center;
+.overlayHeader {
+  height: 110px;
+  text-align: center;
+  padding-top: 110px;
+  background: url('/pentaho/api/repos/CLP/static/custom/img/clp.svg') no-repeat center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top center;
 }
-.overlayMessage{
-    font-size: 12px;
+
+.overlayMessage {
+  font-size: 12px;
 }
+
 .overlayFootnote {
-    background: #F7F7F7;
-    padding: 7px;
-    font-size: 11px;
+  background: #F7F7F7;
+  padding: 7px;
+  font-size: 11px;
 }
+
 .overlayFootnote p {
-    margin: 0 5px;
-}
-.overlayText{
-    margin-top:50px;
-}
-.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix{
-    display:none;
-}
-.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix{
-    border:none;
+  margin: 0 5px;
 }
 
-.ui-widget-overlay.ui-front{
-    background: #949494;
-    opacity: .8;
-    filter: Alpha(Opacity=80);
-    z-index:1003;
-}
-.ui-dialog-buttonpane.ui-widget-content{
-    background: white;
-}
-.ui-dialog.ui-widget.ui-widget-content{
-    background: white;
-    border-radius: 0;
-    border: none;
-    padding: 5px 10px;
-    height:400px !important;
-    z-index:1004;
-}
-.overlayMessage.ui-dialog-content.ui-widget-content{
-    overflow: hidden;
-    color: #555555;
-    border: none;
-    background: white;
-    padding: 5px 10px;
-    min-height: 320px !important;
+.overlayText {
+  margin-top: 50px;
 }
 
-.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only{
-    border: 1px solid #3598DB;
-    font-size: 12px;
-    color: white;
-    font-weight: normal;
-    width: 220px;
-    border-radius: 15px;
-    background:#3598DB;
+.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix {
+  display: none;
 }
 
-.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-hover{
-    background:#95C8F5;
-    border: 1px solid #95C8F5;
+.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
+  border: none;
 }
 
-.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{
-    float: left !important;
-    margin-left: 111px;
+.ui-widget-overlay.ui-front {
+  background: #949494;
+  opacity: .8;
+  filter: Alpha(Opacity=80);
+  z-index: 1003;
+}
+
+.ui-dialog-buttonpane.ui-widget-content {
+  background: white;
+}
+
+.ui-dialog.ui-widget.ui-widget-content {
+  background: white;
+  border-radius: 0;
+  border: none;
+  padding: 5px 10px;
+  height: 400px !important;
+  z-index: 1004;
+}
+
+.overlayMessage.ui-dialog-content.ui-widget-content {
+  overflow: hidden;
+  color: #555555;
+  border: none;
+  background: white;
+  padding: 5px 10px;
+  min-height: 320px !important;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+  border: 1px solid #3598DB;
+  font-size: 12px;
+  color: white;
+  font-weight: normal;
+  width: 220px;
+  border-radius: 15px;
+  background: #3598DB;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-hover {
+  background: #95C8F5;
+  border: 1px solid #95C8F5;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  float: left !important;
+  margin-left: 111px;
 }
 
 .col-element-bar {
-    background: #F7F7F7;
-    font-weight: bold;
-    color: black;
-    border-bottom: 1px solid #DDDDDD;
-    border-top: 1px solid #DDDDDD;
-    line-height: 30px;
+  background: #F7F7F7;
+  font-weight: bold;
+  color: black;
+  border-bottom: 1px solid #DDDDDD;
+  border-top: 1px solid #DDDDDD;
+  line-height: 30px;
 }
 
 .col-element-bar:hover {
-    background:#3598DB;
-    color: white;
+  background: #3598DB;
+  color: white;
 }
+
 .col-element-bar a {
-    float:left;
-    color:#f00;
-    text-decoration:none;
+  float: left;
+  color: #f00;
+  text-decoration: none;
 }
 
 .collapsible {
-    background:#F7F7F7;
-    font-weight: normal;
-    color: black;
+  background: #F7F7F7;
+  font-weight: normal;
+  color: black;
 }
 
 .collapsible > div {
-    background:#F7F7F7;
-}
-.collapsible > div:hover {
-    background:#3598DB;
-    color:white;
+  background: #F7F7F7;
 }
 
+.collapsible > div:hover {
+  background: #3598DB;
+  color: white;
+}
+
+
 /******************************************************************************/
+
 /*                          Slider Pane enhancements                          */
+
 /******************************************************************************/
 .element {
-    height: 30px;
-    overflow-y: hidden;
+  height: 30px;
+  overflow-y: hidden;
 }
 
 .element p {
-    line-height: 30px;
-    margin-bottom: 0px;
-
-    display:inline-block;
-    width: 260px;
-
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  line-height: 30px;
+  margin-bottom: 0px;
+  display: inline-block;
+  width: 260px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .element a {
-    color: #B5B5B5;
-    margin-left: 33px;
+  color: #B5B5B5;
+  margin-left: 33px;
 }
 
 .element p:hover,
 .element a:hover {
-    background: #3598DB;
-    text-decoration: none;
-    cursor:pointer;
+  background: #3598DB;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .element.active {
-    background: #3598DB;
+  background: #3598DB;
 }
 
 .element.active > p > a {
-    color:#ffffff;
+  color: #ffffff;
 }
 
-.element p:hover > a{
-    color: white;
+.element p:hover > a {
+  color: white;
 }
 
-
-.element p:hover + div{
-    background:#2E7DA5;
+.element p:hover + div {
+  background: #2E7DA5;
 }
 
-.accordion-heading {
-  position: relative;
-}
-
-.accordion-heading .infoButton {
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    float: none;
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-    cursor: pointer;
-    background: rgba(85,85,85,.1) url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat center center;
-}
-
-.no-svg .accordion-heading .infoButton {
-    background: rgba(85,85,85,.1) url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat center center;
-}
-
-.accordion-heading .infoButton:hover,
-.accordion-heading.info-opened .infoButton {
-    background: rgba(85,85,85,1) url(/pentaho/api/repos/CLP/static/custom/img/information.svg) no-repeat center center;
-}
-
-.no-svg .accordion-heading .infoButton:hover,
-.no-svg .accordion-heading.info-opened .infoButton {
-    background: rgba(85,85,85,1) url(/pentaho/api/repos/CLP/static/custom/img/information.png) no-repeat center center;
-}
 
 /******************************************************************************/
+
 /*                          Information slider                                */
+
 /******************************************************************************/
 
-.selectionPaneInfo{
-    position: absolute;
-    top: 0;
-    width: 250px;
-    background: #EFEFEF;
-    height: 100%;
-    padding-top: 60px;
-    cursor: pointer;
-    padding-left: 10px;
-    padding-right: 10px;
+.selectionPaneInfo {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  background: #EFEFEF;
+  height: 100%;
+  padding-top: 60px;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .selectionPaneInfo:after {
-    position: absolute;
-    top: 60px;
-    right: 0px;
-    width: 35px;
-    height: 35px;
-    content: '';
-    background-image: url(/pentaho/api/repos/CLP/static/custom/img/close.svg);
-    background-repeat: no-repeat;
-    background-position: center center;
+  position: absolute;
+  top: 60px;
+  right: 0px;
+  width: 35px;
+  height: 35px;
+  content: '';
+  background-image: url(/pentaho/api/repos/CLP/static/custom/img/close.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .no-svg .selectionPaneInfo:after {
-    background-image: url(/pentaho/api/repos/CLP/static/custom/img/close.png);
+  background-image: url(/pentaho/api/repos/CLP/static/custom/img/close.png);
 }
 
 .selectionPaneInfo:hover:after {
-    background-color: rgba(85,85,85,.1);
+  background-color: rgba(85, 85, 85, .1);
 }
 
 .selectionPaneInfo.collapsedInfo {
-    left: -300px;
-
-    -webkit-transition: left .5s ease-out;
-    -moz-transition: left .5s ease-out;
-    -ms-transition: left .5s ease-out;
-    -o-transition: left .5s ease-out;
-    transition: left .5s ease-out;
+  left: -300px;
+  -webkit-transition: left .5s ease-in-out;
+  -moz-transition: left .5s ease-in-out;
+  -ms-transition: left .5s ease-in-out;
+  -o-transition: left .5s ease-in-out;
+  transition: left .5s ease-in-out;
 }
 
 .selectionPaneInfo.expandedInfo {
-    left:300px;
-
-    -webkit-transition: left .5s ease-in;
-    -moz-transition: left .5s ease-in;
-    -ms-transition: left .5s ease-in;
-    -o-transition: left .5s ease-in;
-    transition: left .5s ease-in;
-
-    z-index:999;
+  left: 300px;
+  -webkit-transition: left .5s ease-in-out;
+  -moz-transition: left .5s ease-in-out;
+  -ms-transition: left .5s ease-in-out;
+  -o-transition: left .5s ease-in-out;
+  transition: left .5s ease-in-out;
+  z-index: 999;
 }
 
 .selectionItemName {
-    margin-top: 50px;
-    font-size: 18px;
-    margin-left: 15px;
+  margin-top: 50px;
+  font-size: 18px;
+  margin-left: 15px;
 }
 
 .selectionInfo {
-    margin-left: 15px;
-    margin-top: 20px;
-    font-size: 14px;
-
-    padding-right:10px;
+  margin-left: 15px;
+  margin-top: 20px;
+  font-size: 14px;
+  padding-right: 10px;
 }
 
+
 /******************************************************************************/
+
 /*                          Selection Pane                                    */
+
 /******************************************************************************/
 
 .selectionPane.collapsed {
-        left:-300px;
-
-        -webkit-transition: left .5s ease-out;
-        -moz-transition: left .5s ease-out;
-        -ms-transition: left .5s ease-out;
-        -o-transition: left .5s ease-out;
-        transition: left .5s ease-out;
-
-        z-index: 1001;
+  left: -300px;
+  -webkit-transition: left .5s ease-in-out;
+  -moz-transition: left .5s ease-in-out;
+  -ms-transition: left .5s ease-in-out;
+  -o-transition: left .5s ease-in-out;
+  transition: left .5s ease-in-out;
+  z-index: 1001;
 }
 
 .selectionPane.expandDrawer {
-        position:absolute;
-        left:0;
-
-        -webkit-transition: left .5s ease-in;
-        -moz-transition: left .5s ease-in;
-        -ms-transition: left .5s ease-in;
-        -o-transition: left .5s ease-in;
-        transition: left .5s ease-in;
-
-        z-index: 1001;
+  position: absolute;
+  left: 0;
+  -webkit-transition: left .5s ease-in-out;
+  -moz-transition: left .5s ease-in-out;
+  -ms-transition: left .5s ease-in-out;
+  -o-transition: left .5s ease-in-out;
+  transition: left .5s ease-in-out;
+  z-index: 1001;
 }
 
+
 /******************************************************************************/
+
 /*                          Media Queries for accordion                       */
-/******************************************************************************/
 
-.drawerButton{
-    position: absolute;
-    top: 0;
-    width: 60px;
-    height: 60px;
-}
+/******************************************************************************/
 
 .clpWrapper {
-    padding-left:300px;
-
-    -webkit-transition: padding-left .5s ease-in;
-    -moz-transition: padding-left .5s ease-in;
-    -ms-transition: padding-left .5s ease-in;
-    -o-transition: padding-left .5s ease-in;
-    transition: padding-left .5s ease-in;
+  padding-left: 300px;
+  -webkit-transition: padding-left .5s ease-in-out;
+  -moz-transition: padding-left .5s ease-in-out;
+  -ms-transition: padding-left .5s ease-in-out;
+  -o-transition: padding-left .5s ease-in-out;
+  transition: padding-left .5s ease-in-out;
 }
 
-.contentPane{
-    width: 100%;
-    position: relative;
-    top: 0px;
-    padding-top: 70px;
+.contentPane {
+  width: 100%;
+  position: relative;
+  top: 0px;
+  padding-top: 70px;
 }
 
-@media screen and (max-width:768px){
-    .clpWrapper{
-        padding-left:0px !important;
-    }
+@media screen and (max-width:768px) {
+  .clpWrapper {
+    padding-left: 0px !important;
+  }
 
-    .selectionPane {
-        left:-300px;
+  .selectionPane {
+    left: -300px;
+    -webkit-transition: left .5s ease-in-out;
+    -moz-transition: left .5s ease-in-out;
+    -ms-transition: left .5s ease-in-out;
+    -o-transition: left .5s ease-in-out;
+    transition: left .5s ease-in-out;
+    z-index: 1001;
+  }
 
-        -webkit-transition: left .5s ease-out;
-        -moz-transition: left .5s ease-out;
-        -ms-transition: left .5s ease-out;
-        -o-transition: left .5s ease-out;
-        transition: left .5s ease-out;
-
-        z-index: 1001;
-    }
-
-    .selectionPane.expandDrawer {
-        position:absolute;
-        left:-300px;
-
-        -webkit-transition: left .5s ease-out;
-        -moz-transition: left .5s ease-out;
-        -ms-transition: left .5s ease-out;
-        -o-transition: left .5s ease-out;
-        transition: left .5s ease-out;
-
-        z-index: 1001;
-    }
-
-
-    .selectionPaneInfo.collapsedInfo {
-        left: -300px;
-
-        -webkit-transition: left .5s ease-out;
-        -moz-transition: left .5s ease-out;
-        -ms-transition: left .5s ease-out;
-        -o-transition: left .5s ease-out;
-        transition: left .5s ease-out;
-    }
-
-    .selectionPaneInfo.expandedInfo {
-        left:-300px;
-
-        -webkit-transition: left .5s ease-in;
-        -moz-transition: left .5s ease-in;
-        -ms-transition: left .5s ease-in;
-        -o-transition: left .5s ease-in;
-        transition: left .5s ease-in;
-    }
-}
-
-
-/******************************************************************************/
-/*                          Top Section                                       */
-/******************************************************************************/
-
-.topSectionRow{
-    height: 60px;
-
-    -webkit-box-shadow: 0px 3px 8px 0px rgba(204,202,204,1);
-    -moz-box-shadow: 0px 3px 8px 0px rgba(204,202,204,1);
-    box-shadow: 0px 3px 8px 0px rgba(204,202,204,1);
-
-    background: #f0f0f0;
-}
-.topSectionCss{
-    height: 60px;
-    width: 100%;
+  .selectionPane.expandDrawer {
     position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1002;
+    left: -300px;
+    -webkit-transition: left .5s ease-in-out;
+    -moz-transition: left .5s ease-in-out;
+    -ms-transition: left .5s ease-in-out;
+    -o-transition: left .5s ease-in-out;
+    transition: left .5s ease-in-out;
+    z-index: 1001;
+  }
+
+  .selectionPaneInfo.collapsedInfo {
+    left: -300px;
+    -webkit-transition: left .5s ease-in-out;
+    -moz-transition: left .5s ease-in-out;
+    -ms-transition: left .5s ease-in-out;
+    -o-transition: left .5s ease-in-out;
+    transition: left .5s ease-in-out;
+  }
+
+  .selectionPaneInfo.expandedInfo {
+    left: -300px;
+    -webkit-transition: left .5s ease-in-out;
+    -moz-transition: left .5s ease-in-out;
+    -ms-transition: left .5s ease-in-out;
+    -o-transition: left .5s ease-in-out;
+    transition: left .5s ease-in-out;
+  }
+
 }
 
 
-.drawerButton.expanded > button,
-.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
-    background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat right center;
-    border: 0 none;
-    outline: 0 none;
-    height: 60px;
-    width: 60px;
-    color:transparent;
-}
-.no-svg .drawerButton.expanded > button,
-.no-svg .drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
-    background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat right center;
-}
-.drawerButton.expanded > button:hover,
-.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
-    background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat right center;
-    border-radius:0px;
-}
-.no-svg .drawerButton.expanded > button:hover,
-.no-svg .drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
-    background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat right center;
-    border-radius:0px;
-}
+/******************************************************************************/
 
-.drawerButton.collapsed > button,
-.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only{
-    background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat left center;
-    border: 0 none;
-    outline: 0 none;
-    height: 60px;
-    width: 60px;
-    color:transparent;
-}
-.no-svg .drawerButton.collapsed > button,
-.no-svg .drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only{
-    background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat left center;
-}
+/*                          Top Section                                       */
 
-.drawerButton.collapsed > button:hover,
-.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover{
-    background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat left center;
-    border-radius:0px;
-}
-.no-svg .drawerButton.collapsed > button:hover,
-.no-svg .drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover{
-    background: rgba(85,85,85,.1) url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat left center;
-    border-radius:0px;
-}
+/******************************************************************************/
 
-.logoRow{
-    background:red;
+
+.logoRow {
+  background: red;
 }
 
 .ui-widget {
-    font-family: 'Open Sans', Arial, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif;
 }
 
-.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
-    font-family: 'Open Sans', Arial, sans-serif;
-    outline: 0 none;
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+  font-family: 'Open Sans', Arial, sans-serif;
+  outline: 0 none;
 }
