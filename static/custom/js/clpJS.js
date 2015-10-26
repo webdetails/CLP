@@ -31,11 +31,6 @@ require(['cdf/lib/jquery'], function($) {
     	'</div>'+
     '</div>' ;
 	
-	
-	
-
-
-    
     $('#overlayMessageObj').html(overlayMessage);
     
 	
@@ -58,6 +53,12 @@ require(['cdf/lib/jquery'], function($) {
                 "Proceed": function() {
                   $( this ).dialog( "close" );
                 }
+            },
+            /* close overlay by clicking anywhere */
+            open: function(){
+                $('.ui-widget-overlay').bind('click', function(){
+                    $('#overlayMessage').dialog('close');
+                })
             },
             create:function () {
             $(this).closest(".ui-dialog")
