@@ -111,6 +111,8 @@ body {
   height: 50px;
   outline: 0 none;
   width: 60px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 .no-svg .drawerButton.expanded > button,
@@ -138,6 +140,8 @@ body {
   height: 50px;
   outline: 0 none;
   width: 60px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 .no-svg .drawerButton.collapsed > button,
