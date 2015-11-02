@@ -1,9 +1,12 @@
 require(['cdf/lib/jquery'], function($) {
     
 	
-	
 	// Configure Icon and Logo
-
+	// Configure Dashboard text
+	var buttonTextObj = $('#buttonTextObj');
+	var panelText = 'CLP';
+	    buttonTextObj.append(panelText);
+    
     // display at top left corner
     var mastheadContent = 
     '<div class="col-xs-12">'+

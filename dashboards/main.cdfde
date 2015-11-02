@@ -150,12 +150,12 @@
      {
       "name": "postExecution",
       "type": "JavaScript",
-      "value": "function f(){    \n\n    var generateViewport = function(linkType, reportLink, viewportLocation, dashboard){\n        \n        if(linkType === 'iframe'){\n\n            // check if any iframes exist in html, if so remove them\n            var iframes = document.getElementsByTagName('iframe');\n            \n            for (var i = 0; i < iframes.length; i++) {\n                iframes[i].parentNode.removeChild(iframes[i]);\n            }\n            // generate iframe placeholder\n            var iframeContent = '' +\n            '<div class=\"h_iframe\">'+\n            '    <iframe  src=\"'+ reportLink +'\" width=\"100%\" height=\"100%\" frameborder=\"0\" allowfullscreen></iframe>'+\n            '</div>';\n            \n            // inject iframe\n            $(\"#\" + viewportLocation ).html(iframeContent);  \n            \n        } else {\n            \n            // embed dashboard\n            var reportPath = decodeURIComponent(reportLink);\n            \n            dashboard.setParameter('dashboardToEmbedParam', reportPath);\n            dashboard.fireChange('triggerDashboardEmbedder', $.now());\n        }\n    };\n    \n    // get accordion structure and render first element in accordion\n    var accordionGroup = this.placeholder('.accordion-group').first();\n    \n    var firstAccordionElement = accordionGroup.find('a[href=\"#\"]').first();\n    \n    var accordionInnerElements = this.placeholder('.accordion-inner'),\n        accordionHeadElements = this.placeholder('.accordion-heading');\n    \n    var linkType = firstAccordionElement.attr('data-type'),\n        reportLink = firstAccordionElement.attr('data-link'),\n        viewportLocation = 'visualizationPaneObj';\n    \n    var dashboardContext = this.dashboard;\n    var selectorPh = this.placeholder('a[href=\"#\"]');\n    \n    var ph = $('#selectionPaneInfoObj');\n    \n    generateViewport(linkType, reportLink, viewportLocation, dashboardContext);\n    \n    // add active class to elements\n    accordionGroup.addClass('active');\n    accordionGroup.find('.accordion-heading').addClass('active');\n    \n    firstAccordionElement.parent().addClass('active');\n    \n    // add in class to expand element\n    firstAccordionElement.parent().parent().addClass('in');    \n    \n    // bind click to each link\n    selectorPh.click(function(e){\n        \n        var linkType = e.target.getAttribute('data-type'),\n            reportLink = e.target.getAttribute('data-link');\n        \n        generateViewport(linkType, reportLink, viewportLocation, dashboardContext);\n        \n        _.each(selectorPh, function(elem){\n            var item = $(elem.parentNode);\n            if(item.hasClass('active')){\n                item.removeClass('active');\n            }\n        });\n        \n        $(this.parentNode).addClass('active');\n        \n        var classToRemove = 'info-opened';\n        removeInfoClass(accordionInnerElements, classToRemove);\n        \n        if(ph.hasClass('expandedInfo')){\n            ph.removeClass('expandedInfo').addClass('collapsedInfo');\n        }\n        \n    });\n    \n    // bind click to information button in selection pane\n    var infoButtons = this.placeholder('.infoButton');\n    \n    _.each(infoButtons, function(el){\n        $(el).click(\n            function(e){\n                e.stopPropagation();\n                var itemName = e.target.getAttribute('data-name'),\n                    itemInfo = e.target.getAttribute('data-Info');\n                    \n                    var accordionInner = $(e.target.parentNode);                     \n                    \n                    if(accordionInner.hasClass('info-opened')){\n                        accordionInner.removeClass('info-opened');\n                    } else {\n                        \n                        var classToRemove = 'info-opened';\n                        \n                        removeInfoClass(accordionHeadElements, classToRemove);\n                        removeInfoClass(accordionInnerElements, classToRemove);\n                    \n                        accordionInner.addClass('info-opened');  \n                    }\n                    \n                    var html='<div class=\"selectionItemName\">'+ itemName +'</div>'+\n                            '<div class=\"selectionInfo\">'+ itemInfo +'</div>';\n                    // check if pane is open\n                    if(ph.hasClass('expandedInfo')){\n                        // if we clicked on open pane - close it\n                        if(ph.find('.selectionItemName').html() === itemName){\n                            ph.removeClass('expandedInfo').addClass('collapsedInfo');\n                        } else {\n                            // update content\n                            ph.removeClass('expandedInfo').addClass('collapsedInfo');                            \n                            ph.delay(500)\n                                .queue(function(next){\n                                    ph.empty().append(html);\n                                    ph.removeClass('collapsedInfo').addClass('expandedInfo');\n                                    next();\n                                });                            \n                        }\n                        \n                    } else {                        \n                        ph.removeClass('collapsedInfo').addClass('expandedInfo');\n                        ph.empty().append(html);\n                    }\n\n            });\n    });\n    \n    var accordionHeaders = this.placeholder('.accordion-heading');    \n    _.each(accordionHeaders, function(elem){\n        $(elem).click(function(e){            \n            var header = $(e.target.parentNode);\n            \n            // handle double clicks on expand accordion - ensures correct\n            // class is applied\n            if(!$(this).siblings().hasClass('collapsing')){\n                header.toggleClass('active');\n                // apply active class to parent node\n                header.parent().toggleClass('active');\n            }\n        });\n    });\n    \n    // close info pane\n    $('.selectionPaneInfo').click(function(e){\n        \n        var pane = $(this);\n        if(pane.hasClass('expandedInfo')){\n            pane.removeClass('expandedInfo').addClass('collapsedInfo');\n        }\n        var classToRemove = 'info-opened';\n        removeInfoClass(accordionHeadElements, classToRemove);\n        removeInfoClass(accordionInnerElements, classToRemove);\n        \n    });\n    \n    \n    function removeInfoClass(accordionDivs, cssClass){\n        _.each(accordionDivs, function(el){\n            var inner = $(el);\n            if(inner.hasClass(cssClass)){\n                inner.removeClass(cssClass);\n            }\n        });\n    }\n    \n    \n\n} "
+      "value": "function f(){    \n    \n    var errorMessage = 'No items found. Please configure CLP to display folders with content.';\n    \n    displayNoContentsMessage(this.placeholder(), errorMessage);\n    \n    var generateViewport = function(linkType, reportLink, viewportLocation, dashboard){\n        \n        if(linkType === 'iframe'){\n\n            // check if any iframes exist in html, if so remove them\n            var iframes = document.getElementsByTagName('iframe');\n            \n            for (var i = 0; i < iframes.length; i++) {\n                iframes[i].parentNode.removeChild(iframes[i]);\n            }\n            // generate iframe placeholder\n            var iframeContent = '' +\n            '<div class=\"h_iframe\">'+\n            '    <iframe  src=\"'+ reportLink +'\" width=\"100%\" height=\"100%\" frameborder=\"0\" allowfullscreen></iframe>'+\n            '</div>';\n            \n            // inject iframe\n            $(\"#\" + viewportLocation ).html(iframeContent);  \n            \n        } else {\n            \n            // embed dashboard\n            var reportPath = decodeURIComponent(reportLink);\n            \n            dashboard.setParameter('dashboardToEmbedParam', reportPath);\n            dashboard.fireChange('triggerDashboardEmbedder', $.now());\n        }\n    };\n    \n    // - get first element that has valid links\n    var accordionContent = this.placeholder('div[id=\"accordion2\"]');\n    var accordionElements = accordionContent.find('.accordion-body');\n    var firstContent = accordionElements.first();\n    \n    if(accordionElements.length > 0){\n        // get accordion structure and render first element in accordion        \n        var firstAccordionElement = $(firstContent).find('a[href=\"#\"]').first();\n        \n        var accordionInnerElements = this.placeholder('.accordion-inner'),\n            accordionHeadElements = this.placeholder('.accordion-heading');\n        \n        var linkType = firstAccordionElement.attr('data-type'),\n            reportLink = firstAccordionElement.attr('data-link'),\n            viewportLocation = 'visualizationPaneObj';\n        \n        var dashboardContext = this.dashboard;\n        var selectorPh = this.placeholder('a[href=\"#\"]');\n        \n        var ph = $('#selectionPaneInfoObj');        \n        \n        generateViewport(linkType, reportLink, viewportLocation, dashboardContext);\n    \n        // add active class to elements\n        firstContent.parent().addClass('active');\n        firstContent.parent().find('.accordion-heading').addClass('active');\n        \n        firstAccordionElement.parent().addClass('active');    \n        // add in class to expand element\n        firstAccordionElement.parent().parent().addClass('in');\n        \n        // bind click to each link\n        selectorPh.click(function(e){\n            \n            var linkType = e.target.getAttribute('data-type'),\n                reportLink = e.target.getAttribute('data-link');\n            \n            generateViewport(linkType, reportLink, viewportLocation, dashboardContext);\n            \n            _.each(selectorPh, function(elem){\n                var item = $(elem.parentNode);\n                if(item.hasClass('active')){\n                    item.removeClass('active');\n                }\n            });\n            \n            $(this.parentNode).addClass('active');\n            \n            var classToRemove = 'info-opened';\n            removeInfoClass(accordionInnerElements, classToRemove);\n            \n            if(ph.hasClass('expandedInfo')){\n                ph.removeClass('expandedInfo').addClass('collapsedInfo');\n            }\n            \n        });\n        \n    }// end if we have data\n    \n    \n    \n    // bind click to information button in selection pane\n    var infoButtons = this.placeholder('.infoButton');\n    \n    _.each(infoButtons, function(el){\n        $(el).click(\n            function(e){\n                e.stopPropagation();\n                var itemName = e.target.getAttribute('data-name'),\n                    itemInfo = e.target.getAttribute('data-Info');\n                    \n                    var accordionInner = $(e.target.parentNode);                     \n                    \n                    if(accordionInner.hasClass('info-opened')){\n                        accordionInner.removeClass('info-opened');\n                    } else {\n                        \n                        var classToRemove = 'info-opened';\n                        \n                        removeInfoClass(accordionHeadElements, classToRemove);\n                        removeInfoClass(accordionInnerElements, classToRemove);\n                    \n                        accordionInner.addClass('info-opened');  \n                    }\n                    \n                    var html='<div class=\"selectionItemName\">'+ itemName +'</div>'+\n                            '<div class=\"selectionInfo\">'+ itemInfo +'</div>';\n                    // check if pane is open\n                    if(ph.hasClass('expandedInfo')){\n                        // if we clicked on open pane - close it\n                        if(ph.find('.selectionItemName').html() === itemName){\n                            ph.removeClass('expandedInfo').addClass('collapsedInfo');\n                        } else {\n                            // update content\n                            ph.removeClass('expandedInfo').addClass('collapsedInfo');                            \n                            ph.delay(500)\n                                .queue(function(next){\n                                    ph.empty().append(html);\n                                    ph.removeClass('collapsedInfo').addClass('expandedInfo');\n                                    next();\n                                });                            \n                        }\n                        \n                    } else {                        \n                        ph.removeClass('collapsedInfo').addClass('expandedInfo');\n                        ph.empty().append(html);\n                    }\n\n            });\n    });\n    \n    var accordionHeaders = this.placeholder('.accordion-heading');    \n    \n    _.each(accordionHeaders, function(elem){\n        $(elem).click(function(e){            \n            var header = $(e.target.parentNode);\n            \n            // handle double clicks on expand accordion - ensures correct\n            // class is applied\n            if(!$(this).siblings().hasClass('collapsing')){\n                header.toggleClass('active');\n                // apply active class to parent node\n                header.parent().toggleClass('active');\n            }\n        });\n    });\n    \n    // close info pane\n    $('.selectionPaneInfo').click(function(e){\n        \n        var pane = $(this);\n        if(pane.hasClass('expandedInfo')){\n            pane.removeClass('expandedInfo').addClass('collapsedInfo');\n        }\n        var classToRemove = 'info-opened';\n        removeInfoClass(accordionHeadElements, classToRemove);\n        removeInfoClass(accordionInnerElements, classToRemove);\n        \n    });\n    \n    \n    function removeInfoClass(accordionDivs, cssClass){\n        _.each(accordionDivs, function(el){\n            var inner = $(el);\n            if(inner.hasClass(cssClass)){\n                inner.removeClass(cssClass);\n            }\n        });\n    }\n    \n    \n    // when no data - \n    function displayNoContentsMessage(placeholder, errorMsg){\n        var html = '<div class=\"errorMsgPane\">'+\n                    '   <div class=\"errorMessage\">'+ errorMsg +'</div>'\n                    '</div>';\n                    \n        // remove default error message\n        placeholder.find('.alert').remove();\n        placeholder.append(html);\n    }\n    \n\n} "
      },
      {
       "name": "postFetch",
       "type": "JavaScript",
-      "value": ""
+      "value": "function f(d){\n    \n    return d={};\n} "
      },
      {
       "name": "tooltip",
@@ -244,6 +244,11 @@
       "name": "dataSource",
       "type": "Datasource",
       "value": ""
+     },
+     {
+      "name": "Datasource",
+      "value": "",
+      "type": "Datasource"
      },
      {
       "name": "priority",
@@ -650,7 +655,7 @@
      {
       "name": "name",
       "type": "Id",
-      "value": "drawerButtonObj"
+      "value": "drawerButtonCol"
      },
      {
       "name": "bootstrapExtraSmall",
@@ -705,6 +710,170 @@
     ],
     "type": "LayoutBootstrapColumn",
     "typeDesc": "Column"
+   },
+   {
+    "id": "8d7d0691-9f3b-8f28-9efe-ec86715117e0",
+    "type": "LayoutRow",
+    "typeDesc": "Row",
+    "parent": "d53d5cf1-1038-61a2-4412-4698f80a63b7",
+    "properties": [
+     {
+      "name": "name",
+      "value": "drawerButton",
+      "type": "Id"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "0a18143d-62fd-bc47-6bbd-2d0200804362",
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column",
+    "parent": "8d7d0691-9f3b-8f28-9efe-ec86715117e0",
+    "properties": [
+     {
+      "name": "name",
+      "value": "drawerButtonObj",
+      "type": "Id"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "value": "4",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapSmall",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapMedium",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapLarge",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapCssClass",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "drawerButton expanded",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "fc7b2e85-a09c-b7d4-2147-e915ee2de575",
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column",
+    "parent": "8d7d0691-9f3b-8f28-9efe-ec86715117e0",
+    "properties": [
+     {
+      "name": "name",
+      "value": "buttonTextObj",
+      "type": "Id"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "value": "8",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapSmall",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapMedium",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapLarge",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapCssClass",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "buttonTextObj",
+      "type": "String"
+     }
+    ]
    },
    {
     "id": "caed3234-022c-04b8-57a9-e1ea26a910c5",

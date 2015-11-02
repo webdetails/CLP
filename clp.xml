@@ -7,7 +7,6 @@
 	-->
 
 	<!-- The fist config in this file is the default one: -->
-
 	<config>
 		<name>SteelWheels</name>
 		<basepath>/public/bi-developers/legacy-steel-wheels/steel-wheels-4.8</basepath>
