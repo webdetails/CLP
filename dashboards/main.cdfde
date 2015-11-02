@@ -213,7 +213,7 @@
      {
       "name": "label",
       "type": "String",
-      "value": "-"
+      "value": ""
      },
      {
       "name": "listeners",
@@ -247,8 +247,8 @@
      },
      {
       "name": "Datasource",
-      "value": "",
-      "type": "Datasource"
+      "type": "Datasource",
+      "value": ""
      },
      {
       "name": "priority",
@@ -655,7 +655,7 @@
      {
       "name": "name",
       "type": "Id",
-      "value": "drawerButtonCol"
+      "value": "drawerButtonObj"
      },
      {
       "name": "bootstrapExtraSmall",
@@ -710,170 +710,6 @@
     ],
     "type": "LayoutBootstrapColumn",
     "typeDesc": "Column"
-   },
-   {
-    "id": "8d7d0691-9f3b-8f28-9efe-ec86715117e0",
-    "type": "LayoutRow",
-    "typeDesc": "Row",
-    "parent": "d53d5cf1-1038-61a2-4412-4698f80a63b7",
-    "properties": [
-     {
-      "name": "name",
-      "value": "drawerButton",
-      "type": "Id"
-     },
-     {
-      "name": "height",
-      "value": "",
-      "type": "Integer"
-     },
-     {
-      "name": "backgroundColor",
-      "value": "",
-      "type": "Color"
-     },
-     {
-      "name": "roundCorners",
-      "value": "",
-      "type": "RoundCorners"
-     },
-     {
-      "name": "textAlign",
-      "value": "",
-      "type": "TextAlign"
-     },
-     {
-      "name": "cssClass",
-      "value": "",
-      "type": "String"
-     }
-    ]
-   },
-   {
-    "id": "0a18143d-62fd-bc47-6bbd-2d0200804362",
-    "type": "LayoutBootstrapColumn",
-    "typeDesc": "Column",
-    "parent": "8d7d0691-9f3b-8f28-9efe-ec86715117e0",
-    "properties": [
-     {
-      "name": "name",
-      "value": "drawerButtonObj",
-      "type": "Id"
-     },
-     {
-      "name": "bootstrapExtraSmall",
-      "value": "4",
-      "type": "String"
-     },
-     {
-      "name": "bootstrapSmall",
-      "value": "",
-      "type": "String"
-     },
-     {
-      "name": "bootstrapMedium",
-      "value": "",
-      "type": "String"
-     },
-     {
-      "name": "bootstrapLarge",
-      "value": "",
-      "type": "String"
-     },
-     {
-      "name": "bootstrapCssClass",
-      "value": "",
-      "type": "String"
-     },
-     {
-      "name": "height",
-      "value": "",
-      "type": "Integer"
-     },
-     {
-      "name": "backgroundColor",
-      "value": "",
-      "type": "Color"
-     },
-     {
-      "name": "roundCorners",
-      "value": "",
-      "type": "RoundCorners"
-     },
-     {
-      "name": "textAlign",
-      "value": "",
-      "type": "TextAlign"
-     },
-     {
-      "name": "cssClass",
-      "value": "drawerButton expanded",
-      "type": "String"
-     }
-    ]
-   },
-   {
-    "id": "fc7b2e85-a09c-b7d4-2147-e915ee2de575",
-    "type": "LayoutBootstrapColumn",
-    "typeDesc": "Column",
-    "parent": "8d7d0691-9f3b-8f28-9efe-ec86715117e0",
-    "properties": [
-     {
-      "name": "name",
-      "value": "buttonTextObj",
-      "type": "Id"
-     },
-     {
-      "name": "bootstrapExtraSmall",
-      "value": "8",
-      "type": "String"
-     },
-     {
-      "name": "bootstrapSmall",
-      "value": "",
-      "type": "String"
-     },
-     {
-      "name": "bootstrapMedium",
-      "value": "",
-      "type": "String"
-     },
-     {
-      "name": "bootstrapLarge",
-      "value": "",
-      "type": "String"
-     },
-     {
-      "name": "bootstrapCssClass",
-      "value": "",
-      "type": "String"
-     },
-     {
-      "name": "height",
-      "value": "",
-      "type": "Integer"
-     },
-     {
-      "name": "backgroundColor",
-      "value": "",
-      "type": "Color"
-     },
-     {
-      "name": "roundCorners",
-      "value": "",
-      "type": "RoundCorners"
-     },
-     {
-      "name": "textAlign",
-      "value": "",
-      "type": "TextAlign"
-     },
-     {
-      "name": "cssClass",
-      "value": "buttonTextObj",
-      "type": "String"
-     }
-    ]
    },
    {
     "id": "caed3234-022c-04b8-57a9-e1ea26a910c5",

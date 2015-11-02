@@ -3,7 +3,8 @@ require(['cdf/lib/jquery'], function($) {
 	
 	// Configure Icon and Logo
 	// Configure Dashboard text
-	var buttonTextObj = $('#buttonTextObj');
+	
+	var buttonTextObj = $('#drawerButtonObj');
 	var panelText = 'CLP';
 	    buttonTextObj.append(panelText);
     
