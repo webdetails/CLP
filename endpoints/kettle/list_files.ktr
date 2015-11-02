@@ -127,10 +127,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Use &#x22;title&#x22; instead&#xa;of file &#x22;name&#x22;</note>
+      <note>Use file &#x22;title&#x22; instead&#xa;of file &#x22;name&#x22;</note>
       <xloc>1104</xloc>
       <yloc>160</yloc>
-      <width>122</width>
+      <width>143</width>
       <heigth>42</heigth>
       <fontname>.Helvetica Neue DeskInterface</fontname>
       <fontsize>13</fontsize>
@@ -149,7 +149,7 @@
     </notepad>
     <notepad>
       <note>create pentaho&#xa;url links&#xa;from repo path.</note>
-      <xloc>896</xloc>
+      <xloc>912</xloc>
       <yloc>400</yloc>
       <width>106</width>
       <heigth>58</heigth>
@@ -303,7 +303,7 @@
     <serverUrl>http&#x3a;&#x2f;&#x2f;localhost&#x3a;8080&#x2f;pentaho</serverUrl>
     <userName>admin</userName>
     <password>password</password>
-    <isBypassingAuthentication>N</isBypassingAuthentication>
+    <isBypassingAuthentication>Y</isBypassingAuthentication>
     <moduleName>module</moduleName>
     <isModuleFromField>N</isModuleFromField>
     <endpointPath>full_resource</endpointPath>
@@ -853,7 +853,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>if&#x28;folder.toString&#x28;&#x29;&#x3d;&#x3d;&#x3d;&#x22;true&#x22;&#x29; &#x7b;&#xa;&#xa;	var item &#x3d; &#x7b;&#xa;		&#x22;id&#x22;&#x3a; path,&#xa;		&#x22;name&#x22;&#x3a; name,&#xa;		&#x22;description&#x22;&#x3a; description.length&#x3e;0 &#x3f; description &#x3a; null,&#xa;		&#x22;folder&#x22;&#x3a; true,&#xa;		&#x22;children&#x22;&#x3a; &#x5b;&#x5d;,&#xa;		&#x22;ident&#x22;&#x3a; 0&#xa;	&#x7d;&#x3b;&#xa;	items.push&#x28;item&#x29;&#x3b;&#xa;&#xa;&#x7d; else &#x7b;&#xa;&#xa;	for &#x28;i&#x3d;0&#x3b; i&#x3c;items.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;		var item &#x3d; items&#x5b;i&#x5d;&#x3b;&#xa;		if &#x28;path.startsWith&#x28;item.id&#x29;&#x29; &#x7b;&#xa;			var link_type &#x3d; path.endsWith&#x28;&#x22;.wcdf&#x22;&#x29; &#x3f;&#x22;cde&#x22; &#x3a; &#x22;iframe&#x22;&#x3b;&#xa;			var child &#x3d; &#x7b;&#xa;				&#x22;id&#x22;&#x3a; link,&#xa;				&#x22;name&#x22;&#x3a; name,&#xa;				&#x22;description&#x22;&#x3a; description.length&#x3e;0 &#x3f; description &#x3a; null,&#xa;				&#x22;folder&#x22;&#x3a; false,&#xa;				&#x22;link_type&#x22;&#x3a; link_type,&#xa;				&#x22;ident&#x22;&#x3a; 1&#xa;			&#x7d;&#x3b;&#xa;			item.children.push&#x28;child&#x29;&#x3b;&#xa;			continue&#x3b;&#xa;		&#x7d;&#xa;	&#x7d; &#x2f;&#x2f; loop on items&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f;Discard the original raw JSON row&#xa;trans_Status &#x3d; SKIP_TRANSFORMATION&#x3b;&#xa;</jsScript_script>
+        <jsScript_script>if&#x28;folder.toString&#x28;&#x29;&#x3d;&#x3d;&#x3d;&#x22;true&#x22;&#x29; &#x7b;&#xa;&#xa;	var item &#x3d; &#x7b;&#xa;		&#x22;id&#x22;&#x3a; path,&#xa;		&#x22;name&#x22;&#x3a; name,&#xa;		&#x22;description&#x22;&#x3a; description.length&#x3e;0 &#x3f; description &#x3a; null,&#xa;		&#x22;folder&#x22;&#x3a; true,&#xa;		&#x22;children&#x22;&#x3a; &#x5b;&#x5d;,&#xa;		&#x22;ident&#x22;&#x3a; 0&#xa;	&#x7d;&#x3b;&#xa;	items.push&#x28;item&#x29;&#x3b;&#xa;&#xa;&#x7d; else &#x7b;&#xa;&#xa;	for &#x28;i&#x3d;0&#x3b; i&#x3c;items.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;		var item &#x3d; items&#x5b;i&#x5d;&#x3b;&#xa;		if &#x28;path.startsWith&#x28;item.id &#x2b; &#x22;&#x2f;&#x22;&#x29;&#x29; &#x7b;&#xa;			var link_type &#x3d; path.endsWith&#x28;&#x22;.wcdf&#x22;&#x29; &#x3f;&#x22;cde&#x22; &#x3a; &#x22;iframe&#x22;&#x3b;&#xa;			var child &#x3d; &#x7b;&#xa;				&#x22;id&#x22;&#x3a; link,&#xa;				&#x22;name&#x22;&#x3a; name,&#xa;				&#x22;description&#x22;&#x3a; description.length&#x3e;0 &#x3f; description &#x3a; null,&#xa;				&#x22;folder&#x22;&#x3a; false,&#xa;				&#x22;link_type&#x22;&#x3a; link_type,&#xa;				&#x22;ident&#x22;&#x3a; 1&#xa;			&#x7d;&#x3b;&#xa;			item.children.push&#x28;child&#x29;&#x3b;&#xa;			continue&#x3b;&#xa;		&#x7d;&#xa;	&#x7d; &#x2f;&#x2f; loop on items&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f;Discard the original raw JSON row&#xa;trans_Status &#x3d; SKIP_TRANSFORMATION&#x3b;&#xa;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
         <jsScript_name>Item_0</jsScript_name>
         <jsScript_script>&#xa;var items &#x3d; &#x5b;&#x5d;&#x3b;&#xa;&#xa;String.prototype.endsWith &#x3d; function&#x28;suffix&#x29; &#x7b;&#xa;    return this.indexOf&#x28;suffix, this.length - suffix.length&#x29; &#x21;&#x3d;&#x3d; -1&#x3b;&#xa;&#x7d;&#x3b;&#xa;&#xa;&#xa;String.prototype.startsWith &#x3d; function&#x28;prefix&#x29; &#x7b;&#xa;    return this.indexOf&#x28;prefix&#x29; &#x3d;&#x3d; 0&#x3b;&#xa;&#x7d;&#x3b;&#xa;</jsScript_script>
@@ -922,7 +922,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var link &#x3d; null &#x3b;&#xa;&#xa;if &#x28;path.endsWith&#x28;&#x22;.prpti&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;prpti.view&#x22;&#x3b;&#xa;&#x7d;&#xa;else if &#x28;path.endsWith&#x28;&#x22;.prpt&#x22;&#x29; &#x7c;&#x7c; path.endsWith&#x28;&#x22;.xdash&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;viewer&#x22;&#x3b;&#xa;&#x7d;&#xa;else if &#x28;path.endsWith&#x28;&#x22;.xanalyzer&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;editor&#x22;&#x3b;&#xa;&#x7d;&#xa;else &#x7b;&#xa;	link &#x3d; path&#x3b;&#xa;&#x7d;&#xa;</jsScript_script>
+        <jsScript_script>var link &#x3d; null &#x3b;&#xa;&#xa;if &#x28;path.endsWith&#x28;&#x22;.prpti&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;prpti.view&#x22;&#x3b;&#xa;&#x7d;&#xa;else if &#x28;path.endsWith&#x28;&#x22;.prpt&#x22;&#x29; &#x7c;&#x7c; path.endsWith&#x28;&#x22;.xdash&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;viewer&#x22;&#x3b;&#xa;&#x7d;&#xa;else if &#x28;path.endsWith&#x28;&#x22;.xanalyzer&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;editor&#x22;&#x3b;&#xa;&#x7d;&#xa;else if &#x28;path.endsWith&#x28;&#x22;.xaction&#x22;&#x29; &#x7c;&#x7c; path.endsWith&#x28;&#x22;.xcdf&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;generatedContent&#x22;&#x3b;&#xa;&#x7d;&#xa;else &#x7b;&#xa;	link &#x3d; path&#x3b;&#xa;&#x7d;&#xa;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
         <jsScript_name>Item_0</jsScript_name>
         <jsScript_script>&#xa;String.prototype.endsWith &#x3d; function&#x28;suffix&#x29; &#x7b;&#xa;    return this.indexOf&#x28;suffix, this.length - suffix.length&#x29; &#x21;&#x3d;&#x3d; -1&#x3b;&#xa;&#x7d;&#x3b;&#xa;&#xa;&#xa;String.prototype.startsWith &#x3d; function&#x28;prefix&#x29; &#x7b;&#xa;    return this.indexOf&#x28;prefix&#x29; &#x3d;&#x3d; 0&#x3b;&#xa;&#x7d;&#x3b;&#xa;</jsScript_script>
