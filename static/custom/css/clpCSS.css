@@ -29,21 +29,31 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Regular.ttf') format('truetype');
+  src: url('../fonts/opensans-regular.eot');
+  src: url('../fonts/opensans-regular.eot') format('embedded-opentype'),
+  url('../fonts/opensans-regular.woff') format('woff'),
+  url('../fonts/opensans-regular.ttf') format('truetype'),
+  url('../fonts/opensans-regular.svg#OpenSansRegular') format('svg');
 }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Light.ttf') format('truetype');
+  src: url('../fonts/opensans-light.eot');
+  src: url('../fonts/opensans-light.eot') format('embedded-opentype'),
+  url('../fonts/opensans-light.woff') format('woff'),
+  url('../fonts/opensans-light.ttf') format('truetype'),
+  url('../fonts/opensans-light.svg#OpenSansLight') format('svg');
 }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: url('/pentaho/api/repos/CLP/static/custom/fonts/OpenSans-Semibold.ttf') format('truetype');
+  src: url('../fonts/opensans-bold.eot');
+  src: url('../fonts/opensans-bold.eot') format('embedded-opentype'),
+  url('../fonts/opensans-bold.woff') format('woff'),
+  url('../fonts/opensans-bold.ttf') format('truetype'),
+  url('../fonts/opensans-bold.svg#OpenSansBold') format('svg');
 }
 
 
@@ -466,7 +476,7 @@ body {
   ========================================================================== */
 
 .errorMessage {
-  padding: 20px;
+  padding: 30px 20px 20px;
   font-size: 14px;
   color: #AAA;
   text-align: center;
