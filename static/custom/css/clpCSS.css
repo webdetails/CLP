@@ -12,6 +12,7 @@
  *        - 3.1. Accordion Headings
  *        - 3.2. Accordion Body Elements
  *        - 3.3. Informations Panels
+ *        - 3.4. No Files Disclaimer
  *    4. Content Panel
  *    5. About Modal
  *        - 5.1. Overlay
@@ -84,81 +85,77 @@ body {
 /* 2.1. Left Panel Toggle Button
   ========================================================================== */
 
-.drawerButton {
-  width: 60px;
+.drawerButton > button,
+.drawerButton.expanded > button,
+.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only,
+.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover,
+.drawerButton.collapsed > button,
+.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only,
+.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
+  background: none;
+  border: 0 none;
+  outline: 0 none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  position: relative;
   height: 50px;
-}
-
-.drawerButton > button:after {
-  content: 'Company Files';
-  position: absolute;
-  left: 70px;
+  padding-left: 60px;
   color: #26363D;
-  top: 0;
-  width: auto;
-  text-align: left;
   line-height: 30px;
   font-size: 22px;
   font-weight: 300;
-  padding: 9px 0 11px;
+  text-align: left;
+  padding: 9px 10px 11px 60px;
 }
 
-.drawerButton.expanded > button,
-.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
-  background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat left center;
-  border: 0 none;
-  color: transparent;
-  height: 50px;
-  outline: 0 none;
+.drawerButton > button:after {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 60px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+  height: 50px;
+  content: '';
 }
 
-.no-svg .drawerButton.expanded > button,
-.no-svg .drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+.drawerButton.expanded > button:after,
+.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:after {
+  background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat left center;
+}
+
+.no-svg .drawerButton.expanded > button:after,
+.no-svg .drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:after {
   background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat left center;
 }
 
-.drawerButton.expanded > button:hover,
-.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
+.drawerButton.expanded > button:hover:after,
+.drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover:after {
   background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat left center;
-  border-radius: 0px;
 }
 
-.no-svg .drawerButton.expanded > button:hover,
-.no-svg .drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
+.no-svg .drawerButton.expanded > button:hover:after,
+.no-svg .drawerButton.expanded > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover:after {
   background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat left center;
-  border-radius: 0px;
 }
 
-.drawerButton.collapsed > button,
-.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+.drawerButton.collapsed > button:after,
+.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:after {
   background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat right center;
-  border: 0 none;
-  color: transparent;
-  height: 50px;
-  outline: 0 none;
-  width: 60px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 
-.no-svg .drawerButton.collapsed > button,
-.no-svg .drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+.no-svg .drawerButton.collapsed > button:after,
+.no-svg .drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:after {
   background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat right center;
 }
 
-.drawerButton.collapsed > button:hover,
-.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
+.drawerButton.collapsed > button:hover:after,
+.drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover:after {
   background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.svg') no-repeat right center;
-  border-radius: 0px;
 }
 
-.no-svg .drawerButton.collapsed > button:hover,
-.no-svg .drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover {
+.no-svg .drawerButton.collapsed > button:hover:after,
+.no-svg .drawerButton.collapsed > button.buttonComponent.enabled.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover:after {
   background: transparent url('/pentaho/api/repos/CLP/static/custom/img/clp_menu.png') no-repeat right center;
-  border-radius: 0px;
 }
 
 
@@ -462,6 +459,17 @@ body {
   margin-left: 15px;
   margin-top: 20px;
   padding-right: 10px;
+}
+
+
+/* 3.4. No Files Disclaimer
+  ========================================================================== */
+
+.errorMessage {
+  padding: 20px;
+  font-size: 14px;
+  color: #AAA;
+  text-align: center;
 }
 
 
