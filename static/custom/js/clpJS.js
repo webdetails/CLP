@@ -5,7 +5,7 @@ require(['cdf/lib/jquery'], function($) {
 	// Configure Dashboard text
 	var buttonTextObj = $('#drawerButtonObj');
 	var panelText = 'CLP';
-	    buttonTextObj.text(panelText);
+	    buttonTextObj.find('button').text(panelText);
     
     // display at top left corner
     var mastheadContent = 
