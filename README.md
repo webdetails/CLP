@@ -11,10 +11,10 @@ placing a customized version of this file in /public/clp/clp.xml, using the Pent
 
 ##Customizing the CLP
 The clp.xml file defines the settings that of the CLP plugin. These settings are:
-	- the name of the repository in the Pentaho User Console (PUC)
-	- the basepath points to the folder location in the PUC that we want to display
-	- the whitelist attributes specifies the types of files that are to be made available in the selector
-	- the css and js attributes refer the CSS and JS files used for customizing the CLP.
+* the name of the repository in the Pentaho User Console (PUC)
+* the basepath points to the folder location in the PUC that we want to display
+* the whitelist attributes specifies the types of files that are to be made available in the selector
+* the css and js attributes refer the CSS and JS files used for customizing the CLP.
 
 Example:
 ```xml
