@@ -51,7 +51,7 @@ In case you want to use an overlay or dialog, these can be anchored to the ```#o
 
 Besides appending html, we can also bind jquery events to trigger a dialog element, or a message overlay, for instance:
 
-https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L47:L68
+https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L49:L72
 
 Elements appended using the js file, shoud be styled using the css file.
 
@@ -60,7 +60,7 @@ Elements appended using the js file, shoud be styled using the css file.
 
 The CLP functions as a launcher of various types of Pentaho Reports, located within a folder accessible through the Pentaho User Console. This folder is specified in the basepath configuration in the clp.xml file:
 
-https://github.com/webdetails/CLP/blob/master/clp.xml#L5
+https://github.com/webdetails/CLP/blob/master/clp.xml#L12
 
 The contents of this folder are retrieved via a kettle endpoint. This result is handled by the plugin's template component, which generates the html structure of the selector.
 
