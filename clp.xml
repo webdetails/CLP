@@ -9,7 +9,7 @@
 	<!-- The fist config in this file is the default one: -->
 	<config>
 		<name>SteelWheels</name>
-		<basepath>/public/bi-developers/legacy-steel-wheels/steel-wheels-4.8</basepath>
+		<basepath>/public/plugin-samples/CLP</basepath>
 		<whitelist>\.wcdf$|\.prpti$|\.prpt$|\.xdash$|\.xanalyzer$|\.xaction$|\.xcdf$</whitelist>
 		<css>
 		    <!-- If you build a new config, you may always want to keep this one -->
