@@ -19,6 +19,8 @@
 			<!-- You may want to start a custom one based out of this -->
 			<file>/system/CLP/static/custom/js/clpJS.js</file>
 		</js>
+		<!-- embed using requireJS instead of iframes (currently only CTools dashboards)-->
+		<enableRequireJS>false</enableRequireJS>
 	</config>
 
 	<!--
