@@ -10,9 +10,15 @@
 	<config>
 		<name>SteelWheels</name>
 		<basepath>/public/bi-developers/legacy-steel-wheels/steel-wheels-4.8</basepath>
-		<whitelist>\.wcdf$|\.prpti$|\.prpt$|\.xdash$|.xanalyzer$</whitelist>
-		<css>/system/CLP/static/custom/css/clpCSS.css</css>
-		<js>/system/CLP/static/custom/js/clpJS.js</js>
+		<whitelist>\.wcdf$|\.prpti$|\.prpt$|\.xdash$|\.xanalyzer$|\.xaction$|\.xcdf$</whitelist>
+		<css>
+		    <!-- If you build a new config, you may always want to keep this one -->
+			<file>/system/CLP/static/custom/css/clpCSS.css</file>
+		</css>
+		<js>
+			<!-- You may want to start a custom one based out of this -->
+			<file>/system/CLP/static/custom/js/clpJS.js</file>
+		</js>
 	</config>
 
 	<!--
@@ -24,9 +30,16 @@
 	<config>
 		<name>Financial</name>
 		<basepath>/public/financial reports</basepath>
-		<whitelist>\.wcdf$|\.prpti$|\.prpt$|\.xdash$|.xanalyzer$</whitelist>
-		<css>/public/financial reports/financial.css</css>
-		<js>/public/financial reports/financial.js</js>
+		<whitelist>\.wcdf$|\.prpti$|\.prpt$|\.xdash$|\.xanalyzer$|\.xaction$|\.xcdf$</whitelist>
+		<css>
+		    !! You may always want to keep this one !!
+			<file>/system/CLP/static/custom/css/clpCSS.css</file>  
+			<file>/public/financial reports/financial.css</file>
+		</css>
+		<js>
+			!! You can use clpJS.js to build this: !!
+			<file>/public/financial reports/financial.js</file>   
+		</js>
 	</config>
 	-->
 

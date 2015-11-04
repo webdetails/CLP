@@ -349,6 +349,60 @@
     </step>
 
   <step>
+    <name>Detect empty stream</name>
+    <type>DetectEmptyStream</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1376</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Log failure</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_minimal</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage/>
+    <fields>
+      <field>
+        <name>config_name</name>
+        </field>
+      <field>
+        <name>status</name>
+        </field>
+      <field>
+        <name>result</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>592</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Log input parameters</name>
     <type>WriteToLog</type>
     <description/>
@@ -530,6 +584,68 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1104</xloc>
       <yloc>224</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>build pentaho links</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var link &#x3d; null &#x3b;&#xa;&#xa;if &#x28;path.endsWith&#x28;&#x22;.prpti&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;prpti.view&#x22;&#x3b;&#xa;&#x7d;&#xa;else if &#x28;path.endsWith&#x28;&#x22;.prpt&#x22;&#x29; &#x7c;&#x7c; path.endsWith&#x28;&#x22;.xdash&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;viewer&#x22;&#x3b;&#xa;&#x7d;&#xa;else if &#x28;path.endsWith&#x28;&#x22;.xanalyzer&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;editor&#x22;&#x3b;&#xa;&#x7d;&#xa;else if &#x28;path.endsWith&#x28;&#x22;.xaction&#x22;&#x29; &#x7c;&#x7c; path.endsWith&#x28;&#x22;.xcdf&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;generatedContent&#x22;&#x3b;&#xa;&#x7d;&#xa;else &#x7b;&#xa;	link &#x3d; path&#x3b;&#xa;&#x7d;&#xa;</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
+        <jsScript_name>Item_0</jsScript_name>
+        <jsScript_script>&#xa;String.prototype.endsWith &#x3d; function&#x28;suffix&#x29; &#x7b;&#xa;    return this.indexOf&#x28;suffix, this.length - suffix.length&#x29; &#x21;&#x3d;&#x3d; -1&#x3b;&#xa;&#x7d;&#x3b;&#xa;&#xa;&#xa;String.prototype.startsWith &#x3d; function&#x28;prefix&#x29; &#x7b;&#xa;    return this.indexOf&#x28;prefix&#x29; &#x3d;&#x3d; 0&#x3b;&#xa;&#x7d;&#x3b;&#xa;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>link</name>
+        <rename>link</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1024</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>call ok&#x3f;</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>ok</send_true_to>
+<send_false_to>Log failure</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>status</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Number</type><text>200.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>&#x23;.&#x23;</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>592</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -904,34 +1020,20 @@
     </step>
 
   <step>
-    <name>build pentaho links</name>
-    <type>ScriptValueMod</type>
+    <name>ok</name>
+    <type>Dummy</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var link &#x3d; null &#x3b;&#xa;&#xa;if &#x28;path.endsWith&#x28;&#x22;.prpti&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;prpti.view&#x22;&#x3b;&#xa;&#x7d;&#xa;else if &#x28;path.endsWith&#x28;&#x22;.prpt&#x22;&#x29; &#x7c;&#x7c; path.endsWith&#x28;&#x22;.xdash&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;viewer&#x22;&#x3b;&#xa;&#x7d;&#xa;else if &#x28;path.endsWith&#x28;&#x22;.xanalyzer&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;editor&#x22;&#x3b;&#xa;&#x7d;&#xa;else if &#x28;path.endsWith&#x28;&#x22;.xaction&#x22;&#x29; &#x7c;&#x7c; path.endsWith&#x28;&#x22;.xcdf&#x22;&#x29;&#x29; &#x7b;&#xa;	link &#x3d; &#x22;&#x2f;pentaho&#x2f;api&#x2f;repos&#x2f;&#x22; &#x2b; path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29; &#x2b; &#x22;&#x2f;generatedContent&#x22;&#x3b;&#xa;&#x7d;&#xa;else &#x7b;&#xa;	link &#x3d; path&#x3b;&#xa;&#x7d;&#xa;</jsScript_script>
-      </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
-        <jsScript_name>Item_0</jsScript_name>
-        <jsScript_script>&#xa;String.prototype.endsWith &#x3d; function&#x28;suffix&#x29; &#x7b;&#xa;    return this.indexOf&#x28;suffix, this.length - suffix.length&#x29; &#x21;&#x3d;&#x3d; -1&#x3b;&#xa;&#x7d;&#x3b;&#xa;&#xa;&#xa;String.prototype.startsWith &#x3d; function&#x28;prefix&#x29; &#x7b;&#xa;    return this.indexOf&#x28;prefix&#x29; &#x3d;&#x3d; 0&#x3b;&#xa;&#x7d;&#x3b;&#xa;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>link</name>
-        <rename>link</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
+     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1024</xloc>
-      <yloc>336</yloc>
+      <xloc>672</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1678,108 +1780,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>944</xloc>
       <yloc>304</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>call ok&#x3f;</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>ok</send_true_to>
-<send_false_to>Log failure</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue/>
- <function>&#x3d;</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>592</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>ok</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>672</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Log failure</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_minimal</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage/>
-    <fields>
-      <field>
-        <name>config_name</name>
-        </field>
-      <field>
-        <name>status</name>
-        </field>
-      <field>
-        <name>result</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>592</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Detect empty stream</name>
-    <type>DetectEmptyStream</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1376</xloc>
-      <yloc>384</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
