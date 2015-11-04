@@ -5,142 +5,142 @@
  "datasources": {
   "rows": []
  },
- "filename": "/public/plugin-samples/CLP/00_Documentation/Welcome.cdfde",
+ "filename": "/public/plugin-samples/CLP/10-Documentation/Welcome.cdfde",
  "layout": {
   "rows": [
    {
     "id": "ded13ec2-1035-a376-6bf9-a30b80c1f8f8",
-    "type": "LayoutRow",
-    "typeDesc": "Row",
     "parent": "UnIqEiD",
     "properties": [
      {
       "name": "name",
-      "value": "r0",
-      "type": "Id"
+      "type": "Id",
+      "value": "r0"
      },
      {
       "name": "height",
-      "value": "",
-      "type": "Integer"
+      "type": "Integer",
+      "value": ""
      },
      {
       "name": "backgroundColor",
-      "value": "",
-      "type": "Color"
+      "type": "Color",
+      "value": ""
      },
      {
       "name": "roundCorners",
-      "value": "",
-      "type": "RoundCorners"
+      "type": "RoundCorners",
+      "value": ""
      },
      {
       "name": "textAlign",
-      "value": "",
-      "type": "TextAlign"
+      "type": "TextAlign",
+      "value": ""
      },
      {
       "name": "cssClass",
-      "value": "",
-      "type": "String"
+      "type": "String",
+      "value": ""
      }
-    ]
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
    },
    {
     "id": "7d572da0-60fb-81f1-3ccf-b7e73a50b399",
-    "type": "LayoutBootstrapColumn",
-    "typeDesc": "Column",
     "parent": "ded13ec2-1035-a376-6bf9-a30b80c1f8f8",
     "properties": [
      {
       "name": "name",
-      "value": "c0",
-      "type": "Id"
+      "type": "Id",
+      "value": "c0"
      },
      {
       "name": "bootstrapExtraSmall",
-      "value": "12",
-      "type": "String"
+      "type": "String",
+      "value": "12"
      },
      {
       "name": "bootstrapSmall",
-      "value": "",
-      "type": "String"
+      "type": "String",
+      "value": ""
      },
      {
       "name": "bootstrapMedium",
-      "value": "",
-      "type": "String"
+      "type": "String",
+      "value": ""
      },
      {
       "name": "bootstrapLarge",
-      "value": "",
-      "type": "String"
+      "type": "String",
+      "value": ""
      },
      {
       "name": "bootstrapCssClass",
-      "value": "",
-      "type": "String"
+      "type": "String",
+      "value": ""
      },
      {
       "name": "height",
-      "value": "",
-      "type": "Integer"
+      "type": "Integer",
+      "value": ""
      },
      {
       "name": "backgroundColor",
-      "value": "",
-      "type": "Color"
+      "type": "Color",
+      "value": ""
      },
      {
       "name": "roundCorners",
-      "value": "",
-      "type": "RoundCorners"
+      "type": "RoundCorners",
+      "value": ""
      },
      {
       "name": "textAlign",
-      "value": "",
-      "type": "TextAlign"
+      "type": "TextAlign",
+      "value": ""
      },
      {
       "name": "cssClass",
-      "value": "",
-      "type": "String"
+      "type": "String",
+      "value": ""
      }
-    ]
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
    },
    {
     "id": "37181970-4cb2-303b-74d7-69bf98834e00",
-    "type": "LayoutHtml",
-    "typeDesc": "Html",
     "parent": "7d572da0-60fb-81f1-3ccf-b7e73a50b399",
     "properties": [
      {
       "name": "name",
-      "value": "content",
-      "type": "Id"
+      "type": "Id",
+      "value": "content"
      },
      {
       "name": "html",
-      "value": "<h1>CLP</h1>\n\n<p>This is the Community Launch Pad plugin.</p>\n\n<p>This plugin lists the contents of a folder in the Pentaho Repository (accessible via the Pentaho User Console),</p>\n\n<p>allowing for the selection and display of these contents.</p>\n\n<p>By default, this plugin loads the contents of the BI Developer Example (SteelWheels reports).</p>\n\n<p>The plugin's default configuration is set in the plugin's clp.xml file. This configuration can be overridden by</p>\n\n<p>placing a customized version of this file in /public/clp/clp.xml, using the Pentaho User Console</p>\n\n<h2>Customizing the CLP</h2>\n\n<p>The clp.xml file defines the settings that the CLP plugin will load. The settings are the name of the repository in the Pentaho User Console (PUC), the basepath points to the folder location in the PUC that we want to display, the whitelist attributes specifies the types of files that are to be made available in the selector, the css and js attributes refer the specific CSS and JS to be used for customizing the CLP.</p>\n\n<p>```xml</p>\n\n<p>&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?></p>\n\n<p><configs></p>\n\n<pre><code>&lt;config&gt;\n\n    &lt;name&gt;SteelWheels&lt;/name&gt;\n\n    &lt;basepath&gt;/public/bi-developers/legacy-steel-wheels/steel-wheels-4.8&lt;/basepath&gt;\n\n    &lt;whitelist&gt;\\.wcdf$|\\.prpti$|\\.prpt$|\\.xdash$|.xanalyzer$&lt;/whitelist&gt;\n\n    &lt;css&gt;/system/CLP/static/custom/css/clpCSS.css&lt;/css&gt;\n\n    &lt;js&gt;/system/CLP/static/custom/js/clpJS.js&lt;/js&gt;\n\n&lt;/config&gt;\n</code></pre>\n\n<p></configs></p>\n\n<p>```</p>\n\n<p>The path to the CSS and JS files is retrieved by an endpoint, which then passes these values on to the CLP dashboard.</p>\n\n<p>The CLP plugin has three main areas: the selection pane where the reports available for viewing are displayed and made selectable for viewing, a header area which houses a selection pane toggle button and can be customized with a title or image, as well as an 'about' button area. The third area is the visualization pane where the reports are displayed.</p>\n\n<p>Customization of the header area is done using the JS file. In this file we can create customized html elements which we then append to the html placeholders defined in the cde, using jquery.</p>\n\n<p>The html placeholders we can modify are the logoRow:</p>\n\n<p>https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L6:L13</p>\n\n<p>and aboutInfoCol:</p>\n\n<p>https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L44:L50</p>\n\n<p>We can fetch the logoRow using either the div id <code>#logoRow</code> or the <code>.logoRow</code> class. Similarly we can fetch the aboutInfoCol using the div id <code>#aboutInfoObj</code>  or its class <code>.aboutClass</code>.</p>\n\n<p>The selection pane toggle button is appended to the drawerButtonObj div id. If you need to customize this button, do it exclusively in the CSS file, using the .drawerButton class.</p>\n\n<p>In case you want to use an overlay or dialog we have included a div, to which you can anchor these elements, until you're ready to display them. This div's id is <code>#overlayMessageObj</code>.</p>\n\n<p>Besides appending html, we can also bind jquery events to trigger a dialog element, or a message overlay, for instance:</p>\n\n<p>https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L47:L68</p>\n\n<p>Whatever elements you append using the js file, you shoud then style using the css file.</p>\n\n<h2>CLP Contents</h2>\n\n<p>The CLP functions as a launcher of various types of Pentaho Reports, located within a folder in the Pentaho User Console. The folder whose contents are made available for selection in the CLP, is defined in the basepath configuration in the clp.xml file:</p>\n\n<p>https://github.com/webdetails/CLP/blob/master/clp.xml#L5</p>\n\n<p>The contents of this folder are retrieved via a kettle endpoint, the result of it, passed to a template component which generates the html structure of the selector.</p>\n\n<p>When the selector first loads, it will parse it's own html structure, rendering first report it encounters in the visualization pane. Whenever a report is rendered in the visualization pane, a check is conducted to determine if the file is to be rendered inside an iframe, or if it happens to be a CTools dashboard, injected into the visualization pane, using require JS.</p>\n ",
-      "type": "Html"
+      "type": "Html",
+      "value": "<h1>CLP</h1>\n\n<p>This is the Community Launch Pad plugin.</p>\n\n<p>This plugin lists the contents of a folder in the Pentaho Repository (accessible via the Pentaho User Console),</p>\n\n<p>allowing for the selection and display of these contents.</p>\n\n<p>By default, this plugin loads the contents of the BI Developer Example (SteelWheels reports).</p>\n\n<p>The plugin's default configuration is set in the plugin's clp.xml file. This configuration can be overridden by</p>\n\n<p>placing a customized version of this file in /public/clp/clp.xml, using the Pentaho User Console</p>\n\n<h2>Customizing the CLP</h2>\n\n<p>The clp.xml file defines the settings that of the CLP plugin. These settings are:</p>\n\n<ul>\n<li><p>the name of the repository in the Pentaho User Console (PUC)</p></li>\n<li><p>the basepath points to the folder location in the PUC that we want to display</p></li>\n<li><p>the whitelist attributes specifies the types of files that are to be made available in the selector</p></li>\n<li><p>the css and js attributes refer the CSS and JS files used for customizing the CLP.</p></li>\n</ul>\n\n\n<p>Example:</p>\n\n<p>```xml</p>\n\n<p>&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?></p>\n\n<p><configs></p>\n\n<pre><code>&lt;config&gt;\n\n    &lt;name&gt;SteelWheels&lt;/name&gt;\n\n    &lt;basepath&gt;/public/bi-developers/legacy-steel-wheels/steel-wheels-4.8&lt;/basepath&gt;\n\n    &lt;whitelist&gt;\\.wcdf$|\\.prpti$|\\.prpt$|\\.xdash$|.xanalyzer$&lt;/whitelist&gt;\n\n    &lt;css&gt;/system/CLP/static/custom/css/clpCSS.css&lt;/css&gt;\n\n    &lt;js&gt;/system/CLP/static/custom/js/clpJS.js&lt;/js&gt;\n\n&lt;/config&gt;\n</code></pre>\n\n<p></configs></p>\n\n<p>```</p>\n\n<p>The path to the CSS and JS files is retrieved by a ktr endpoint, which feeds the paths to these files to the CLP dashboard.</p>\n\n<p>The CLP plugin has three main areas: the selection pane where the viewable contents are available for selection, a header area which houses the selection pane toggle button and can be customized with a title or image, as well as an 'about' button area. The third area is the visualization pane where the contents are displayed.</p>\n\n<p>Customization of the header area is done using the JS file. This file you can create customized html elements which can be appended to the html placeholders, defined in the cde, using jquery.</p>\n\n<p>The html placeholders we can modify are the <strong>logoRow</strong>:</p>\n\n<p>https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L6:L13</p>\n\n<p>and <strong>aboutInfoCol</strong>:</p>\n\n<p>https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L44:L50</p>\n\n<p>The <strong>logoRow</strong> html placeholder can be retrieved using either the div id <code>#logoRow</code> or the <code>.logoRow</code> class. In similar fashin, the aboutInfoCol can be accessed using either the div id <code>#aboutInfoObj</code>  or its class <code>.aboutClass</code>.</p>\n\n<p>The selection pane toggle button is appended to the <strong>drawerButtonObj</strong> div id. If you need to customize this button, do it exclusively in the CSS file, using the <strong><code>.drawerButton button</code></strong> selector.</p>\n\n<p>In case you want to use an overlay or dialog, these can be anchored to the <code>#overlayMessageObj</code> div element.</p>\n\n<p>Besides appending html, we can also bind jquery events to trigger a dialog element, or a message overlay, for instance:</p>\n\n<p>https://github.com/webdetails/CLP/blob/master/static/custom/js/clpJS.js#L49:L72</p>\n\n<p>Elements appended using the js file, shoud be styled using the css file.</p>\n\n<h2>CLP Contents</h2>\n\n<p>The CLP functions as a launcher of various types of Pentaho Reports, located within a folder accessible through the Pentaho User Console. This folder is specified in the basepath configuration in the clp.xml file:</p>\n\n<p>https://github.com/webdetails/CLP/blob/master/clp.xml#L12</p>\n\n<p>The contents of this folder are retrieved via a kettle endpoint. This result is handled by the plugin's template component, which generates the html structure of the selector.</p>\n\n<p>When the selector first loads, it will parse it's own html structure, rendering the first item it encounters in the visualization pane. Before an item is rendered in the visualization pane, a check is conducted to determine if  the file is a CTools dashboard, the  dashboard is injected into the visualization pane, using require JS. For the other content types, defined in the whitelist (https://github.com/webdetails/CLP/blob/master/clp.xml#L13), these are rendered in an iframe.</p>\n\n "
      },
      {
       "name": "fontSize",
-      "value": "",
-      "type": "Integer"
+      "type": "Integer",
+      "value": ""
      },
      {
       "name": "color",
-      "value": "",
-      "type": "Color"
+      "type": "Color",
+      "value": ""
      },
      {
       "name": "cssClass",
-      "value": "",
-      "type": "String"
+      "type": "String",
+      "value": ""
      }
-    ]
+    ],
+    "type": "LayoutHtml",
+    "typeDesc": "Html"
    }
   ],
   "title": "CDF - Sample structure"
