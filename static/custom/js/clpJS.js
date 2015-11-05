@@ -62,8 +62,11 @@ require(['cdf/lib/jquery'], function($) {
             open: function(){
                 $('.ui-widget-overlay').bind('click', function(){
                     $('#overlayMessage').dialog('close');
-                })
+                });
+                $(this).parent().find(".ui-dialog-buttonpane .ui-button")
+                .addClass("clpAboutButton");
             },
+            
             create:function () {
             $(this).closest(".ui-dialog")
                 .find(".ui-button:first") // the first button

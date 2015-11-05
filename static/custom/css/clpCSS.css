@@ -598,7 +598,7 @@ body {
   margin: 0 auto;
 }
 
-.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.clpAboutButton {
   background: #007297;
   background: -moz-linear-gradient(top, #007297 57%, #005f7d 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(57%,#007297), color-stop(100%,#005f7d));
@@ -623,18 +623,17 @@ body {
   margin: 0px;
 }
 
-.ui-button-text-only .ui-button-text {
-  padding: 0;
-}
+.ui-button-text-only.clpAboutButton .ui-button-text { padding: 0; }
 
-.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-hover {    
+
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-hover.clpAboutButton {    
   -moz-box-shadow: inset 0 0 1px #FFF;
   -webkit-box-shadow: inset 0 0 1px #FFF;
   box-shadow: inset 0 0 1px #FFF;
   background: #0085b0;
 }
 
-.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-active {    
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ui-state-active.clpAboutButton {    
     background: #8ac06e;
     background: -moz-linear-gradient(top, #8ac06e 0%, #62ab3d 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8ac06e), color-stop(100%,#62ab3d));
