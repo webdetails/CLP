@@ -498,7 +498,7 @@ body {
 }
 
 .contentPane {
-  padding-top: 70px;
+  padding-top: 51px;
   position: relative;
   top: 0px;
   width: 100%;
@@ -510,8 +510,7 @@ body {
 
 .visualizationPane {
   height: 900px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0;
 }
 
 
