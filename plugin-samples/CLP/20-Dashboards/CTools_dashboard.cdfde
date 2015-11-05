@@ -55,7 +55,7 @@
       "value": ""
      },
      {
-      "name": "Datasource",
+      "name": "dataSource",
       "type": "Datasource",
       "value": ""
      },
@@ -77,7 +77,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:totalSalesButtonObj}"
+      "value": "${h:totalSalesButtonObj}"
      },
      {
       "name": "executeAtStart",
@@ -143,7 +143,7 @@
       "value": ""
      },
      {
-      "name": "Datasource",
+      "name": "dataSource",
       "type": "Datasource",
       "value": ""
      },
@@ -165,7 +165,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:salesByTerritoryButtonObj}"
+      "value": "${h:salesByTerritoryButtonObj}"
      },
      {
       "name": "executeAtStart",
@@ -231,7 +231,7 @@
       "value": ""
      },
      {
-      "name": "Datasource",
+      "name": "dataSource",
       "type": "Datasource",
       "value": ""
      },
@@ -253,7 +253,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:quantitySoldButtonObj}"
+      "value": "${h:quantitySoldButtonObj}"
      },
      {
       "name": "executeAtStart",
@@ -311,7 +311,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:totalSalesObj}"
+      "value": "${h:totalSalesObj}"
      },
      {
       "name": "executeAtStart",
@@ -369,7 +369,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:quantitySoldObj}"
+      "value": "${h:quantitySoldObj}"
      },
      {
       "name": "executeAtStart",
@@ -718,7 +718,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:legendObj}"
+      "value": "${h:legendObj}"
      },
      {
       "name": "executeAtStart",
@@ -992,7 +992,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:totalSalesChart}"
+      "value": "${h:totalSalesChart}"
      },
      {
       "name": "executeAtStart",
@@ -2296,7 +2296,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:quantitySoldChart}"
+      "value": "${h:quantitySoldChart}"
      },
      {
       "name": "executeAtStart",
@@ -3600,7 +3600,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:salesByTerritoryChart}"
+      "value": "${h:salesByTerritoryChart}"
      },
      {
       "name": "executeAtStart",
@@ -4879,7 +4879,7 @@
      {
       "name": "height",
       "type": "Integer",
-      "value": ""
+      "value": "500"
      },
      {
       "name": "priority",
@@ -4904,7 +4904,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:totalSalesSunburstObj}"
+      "value": "${h:totalSalesSunburstObj}"
      },
      {
       "name": "executeAtStart",
@@ -5473,7 +5473,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:quantitySoldSunburstObj}"
+      "value": "${h:quantitySoldSunburstObj}"
      },
      {
       "name": "executeAtStart",
@@ -6017,7 +6017,7 @@
      {
       "name": "height",
       "type": "Integer",
-      "value": ""
+      "value": "500"
      },
      {
       "name": "priority",
@@ -6042,7 +6042,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:salesByTerritoryTreemapObj}"
+      "value": "${h:salesByTerritoryTreemapObj}"
      },
      {
       "name": "executeAtStart",
@@ -6699,7 +6699,7 @@
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${p:dateObj}"
+      "value": "${h:dateObj}"
      },
      {
       "name": "executeAtStart",
@@ -9742,7 +9742,7 @@
      {
       "name": "height",
       "type": "Integer",
-      "value": "614"
+      "value": ""
      },
      {
       "name": "backgroundColor",
@@ -9969,7 +9969,7 @@
      {
       "name": "height",
       "type": "Integer",
-      "value": "614"
+      "value": ""
      },
      {
       "name": "backgroundColor",

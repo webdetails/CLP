@@ -53,6 +53,9 @@ body {
     width: 1130px;
 }
 
+.active{
+    display:block !important;
+}
 
 /* ================ HEADER ================ */
 
