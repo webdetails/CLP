@@ -9,6 +9,29 @@
  "layout": {
   "rows": [
    {
+    "id": "bcb18cca-eeb5-3681-f31a-a02a90ed3fe6",
+    "type": "LayoutResourceFile",
+    "typeDesc": "Resource",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "value": "welcomeCSS",
+      "type": "Id"
+     },
+     {
+      "name": "resourceFile",
+      "value": "${solution:Welcome_files/css/welcome.css}",
+      "type": "ResourceFile"
+     },
+     {
+      "name": "resourceType",
+      "value": "Css",
+      "type": "Label"
+     }
+    ]
+   },
+   {
     "id": "ded13ec2-1035-a376-6bf9-a30b80c1f8f8",
     "parent": "UnIqEiD",
     "properties": [
