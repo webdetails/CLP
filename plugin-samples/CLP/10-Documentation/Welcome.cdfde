@@ -38,7 +38,7 @@
      {
       "name": "name",
       "type": "Id",
-      "value": "r0"
+      "value": "contentRow"
      },
      {
       "name": "height",
@@ -63,7 +63,7 @@
      {
       "name": "cssClass",
       "type": "String",
-      "value": ""
+      "value": "contentRow"
      }
     ],
     "type": "LayoutRow",
@@ -76,7 +76,7 @@
      {
       "name": "name",
       "type": "Id",
-      "value": "c0"
+      "value": "contentColumn"
      },
      {
       "name": "bootstrapExtraSmall",
@@ -126,7 +126,7 @@
      {
       "name": "cssClass",
       "type": "String",
-      "value": ""
+      "value": "contentColumn"
      }
     ],
     "type": "LayoutBootstrapColumn",
@@ -139,7 +139,7 @@
      {
       "name": "name",
       "type": "Id",
-      "value": "content"
+      "value": "contentObj"
      },
      {
       "name": "html",
@@ -159,7 +159,7 @@
      {
       "name": "cssClass",
       "type": "String",
-      "value": ""
+      "value": "contentObj"
      }
     ],
     "type": "LayoutHtml",
