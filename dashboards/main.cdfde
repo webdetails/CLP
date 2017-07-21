@@ -104,6 +104,104 @@
     "typeDesc": "Query Component"
    },
    {
+    "id": "36b713db-a9e5-fd7a-2f00-f60db691ed80",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "accordionComponent_new"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "parameters",
+      "type": "ValuesArray",
+      "value": "[[\"configParam\",\"configParam\"]]"
+     },
+     {
+      "name": "dataSource",
+      "type": "Datasource",
+      "value": "listFilesQry"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": ""
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": "function f(){    \n        \n    var errorMessage = 'No items found. Please configure CLP to display folders with content.';\n    \n    if(_.isUndefined(this.queryState.lastResults().items)){\n        displayNoContentsMessage(this.placeholder(), errorMessage);    \n    }\n    \n    // - get first element that has valid links\n    var accordionContent = this.placeholder('div[id=\"accordion2\"]');\n    var accordionElements = accordionContent.find('.accordion-body');\n    var firstContent = accordionElements.first();\n    \n    if(accordionElements.length > 0){\n        // get accordion structure and render first element in accordion        \n        var firstAccordionElement = $(firstContent).find('a[href=\"#\"]').first();\n        \n        var accordionInnerElements = this.placeholder('.accordion-inner'),\n            accordionHeadElements = this.placeholder('.accordion-heading');\n        \n        var linkType = firstAccordionElement.attr('data-type'),\n            reportLink = firstAccordionElement.attr('data-link'),\n            viewportLocation = 'visualizationPaneObj';\n        \n        var dashboardContext = this.dashboard;\n        var selectorPh = this.placeholder('a[href=\"#\"]');\n        \n        var ph = $('#selectionPaneInfoObj');        \n        \n        generateViewport(linkType, reportLink, viewportLocation, dashboardContext);\n    \n        // add active class to elements\n        firstContent.parent().addClass('active');\n        firstContent.parent().find('.accordion-heading').addClass('active');\n        \n        firstAccordionElement.parent().addClass('active');    \n        // add in class to expand element\n        firstAccordionElement.parent().parent().addClass('in');\n        \n        // bind click to each link\n        selectorPh.click(function(e){\n            \n            var linkType = e.target.getAttribute('data-type'),\n                reportLink = e.target.getAttribute('data-link');\n            \n            generateViewport(linkType, reportLink, viewportLocation, dashboardContext);\n            \n            _.each(selectorPh, function(elem){\n                var item = $(elem.parentNode);\n                if(item.hasClass('active')){\n                    item.removeClass('active');\n                }\n            });\n            \n            $(this.parentNode).addClass('active');\n            \n            var classToRemove = 'info-opened';\n            removeInfoClass(accordionInnerElements, classToRemove);\n            \n            if(ph.hasClass('expandedInfo')){\n                ph.removeClass('expandedInfo').addClass('collapsedInfo');\n            }\n            \n        });\n        \n    }// end if we have data\n    \n    \n    \n    // bind click to information button in selection pane\n    var infoButtons = this.placeholder('.infoButton');\n    \n    _.each(infoButtons, function(el){\n        $(el).click(\n            function(e){\n                e.stopPropagation();\n                var itemName = e.target.getAttribute('data-name'),\n                    itemInfo = e.target.getAttribute('data-Info');\n                    \n                    var accordionInner = $(e.target.parentNode);                     \n                    \n                    if(accordionInner.hasClass('info-opened')){\n                        accordionInner.removeClass('info-opened');\n                    } else {\n                        \n                        var classToRemove = 'info-opened';\n                        \n                        removeInfoClass(accordionHeadElements, classToRemove);\n                        removeInfoClass(accordionInnerElements, classToRemove);\n                    \n                        accordionInner.addClass('info-opened');  \n                    }\n                    \n                    var html='<div class=\"selectionItemName\">'+ itemName +'</div>'+\n                            '<div class=\"selectionInfo\">'+ itemInfo +'</div>';\n                    // check if pane is open\n                    if(ph.hasClass('expandedInfo')){\n                        // if we clicked on open pane - close it\n                        if(ph.find('.selectionItemName').html() === itemName){\n                            ph.removeClass('expandedInfo').addClass('collapsedInfo');\n                        } else {\n                            // update content\n                            ph.removeClass('expandedInfo').addClass('collapsedInfo');                            \n                            ph.delay(500)\n                                .queue(function(next){\n                                    ph.empty().append(html);\n                                    ph.removeClass('collapsedInfo').addClass('expandedInfo');\n                                    next();\n                                });                            \n                        }\n                        \n                    } else {                        \n                        ph.removeClass('collapsedInfo').addClass('expandedInfo');\n                        ph.empty().append(html);\n                    }\n\n            });\n    });\n    \n    var accordionHeaders = this.placeholder('.accordion-heading');    \n    \n    _.each(accordionHeaders, function(elem){\n        $(elem).click(function(e){            \n            var header = $(e.target.parentNode);\n            \n            // handle double clicks on expand accordion - ensures correct\n            // class is applied\n            if(!$(this).siblings().hasClass('collapsing')){\n                header.toggleClass('active');\n                // apply active class to parent node\n                header.parent().toggleClass('active');\n            }\n        });\n    });\n    \n    // close info pane\n    $('.selectionPaneInfo').click(function(e){\n        \n        var pane = $(this);\n        if(pane.hasClass('expandedInfo')){\n            pane.removeClass('expandedInfo').addClass('collapsedInfo');\n        }\n        var classToRemove = 'info-opened';\n        removeInfoClass(accordionHeadElements, classToRemove);\n        removeInfoClass(accordionInnerElements, classToRemove);\n        \n    });\n    \n    function generateViewport(linkType, reportLink, viewportLocation, dashboard){\n        if(linkType === 'iframe'){\n\n            // check if any iframes exist in html, if so remove them\n            var iframes = document.getElementsByTagName('iframe');\n            \n            for (var i = 0; i < iframes.length; i++) {\n                iframes[i].parentNode.removeChild(iframes[i]);\n            }\n            // generate iframe placeholder\n            var iframeContent = '' +\n            '<div class=\"h_iframe\">'+\n            '    <iframe  src=\"'+ reportLink +'\" width=\"100%\" height=\"100%\" frameborder=\"0\" allowfullscreen></iframe>'+\n            '</div>';\n            \n            // inject iframe\n            $(\"#\" + viewportLocation ).html(iframeContent);  \n            \n        } else {\n            \n            // embed dashboard\n            var reportPath = decodeURIComponent(reportLink);\n            \n            dashboard.setParameter('dashboardToEmbedParam', reportPath);\n            dashboard.fireChange('triggerDashboardEmbedder', $.now());\n        }\n    };\n    \n    // when no data - show info\n    function displayNoContentsMessage(placeholder, errorMsg){\n        var html = '<div class=\"errorMsgPane\">'+\n                    '   <div class=\"errorMessage\">'+ errorMsg +'</div>'\n                    '</div>';\n                    \n        // remove default error message\n        placeholder.find('.alert').remove();\n        placeholder.append(html);\n    }\n    \n    \n    var removeInfoClass = function (accordionDivs, cssClass){\n        _.each(accordionDivs, function(el){\n            var inner = $(el);\n            if(inner.hasClass(cssClass)){\n                inner.removeClass(cssClass);\n            }\n        });\n    }    \n\n} "
+     },
+     {
+      "name": "postFetch",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     },
+     {
+      "name": "modelHandler",
+      "type": "JavaScript",
+      "value": "function f(data){    \n        return data;\n} "
+     },
+     {
+      "name": "template",
+      "type": "JavaScript",
+      "value": "function() {\n    \n    \n    var template = ''+\n    '<div class=\"accordion\" id=\"accordion2\">' +\n    '   <%_.each(items, function(elem, idx){%>'+\n    '       <div class=\"accordion-group\">'+\n    '           <div class=\"accordion-heading\">'+\n    '               <a class=\"accordion-toggle\" data-toggle=\"collapse\" href=\"#collapse-<%=idx%>\">'+\n    '                       <%=elem.name%>'+\n    '               </a>'+\n    '               <% if(!_.isNull(elem.description)){%>'+\n    '                   <div class=\"infoButton\" data-name=\"<%=elem.name%>\" data-info=\"<%=elem.description%>\"></div>'+\n    '               <% } %>'+\n    '           </div>'+\n    '           <% if(!_.isEmpty(elem.children)) {%>'+\n    '               <div id=\"collapse-<%=idx%>\" class=\"accordion-body collapse\">'+\n    '                  <% _.each(elem.children, function(el){ %>'+\n    '                      <div class=\"accordion-inner clearfix\">'+\n    '                          <a href=\"#\" title =\"<%=el.name%>\" data-link=\"<%=el.id%>\" data-type=\"<%=el.link_type%>\" ><%=el.name%></a>'+\n    '                          <% if(!_.isNull(el.description)){%>'+\n    '                              <div class=\"infoButton\" data-name=\"<%=el.name%>\" data-info=\"<%=el.description%>\"></div>'+\n    '                          <% } %>'+\n    '                      </div>'+\n    '                   <%}); %>'+    \n    '               </div>'+\n    '           <% } %>'+\n    '       </div>'+\n    '   <%}); %>'+\n    '</div>';\n    \n    \n    \n    return template;\n} "
+     },
+     {
+      "name": "templateType",
+      "type": "templateTypeCustom",
+      "value": "underscore"
+     },
+     {
+      "name": "events",
+      "type": "EditorValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "formatters",
+      "type": "EditorValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "rootElement",
+      "type": "String",
+      "value": "items"
+     },
+     {
+      "name": "extendableOptions",
+      "type": "JavaScript",
+      "value": ""
+     }
+    ],
+    "type": "ComponentsTemplateComponent",
+    "typeDesc": "Template Component"
+   },
+   {
     "id": "5e392c3f-56fe-e150-c84e-a380781b2a95",
     "parent": "OTHERCOMPONENTS",
     "properties": [
@@ -150,7 +248,7 @@
      {
       "name": "postExecution",
       "type": "JavaScript",
-      "value": "function f(){    \n        \n    var errorMessage = 'No items found. Please configure CLP to display folders with content.';\n    \n    if(_.isUndefined(this.queryState.lastResults().items)){\n        displayNoContentsMessage(this.placeholder(), errorMessage);    \n    }\n    \n    // - get first element that has valid links\n    var accordionContent = this.placeholder('div[id=\"accordion2\"]');\n    var accordionElements = accordionContent.find('.accordion-body');\n    var firstContent = accordionElements.first();\n    \n    if(accordionElements.length > 0){\n        // get accordion structure and render first element in accordion        \n        var firstAccordionElement = $(firstContent).find('a[href=\"#\"]').first();\n        \n        var accordionInnerElements = this.placeholder('.accordion-inner'),\n            accordionHeadElements = this.placeholder('.accordion-heading');\n        \n        var linkType = firstAccordionElement.attr('data-type'),\n            reportLink = firstAccordionElement.attr('data-link'),\n            viewportLocation = 'visualizationPaneObj';\n        \n        var dashboardContext = this.dashboard;\n        var selectorPh = this.placeholder('a[href=\"#\"]');\n        \n        var ph = $('#selectionPaneInfoObj');        \n        \n        generateViewport(linkType, reportLink, viewportLocation, dashboardContext);\n    \n        // add active class to elements\n        firstContent.parent().addClass('active');\n        firstContent.parent().find('.accordion-heading').addClass('active');\n        \n        firstAccordionElement.parent().addClass('active');    \n        // add in class to expand element\n        firstAccordionElement.parent().parent().addClass('in');\n        \n        // bind click to each link\n        selectorPh.click(function(e){\n            \n            var linkType = e.target.getAttribute('data-type'),\n                reportLink = e.target.getAttribute('data-link');\n            \n            generateViewport(linkType, reportLink, viewportLocation, dashboardContext);\n            \n            _.each(selectorPh, function(elem){\n                var item = $(elem.parentNode);\n                if(item.hasClass('active')){\n                    item.removeClass('active');\n                }\n            });\n            \n            $(this.parentNode).addClass('active');\n            \n            var classToRemove = 'info-opened';\n            removeInfoClass(accordionInnerElements, classToRemove);\n            \n            if(ph.hasClass('expandedInfo')){\n                ph.removeClass('expandedInfo').addClass('collapsedInfo');\n            }\n            \n        });\n        \n    }// end if we have data\n    \n    \n    \n    // bind click to information button in selection pane\n    var infoButtons = this.placeholder('.infoButton');\n    \n    _.each(infoButtons, function(el){\n        $(el).click(\n            function(e){\n                e.stopPropagation();\n                var itemName = e.target.getAttribute('data-name'),\n                    itemInfo = e.target.getAttribute('data-Info');\n                    \n                    var accordionInner = $(e.target.parentNode);                     \n                    \n                    if(accordionInner.hasClass('info-opened')){\n                        accordionInner.removeClass('info-opened');\n                    } else {\n                        \n                        var classToRemove = 'info-opened';\n                        \n                        removeInfoClass(accordionHeadElements, classToRemove);\n                        removeInfoClass(accordionInnerElements, classToRemove);\n                    \n                        accordionInner.addClass('info-opened');  \n                    }\n                    \n                    var html='<div class=\"selectionItemName\">'+ itemName +'</div>'+\n                            '<div class=\"selectionInfo\">'+ itemInfo +'</div>';\n                    // check if pane is open\n                    if(ph.hasClass('expandedInfo')){\n                        // if we clicked on open pane - close it\n                        if(ph.find('.selectionItemName').html() === itemName){\n                            ph.removeClass('expandedInfo').addClass('collapsedInfo');\n                        } else {\n                            // update content\n                            ph.removeClass('expandedInfo').addClass('collapsedInfo');                            \n                            ph.delay(500)\n                                .queue(function(next){\n                                    ph.empty().append(html);\n                                    ph.removeClass('collapsedInfo').addClass('expandedInfo');\n                                    next();\n                                });                            \n                        }\n                        \n                    } else {                        \n                        ph.removeClass('collapsedInfo').addClass('expandedInfo');\n                        ph.empty().append(html);\n                    }\n\n            });\n    });\n    \n    var accordionHeaders = this.placeholder('.accordion-heading');    \n    \n    _.each(accordionHeaders, function(elem){\n        $(elem).click(function(e){            \n            var header = $(e.target.parentNode);\n            \n            // handle double clicks on expand accordion - ensures correct\n            // class is applied\n            if(!$(this).siblings().hasClass('collapsing')){\n                header.toggleClass('active');\n                // apply active class to parent node\n                header.parent().toggleClass('active');\n            }\n        });\n    });\n    \n    // close info pane\n    $('.selectionPaneInfo').click(function(e){\n        \n        var pane = $(this);\n        if(pane.hasClass('expandedInfo')){\n            pane.removeClass('expandedInfo').addClass('collapsedInfo');\n        }\n        var classToRemove = 'info-opened';\n        removeInfoClass(accordionHeadElements, classToRemove);\n        removeInfoClass(accordionInnerElements, classToRemove);\n        \n    });\n    \n    function generateViewport(linkType, reportLink, viewportLocation, dashboard){\n        if(linkType === 'iframe'){\n\n            // check if any iframes exist in html, if so remove them\n            var iframes = document.getElementsByTagName('iframe');\n            \n            for (var i = 0; i < iframes.length; i++) {\n                iframes[i].parentNode.removeChild(iframes[i]);\n            }\n            // generate iframe placeholder\n            var iframeContent = '' +\n            '<div class=\"h_iframe\">'+\n            '    <iframe  src=\"'+ reportLink +'\" width=\"100%\" height=\"100%\" frameborder=\"0\" allowfullscreen></iframe>'+\n            '</div>';\n            \n            // inject iframe\n            $(\"#\" + viewportLocation ).html(iframeContent);  \n            \n        } else {\n            \n            // embed dashboard\n            var reportPath = decodeURIComponent(reportLink);\n            \n            dashboard.setParameter('dashboardToEmbedParam', reportPath);\n            dashboard.fireChange('triggerDashboardEmbedder', $.now());\n        }\n    };\n    \n    // when no data - show info\n    function displayNoContentsMessage(placeholder, errorMsg){\n        var html = '<div class=\"errorMsgPane\">'+\n                    '   <div class=\"errorMessage\">'+ errorMsg +'</div>'\n                    '</div>';\n                    \n        // remove default error message\n        placeholder.find('.alert').remove();\n        placeholder.append(html);\n    }\n    \n    \n    var removeInfoClass = function (accordionDivs, cssClass){\n        _.each(accordionDivs, function(el){\n            var inner = $(el);\n            if(inner.hasClass(cssClass)){\n                inner.removeClass(cssClass);\n            }\n        });\n    }    \n\n} "
+      "value": "function f() {\n    \n    /* Show error message if query is empty\n       ================================================ */\n    debugger;\n    var errorMessage = 'No items found. Please configure CLP to display folders with content.';\n    \n    if (_.isUndefined(this.queryState.lastResults().items)) {\n        displayNoContentsMessage(this.placeholder(), errorMessage);    \n    }\n    \n    \n    /* Navigation logic\n       ================================================ */\n    \n    // get tabs container and list of tabs\n    var tabsContainer = this.placeholder().find('ul#dashboardsNav'),\n        tabs = tabsContainer.find('.dropdown');\n        \n    // get dashboard context\n    var dashboardContext = this.dashboard;\n    \n    // setup navigation if query is not empty\n    if (tabs.length > 0) {\n        \n        // get tabs structure\n        var tabDropdowns = tabsContainer.find('.dropdown-menu'),\n            tabHeadElements = tabsContainer.find('.dropdown-toggle'),\n            linkElements = tabsContainer.find('.dropdown-menu a[href=\"#\"]');\n        \n        // get viewport dom element\n        var viewportElement = $('#visualizationPaneObj');\n        \n        // get info from first link from first tab\n        var firstTab = tabs.first(),\n            firstLink = firstTab.find('.dropdown-menu a[href=\"#\"]').first(),\n            firstLinkType = firstLink.attr('data-type'),\n            firstLinkReportURL = firstLink.attr('data-link');\n\n        // render first link content\n        generateViewport(firstLinkType, firstLinkReportURL, viewportElement, dashboardContext);\n    \n        // add active class to first link and tab\n        firstTab.addClass('active');        \n        firstLink.closest('li').addClass('active');\n        \n        // bind click to each link\n        linkElements.click(function(e) {\n            \n            // get info from clicked link\n            var linkType = e.target.getAttribute('data-type'),\n                reportLink = e.target.getAttribute('data-link');\n            \n            // render clicked link content\n            generateViewport(linkType, reportLink, viewportElement, dashboardContext);\n            \n            // remove active class from all tabs\n            _.each(tabs, function(elem) {\n                var item = $(elem);\n                if(item.hasClass('active')) {\n                    item.removeClass('active');\n                }\n            });\n            \n            // remove active class from all links\n            _.each(linkElements, function(elem) {\n                var item = $(elem).closest('li');\n                if(item.hasClass('active')){\n                    item.removeClass('active');\n                }\n            });\n            \n            // add active class to clicked link and corresponding tab\n            $(this).closest('li').addClass('active');\n            $(this).closest('.dropdown').addClass('active');\n            \n        });\n        \n    }\n    \n    function generateViewport(linkType, reportLink, viewportElement, dashboard) {\n        \n        if(linkType === 'iframe') {\n\n            // check if any iframes exist in html, if so remove them\n            var iframes = document.getElementsByTagName('iframe');\n            \n            for (var i = 0; i < iframes.length; i++) {\n                iframes[i].parentNode.removeChild(iframes[i]);\n            }\n            \n            // generate new iframe placeholder\n            var iframeContent = '' +\n                '<div class=\"h_iframe\">' +\n                '    <iframe  src=\"' + reportLink + '\" width=\"100%\" height=\"100%\" frameborder=\"0\" allowfullscreen></iframe>' +\n                '</div>';\n            \n            // inject iframe\n            viewportElement.html(iframeContent);  \n            \n        } else {\n            \n            // embed dashboard\n            var reportPath = decodeURIComponent(reportLink);\n            \n            dashboard.setParameter('dashboardToEmbedParam', reportPath);\n            dashboard.fireChange('triggerDashboardEmbedder', $.now());\n            \n        }\n    };\n    \n    \n    /* Display no contents message\n       ================================================ */\n       \n    function displayNoContentsMessage(placeholder, errorMsg){\n        \n        // template for our error message\n        var html = '' +\n            '<div class=\"errorMsgPane\">' +\n            '   <div class=\"errorMessage\">' + errorMsg + '</div>' +\n            '</div>';\n        \n        // remove default error message\n        placeholder.find('.alert').remove();\n        \n        // append our error message\n        placeholder.append(html);\n        \n    }\n\n} "
      },
      {
       "name": "postFetch",
@@ -170,7 +268,7 @@
      {
       "name": "template",
       "type": "JavaScript",
-      "value": "function() {\n    \n    \n    var template = ''+\n    '<div class=\"accordion\" id=\"accordion2\">' +\n    '   <%_.each(items, function(elem, idx){%>'+\n    '       <div class=\"accordion-group\">'+\n    '           <div class=\"accordion-heading\">'+\n    '               <a class=\"accordion-toggle\" data-toggle=\"collapse\" href=\"#collapse-<%=idx%>\">'+\n    '                       <%=elem.name%>'+\n    '               </a>'+\n    '               <% if(!_.isNull(elem.description)){%>'+\n    '                   <div class=\"infoButton\" data-name=\"<%=elem.name%>\" data-info=\"<%=elem.description%>\"></div>'+\n    '               <% } %>'+\n    '           </div>'+\n    '           <% if(!_.isEmpty(elem.children)) {%>'+\n    '               <div id=\"collapse-<%=idx%>\" class=\"accordion-body collapse\">'+\n    '                  <% _.each(elem.children, function(el){ %>'+\n    '                      <div class=\"accordion-inner clearfix\">'+\n    '                          <a href=\"#\" title =\"<%=el.name%>\" data-link=\"<%=el.id%>\" data-type=\"<%=el.link_type%>\" ><%=el.name%></a>'+\n    '                          <% if(!_.isNull(el.description)){%>'+\n    '                              <div class=\"infoButton\" data-name=\"<%=el.name%>\" data-info=\"<%=el.description%>\"></div>'+\n    '                          <% } %>'+\n    '                      </div>'+\n    '                   <%}); %>'+    \n    '               </div>'+\n    '           <% } %>'+\n    '       </div>'+\n    '   <%}); %>'+\n    '</div>';\n    \n    \n    \n    return template;\n} "
+      "value": "function() {\n    \n    var template = '' +\n    '<ul class=\"nav nav-pills nav-justified\" id=\"dashboardsNav\">' +\n    '   <%_.each(items, function(elem, idx){%>' +\n    '       <li role=\"presentation\" class=\"dropdown\">' +\n    '           <a class=\"dropdown-toggle\" id=\"dropdown-<%=idx%>\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">' +\n    '               <%=elem.name%>' +\n    '           </a>' +\n    '           <% if(!_.isEmpty(elem.children)) {%>' +\n    '               <ul class=\"dropdown-menu\" aria-labelledby=\"dropdown-<%=idx%>\">' +\n    '                  <% _.each(elem.children, function(el){ %>' +\n    '                      <li>' +\n    '                          <a href=\"#\" title =\"<%=el.name%>\" data-link=\"<%=el.id%>\" data-type=\"<%=el.link_type%>\" ><%=el.name%></a>' +\n    '                      </li>' +\n    '                   <%}); %>' +    \n    '               </ul>' +\n    '           <% } %>' +\n    '       </li>' +\n    '   <%}); %>' +\n    '</ul>';    \n    \n    return template;\n} "
      },
      {
       "name": "templateType",
@@ -441,6 +539,11 @@
       "value": "[]"
      },
      {
+      "name": "oneWayMap",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
       "name": "parameterMapping",
       "type": "ParameterMapping",
       "value": "[]"
@@ -551,7 +654,7 @@
    }
   ]
  },
- "filename": "/system/CLP/dashboards/main.cdfde",
+ "filename": "/public/CLP_test/dashboards_master/main.cdfde",
  "layout": {
   "rows": [
    {
@@ -644,69 +747,6 @@
     "typeDesc": "Row"
    },
    {
-    "id": "d53d5cf1-1038-61a2-4412-4698f80a63b7",
-    "parent": "a6acadcf-76cc-0379-b4ad-f14a1b801362",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "drawerButtonObj"
-     },
-     {
-      "name": "bootstrapExtraSmall",
-      "type": "String",
-      "value": "4"
-     },
-     {
-      "name": "bootstrapSmall",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapMedium",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapLarge",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapCssClass",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": "drawerButton expanded"
-     }
-    ],
-    "type": "LayoutBootstrapColumn",
-    "typeDesc": "Column"
-   },
-   {
     "id": "caed3234-022c-04b8-57a9-e1ea26a910c5",
     "parent": "a6acadcf-76cc-0379-b4ad-f14a1b801362",
     "properties": [
@@ -718,7 +758,7 @@
      {
       "name": "bootstrapExtraSmall",
       "type": "String",
-      "value": "4"
+      "value": "3"
      },
      {
       "name": "bootstrapSmall",
@@ -764,6 +804,102 @@
       "name": "cssClass",
       "type": "String",
       "value": "logoRow"
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "ed34fd73-2799-0b09-be17-e90a1f7cee9b",
+    "parent": "caed3234-022c-04b8-57a9-e1ea26a910c5",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "pluginName"
+     },
+     {
+      "name": "html",
+      "type": "Html",
+      "value": "CLP "
+     },
+     {
+      "name": "fontSize",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "color",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutHtml",
+    "typeDesc": "Html"
+   },
+   {
+    "id": "d53d5cf1-1038-61a2-4412-4698f80a63b7",
+    "parent": "a6acadcf-76cc-0379-b4ad-f14a1b801362",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "accordionObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "6"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "selectionObj"
      }
     ],
     "type": "LayoutBootstrapColumn",
@@ -781,7 +917,7 @@
      {
       "name": "bootstrapExtraSmall",
       "type": "String",
-      "value": "4"
+      "value": "3"
      },
      {
       "name": "bootstrapSmall",
@@ -859,375 +995,6 @@
     ],
     "type": "LayoutFreeForm",
     "typeDesc": "FreeForm"
-   },
-   {
-    "id": "f351d5f6-76a4-0d55-192a-4fb7518ef4f2",
-    "parent": "UnIqEiD",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "selectionPane"
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": "container-fluid selectionPane"
-     },
-     {
-      "name": "elementTag",
-      "type": "String",
-      "value": "div"
-     },
-     {
-      "name": "otherAttributes",
-      "type": "OptionArray",
-      "value": "[]"
-     }
-    ],
-    "type": "LayoutFreeForm",
-    "typeDesc": "FreeForm"
-   },
-   {
-    "id": "b422f628-e6be-5d5c-8503-12f96196f7ac",
-    "parent": "f351d5f6-76a4-0d55-192a-4fb7518ef4f2",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "selectionPaneRow"
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": "selectionPaneRow"
-     }
-    ],
-    "type": "LayoutRow",
-    "typeDesc": "Row"
-   },
-   {
-    "id": "171482b4-67b1-1803-3fd1-986944acb3d6",
-    "parent": "b422f628-e6be-5d5c-8503-12f96196f7ac",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "selectionPaneInner"
-     },
-     {
-      "name": "bootstrapExtraSmall",
-      "type": "String",
-      "value": "12"
-     },
-     {
-      "name": "bootstrapSmall",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapMedium",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapLarge",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapCssClass",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutBootstrapColumn",
-    "typeDesc": "Column"
-   },
-   {
-    "id": "57246e19-3cb7-3eec-a21c-6157c9fb86a1",
-    "parent": "171482b4-67b1-1803-3fd1-986944acb3d6",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "leftColRow"
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutRow",
-    "typeDesc": "Row"
-   },
-   {
-    "id": "1608c124-db87-7324-8ddd-82a3db11eb3e",
-    "parent": "57246e19-3cb7-3eec-a21c-6157c9fb86a1",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "selectionPaneCol"
-     },
-     {
-      "name": "bootstrapExtraSmall",
-      "type": "String",
-      "value": "12"
-     },
-     {
-      "name": "bootstrapSmall",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapMedium",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapLarge",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapCssClass",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutBootstrapColumn",
-    "typeDesc": "Column"
-   },
-   {
-    "id": "a57e94cf-b879-82ee-8904-1bbdbee87f51",
-    "parent": "1608c124-db87-7324-8ddd-82a3db11eb3e",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "logoRow"
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutRow",
-    "typeDesc": "Row"
-   },
-   {
-    "id": "45c791d7-8794-e1b7-2bee-325d1e0c3f03",
-    "parent": "1608c124-db87-7324-8ddd-82a3db11eb3e",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "selectionRow"
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutRow",
-    "typeDesc": "Row"
-   },
-   {
-    "id": "6ccb7c6a-8f7a-24a6-4acd-3c2bb10ef891",
-    "parent": "45c791d7-8794-e1b7-2bee-325d1e0c3f03",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "accordionObj"
-     },
-     {
-      "name": "bootstrapExtraSmall",
-      "type": "String",
-      "value": "12"
-     },
-     {
-      "name": "bootstrapSmall",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapMedium",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapLarge",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "bootstrapCssClass",
-      "type": "String",
-      "value": ""
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": "selectionObj"
-     }
-    ],
-    "type": "LayoutBootstrapColumn",
-    "typeDesc": "Column"
    },
    {
     "id": "1a928594-e4e7-aa01-9167-d307bf02d8ea",
@@ -1491,34 +1258,6 @@
     ],
     "type": "LayoutBootstrapColumn",
     "typeDesc": "Column"
-   },
-   {
-    "id": "c4f33ab8-c13f-5339-8da8-e51553feca2a",
-    "parent": "UnIqEiD",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "selectionPaneInfoObj"
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": "selectionPaneInfo collapsedInfo"
-     },
-     {
-      "name": "elementTag",
-      "type": "String",
-      "value": "div"
-     },
-     {
-      "name": "otherAttributes",
-      "type": "OptionArray",
-      "value": "[]"
-     }
-    ],
-    "type": "LayoutFreeForm",
-    "typeDesc": "FreeForm"
    }
   ],
   "title": "bioMeDashboard"

@@ -1,6 +1,19 @@
 require(['cdf/lib/jquery'], function($) {
     
-	
+	var navOverlay = $('<div class="nav-overlay modal-backdrop"></div>');
+    
+    $(document).ready(function () {
+       $('body').append(navOverlay);
+       
+       $('.topSection').on('shown.bs.dropdown', '.dropdown', function() {
+           navOverlay.show();
+           $('body').css('overflow', 'hidden');
+       }).on('hide.bs.dropdown', '.dropdown', function() {
+           navOverlay.hide();
+           $('body').css('overflow', 'auto');
+       });
+    });
+    
 	// Configure Icon and Logo
 	// Configure Dashboard text
 	var buttonTextObj = $('#drawerButtonObj');
@@ -8,13 +21,14 @@ require(['cdf/lib/jquery'], function($) {
 	    buttonTextObj.find('button').text(panelText);
     
     // display at top left corner
-    var mastheadContent = 
-    '<div class="col-xs-12">'+
-    '   <div id="logoObj" class="logoObj "></div>'+
-    '</div>'; 
+    
+    //var mastheadContent = 
+    //'<div class="col-xs-12">'+
+    //'   <div id="logoObj" class="logoObj "></div>'+
+    //'</div>'; 
     
     // append contents to html
-    $('#logoRow').html(mastheadContent);
+    //$('#logoRow').html(mastheadContent);
     
     // Configure Overlay Message here
     var overlayMessage = ''+

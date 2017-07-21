@@ -24,7 +24,7 @@
 /* ==========================================================================
   0. Fonts
   ========================================================================== */
-
+/*
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
@@ -55,7 +55,27 @@
   url('../fonts/opensans-bold.ttf') format('truetype'),
   url('../fonts/opensans-bold.svg#OpenSansBold') format('svg');
 }
+*/
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src:  url('../fonts/OpenSans-Light.woff') format('woff');
+}
 
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src:  url('../fonts/OpenSans-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src:  url('../fonts/OpenSans-Semibold.woff') format('woff');
+}
 
 /* ==========================================================================
   1. General Styles
@@ -76,19 +96,21 @@ body {
   ========================================================================== */
 
 .topSectionCss {
-  height: 51px;
+ /* height: 51px;*/
   left: 0;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1002;
   min-width: 1200px;
+  background: #005da6;
 }
 
 .topSectionRow {
-  background: #DCE7ED;
+  /*background: #DCE7ED;*/
   height: 51px;
-  border-bottom: 1px solid #BFDCE5;
+  /*border-bottom: 1px solid #BFDCE5;*/
+    background: #005da6;
 }
 
 
@@ -179,7 +201,7 @@ body {
   width: 40px;
   float: right;
   line-height: 20px;
-  padding-top: 15px;
+  padding-top: 20px;
   padding-bottom: 15px;
   margin-right: 20px;
 }
@@ -190,8 +212,8 @@ body {
 .aboutClass a:hover,
 .aboutClass a:active,
 .aboutClass a:focus {
-  color: #1973BC;
-  font-weight: 300;
+  color: #fff;
+  font-weight: 400;
   outline: 0 none;
 }
 
@@ -493,10 +515,15 @@ body {
   -ms-transition: padding-left .5s ease-in-out;
   -o-transition: padding-left .5s ease-in-out;
   transition: padding-left .5s ease-in-out;
-  padding-left: 300px;
+  /*padding-left: 200px;*/
   min-width: 1200px;
 }
 
+.logoRow {
+    font-size: 25px;
+    color: #fff;
+    padding: 15px 15px;
+}
 .contentPane {
   padding-top: 51px;
   position: relative;
@@ -643,4 +670,120 @@ body {
     background: linear-gradient(to bottom, #8ac06e 0%,#62ab3d 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8ac06e', endColorstr='#62ab3d',GradientType=0 );
     color: #293b44;
+}
+
+
+/***********
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+   
+.selectionObj ul.nav > li.dropdown {
+    padding-right: 3    0px;
+}
+   
+.selectionObj ul.nav > li.dropdown:last-child {
+    padding-right: 0;
+}
+   
+.selectionObj ul.nav > li.dropdown > a.dropdown-toggle {
+    position: relative;
+    padding: 24px 28px 24px 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    background: none;
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
+}
+   
+.selectionObj ul.nav > li.dropdown > a.dropdown-toggle:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 5px;
+    background: #fff;
+    opacity: 0;
+}
+
+.selectionObj ul.nav > li.dropdown.active > a.dropdown-toggle:before {
+    opacity: 1;
+}
+   
+.selectionObj ul.nav > li.dropdown > a.dropdown-toggle:after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    right: 9px;
+    top: 0;
+    margin: auto 0;
+    width: 10px;
+    height: 10px;
+    background-image: url(../img/navigation-arrows.svg);
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+   
+.no-svg .selectionObj ul.nav > li.dropdown > a.dropdown-toggle:after {
+    background-image: url(../img/navigation-arrows.png);
+}
+   
+.selectionObj ul.nav > li.dropdown.open > a.dropdown-toggle:after {
+    background-position: right center;
+}
+
+.selectionObj ul.nav > li.dropdown > .dropdown-menu {
+    width: calc(100% - 30px);
+    min-width: 0;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 0 none;
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
+    -webkit-box-shadow: 1px 1px 2px rgba(190,190,190,1);
+       -moz-box-shadow: 1px 1px 2px rgba(190,190,190,1);
+            box-shadow: 1px 1px 2px rgba(190,190,190,1);
+}
+
+.selectionObj ul.nav > li.dropdown:last-child > .dropdown-menu {
+    width: 100%;
+}
+
+.selectionObj ul.nav > li.dropdown > .dropdown-menu > li > a {
+    line-height: 22px;
+    padding: 7px 10px;
+    color: #333;
+    font-size: 12px;
+}
+
+.selectionObj ul.nav > li.dropdown > .dropdown-menu > li.active > a {
+    color: #333;
+    background-color: #fff;
+}
+
+.selectionObj ul.nav > li.dropdown > .dropdown-menu > li > a:hover,
+.selectionObj ul.nav > li.dropdown > .dropdown-menu > li > a:focus,
+.selectionObj ul.nav > li.dropdown > .dropdown-menu > li.active > a:hover,
+.selectionObj ul.nav > li.dropdown > .dropdown-menu > li.active > a:focus {
+    color: #333;
+    background-color: #e6eff6;
+}
+
+.modal-backdrop.nav-overlay {
+    display: none;
+    top: 68px;
+    height: 100%;
+    height: calc(100% - 68px);
+    z-index: 0;
+    overflow-y: hidden;
+    background-color: #fff;
+    opacity: .5;
 }
