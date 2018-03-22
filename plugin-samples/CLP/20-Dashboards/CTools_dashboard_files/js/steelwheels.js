@@ -36,6 +36,10 @@ steelwheels.changePerspective = function(clickedButton){
     activeButton.removeClass('active');
     clickedButton.addClass('active');
     clickedContainer.addClass('active');
+    
+    $('.kpiColumn').removeClass('active');
+    clickedButton.parents('.kpiColumn').addClass('active');
+    
     activeContainer.fadeOut(300, function() {
         clickedContainer.fadeIn(300);
     });
@@ -46,8 +50,25 @@ steelwheels.startPerspective = function() {
     activeContainer.show();
 };
 
+
+// handles viz switching when clicking on the small bar chart label
+steelwheels.fakeBtn = function() {
+    
+    $('body').on('click', '.kpiColumn', function(e){
+        if (e.target !== this){
+            $(this).find('.radioButtonObj button').triggerHandler('click');
+            event.preventDefault();
+        }
+    });
+    
+};
+
+
 $(document).ready(function() {
-    steelwheels.startPerspective();    
+    steelwheels.startPerspective();
+    steelwheels.fakeBtn();
+    
+    $("#footer").appendTo("body");
 });
  
 
@@ -57,11 +78,11 @@ $(document).ready(function() {
 
 //Mapping between product lines and colors
 steelwheels.productLines_colorMap = {
-    "Classic Cars":     "#005CA7",
-    "Vintage Cars":     "#3E83B7",
-    "Motorcycles":      "#5C9FBC",
-    "Trucks and Buses": "#66C2A5",
-    "Trains":           "#22B573"
+    "Classic Cars":     "#785ef0",
+    "Vintage Cars":     "#648fff",
+    "Motorcycles":      "#ffc941",
+    "Trucks and Buses": "#fe6101",
+    "Trains":           "#ff32be"
 };
 
 /***************************************************************************
