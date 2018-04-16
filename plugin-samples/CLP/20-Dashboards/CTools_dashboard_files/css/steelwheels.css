@@ -368,6 +368,7 @@ body .container{
     -ms-user-select: none;
     user-select: none;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .legendObj table.dataTable > tbody > tr.disabled > td{
@@ -468,7 +469,7 @@ body .container{
     border: 1px solid transparent;
     border-radius: 2px;
     box-shadow: none;
-    padding: 5px 15px;
+    padding: 0;
     background: none;
     filter: none;
     color: #424242;
@@ -484,13 +485,12 @@ body .container{
     height: 10px;
     border-right: 2px solid #424242;
     border-bottom: 2px solid #424242;
-    right: 15px;
+    right: 22px;
     top: 25px;
     margin-top: -1px;
     position: absolute;
     content: '';
     z-index: 1;
-    
     -ms-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
@@ -519,16 +519,25 @@ body .container{
     border: 1px solid #424242;
 }
 
+.dateObj .chzn-container-single .chzn-single.chzn-single-with-drop{
+    border-bottom: 1px solid #ffffff !important;
+    z-index: 9999;
+}
+
 .dateObj .chzn-container-single .chzn-single span {
+    box-sizing: content-box;
+    min-width: 33px;
+    padding: 5px 15px;
+    padding-right: 30px;
+    margin: 0;
     position: relative;
     color: #424242;
-    margin-right: 10px;
-    
+    z-index: 100;
     -webkit-transition: all .2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
-      -msie-transition: all .2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
-       -moz-transition: all .2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
-         -o-transition: all .2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
-            transition: all .2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    -msie-transition: all .2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    -moz-transition: all .2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    -o-transition: all .2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    transition: all .2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
 }
 
 
@@ -536,17 +545,16 @@ body .container{
     content: "";
     position: absolute;
     bottom: 5px;
-    left: 0;
+    left: 10px;
     width: 100%;
     opacity: 1;
     height: 1px;
     background: #424242;
-    
     -webkit-transition: all .5s cubic-bezier(0.465, 0.183, 0.153, 0.946);
     -msie-transition: all .5s cubic-bezier(0.465, 0.183, 0.153, 0.946);
     -moz-transition: all .5s cubic-bezier(0.465, 0.183, 0.153, 0.946);
     -o-transition: all .5s cubic-bezier(0.465, 0.183, 0.153, 0.946);
-    transition: all .5s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    transition: all .2s cubic-bezier(0.465, 0.183, 0.153, 0.946);
 }
 
 .dateObj .chzn-container-single .chzn-single.chzn-single-with-drop span:before,
@@ -565,12 +573,12 @@ body .container{
 
 .dateObj .chzn-container-single .chzn-drop {
     width: 100% !important;
+    min-width: 170px;
     background: #FFF;
     border: 1px solid #424242;
     padding: 0;
     text-align: left;
     border-radius: 0;
-    margin-top: -1px;
     box-shadow: none;
 }
 
@@ -586,6 +594,9 @@ body .container{
     line-height: 50px;
     white-space: nowrap;
     padding: 7px 15px 8px;
+    display: block;
+    width: 100%;
+    float: left;
 }
 
 .dateObj .chzn-container .chzn-results .highlighted.result-selected{
@@ -669,22 +680,3 @@ body .container{
 .tooltipContainer .tooltipSubtitle + .tooltipValue{
     padding-bottom: 20px;
 }
-
-/*allows to give the chart tooltip value the same text color as the series*/
-/* 
-.tooltipContainer .tooltipValue.classic {
-    color: #005CA7;
-}
-.tooltipContainer .tooltipValue.vintage {
-    color: #3E83B7;
-}
-.tooltipContainer .tooltipValue.motorcycles {
-    color: #5C9FBC;
-}
-.tooltipContainer .tooltipValue.trucks {
-    color: #66C2A5;
-}
-.tooltipContainer .tooltipValue.trains {
-    color: #22B573;
-}
-*/
